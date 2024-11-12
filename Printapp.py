@@ -462,7 +462,7 @@ title_bar_style = """
 
 st.markdown(title_bar_style, unsafe_allow_html=True)
 
-st.title("Online Data Insights Dashboard")
+st.title("Data Insights/Tables Dashboard")
 
 # Sidebar for file upload and download options
 st.sidebar.title("Upload an Online or Print file for tables")
