@@ -144,7 +144,7 @@ if uploaded_file is not None:
         data=processed_file,
         file_name="Processed_Excel.xlsx",
 
-
+    )
 # Load data function
 def load_data(file):
     if file:
