@@ -495,7 +495,7 @@ if file:
             data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
             
         if {'Date', 'Entity', 'Hit Sentence', 'Publication Name'}.issubset(data.columns):
-            data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+            data.drop_duplicates(subset=['Date', 'Entity', 'Hit Sentence', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
 
         finaldata = data
         finaldata['Date'] = pd.to_datetime(finaldata['Date']).dt.normalize()
