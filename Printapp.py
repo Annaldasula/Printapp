@@ -573,22 +573,22 @@ if file:
 
         finaldata['Exclusivity'] = finaldata.apply(classify_exclusivity, axis=1)
 
-        # Define a dictionary of keywords for each entity
-        entity_keywords = {
-            'Amazon': ['Amazon', 'Amazons', 'amazon'],
-            # Add other entities and keywords here
-        }
+        # # Define a dictionary of keywords for each entity
+        # entity_keywords = {
+        #     'Amazon': ['Amazon', 'Amazons', 'amazon'],
+        #     # Add other entities and keywords here
+        # }
 
-        def qualify_entity(row):
-            entity_name = row['Entity']
-            text = row['Headline']
-            if entity_name in entity_keywords:
-                keywords = entity_keywords[entity_name]
-                if any(keyword in text for keyword in keywords):
-                    return "Qualified"
-            return "Not Qualified"
+        # def qualify_entity(row):
+        #     entity_name = row['Entity']
+        #     text = row['Headline']
+        #     if entity_name in entity_keywords:
+        #         keywords = entity_keywords[entity_name]
+        #         if any(keyword in text for keyword in keywords):
+        #             return "Qualified"
+        #     return "Not Qualified"
 
-        finaldata['Qualification'] = finaldata.apply(qualify_entity, axis=1)
+        # finaldata['Qualification'] = finaldata.apply(qualify_entity, axis=1)
 
         # Topic classification
         topic_mapping = {
