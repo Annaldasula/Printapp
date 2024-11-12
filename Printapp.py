@@ -462,7 +462,7 @@ title_bar_style = """
 
 st.markdown(title_bar_style, unsafe_allow_html=True)
 
-st.title("Meltwater Data Insights Dashboard")
+st.title("Online Data Insights Dashboard")
 
 # Sidebar for file upload and download options
 st.sidebar.title("Upload a file for tables")
