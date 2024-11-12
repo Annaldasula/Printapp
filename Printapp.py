@@ -153,7 +153,7 @@ def extract_entity_name(file_path):
     return entity_name
 
 # Web app title
-st.title('Excel File Merger & Entity Extractor')
+st.title('Online Excel File Merger & Entity Extractor')
 
 # File uploader
 uploaded_files = st.file_uploader("Upload your Excel files", accept_multiple_files=True, type=['xlsx'])
