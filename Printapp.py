@@ -484,9 +484,19 @@ if file:
         # Data preprocessing
         data.drop(columns=data.columns[15:], axis=1, inplace=True)
         data = data.rename({'Influencer': 'Journalist'}, axis=1)
-        data.drop_duplicates(subset=['Date', 'Entity', 'Headline', 'Publication Name'], keep='first', inplace=True)
-        data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
-        data.drop_duplicates(subset=['Date', 'Entity', 'Hit Sentence', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+        # data.drop_duplicates(subset=['Date', 'Entity', 'Headline', 'Publication Name'], keep='first', inplace=True)
+        # data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+        # data.drop_duplicates(subset=['Date', 'Entity', 'Hit Sentence', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+        # Check if specific columns exist before dropping duplicates
+        if {'Date', 'Entity', 'Headline', 'Publication Name'}.issubset(data.columns):
+            data.drop_duplicates(subset=['Date', 'Entity', 'Headline', 'Publication Name'], keep='first', inplace=True)
+
+        if {'Date', 'Entity', 'Opening Text', 'Publication Name'}.issubset(data.columns):
+            data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+            
+        if {'Date', 'Entity', 'Hit Sentence', 'Publication Name'}.issubset(data.columns):
+            data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+
         finaldata = data
         finaldata['Date'] = pd.to_datetime(finaldata['Date']).dt.normalize()
 
