@@ -557,11 +557,43 @@ if file:
         columns_to_convert = Jour_table.columns.difference(['Journalist', 'Publication Name'])
         Jour_table[columns_to_convert] = Jour_table[columns_to_convert].astype(int)
         Jour_table.insert(1, 'Publication Name', Jour_table.pop('Publication Name'))
+
+        # Group by Publication Name and calculate the News Count
+        news_count = finaldata['Publication Name'].value_counts().reset_index()
+        news_count.columns = ['Publication Name', 'News Count']
+
+        # Identify articles written by Bureau and by Journalists
+        finaldata['Is Bureau'] = finaldata['Journalist'].str.contains('Bureau', case=False, na=False)
+        finaldata['Is Journalist'] = ~finaldata['Is Bureau']
+
+        # Calculate the percentage of articles by Bureaus and Journalists
+        bureau_count = finaldata.groupby('Publication Name')['Is Bureau'].sum().reset_index()
+        journalist_count = finaldata.groupby('Publication Name')['Is Journalist'].sum().reset_index()
+
+        # Merge the counts with the news_count dataframe
+        final_df1 = news_count.merge(bureau_count, on='Publication Name')
+        final_df1 = final_df1.merge(journalist_count, on='Publication Name')
+
+        # Calculate percentages
+        final_df1['% of articles by Bureaus'] = ((final_df1['Is Bureau'] / final_df1['News Count']) * 100).round()
+        final_df1['% of articles by Journalists'] = ((final_df1['Is Journalist'] / final_df1['News Count']) * 100).round()
+
+        # Select and rename columns
+        final_df1 = final_df1[['Publication Name', 'News Count', '% of articles by Bureaus', '% of articles by Journalists']]
+        final_df1 = final_df1.round(2)
+
+        final_df1['% of articles by Bureaus'] = final_df1['% of articles by Bureaus'].astype(int)
+        final_df1['% of articles by Journalists'] = final_df1['% of articles by Journalists'].astype(int)
+        
+        final_df1['% of articles by Bureaus'] = final_df1['% of articles by Bureaus'].astype(str) + '%'
+        final_df1['% of articles by Journalists'] = final_df1['% of articles by Journalists'].astype(str) + '%'
+
+        final_df11 = final_df1.head(10)
         
         # Remove square brackets and single quotes from the 'Journalist' column
         data['Journalist'] = data['Journalist'].str.replace(r"^\['(.+)'\]$", r"\1", regex=True)
         # Fill missing values in 'Influencer' column with 'Bureau News'
-        data['Journalist'] = data['Journalist'].fillna('Bureau News')
+        # data['Journalist'] = data['Journalist'].fillna('Bureau News')
 
         # Function to classify news exclusivity and topic
         def classify_exclusivity(row):
@@ -627,8 +659,8 @@ if file:
 
         finaldata['Topic'] = finaldata['Headline'].apply(classify_topic)
 
-        dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table]
-        comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table','PubType Entity Table', 'Pub Type and Pub Name Table']
+        dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table,final_df11]
+        comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table','PubType Entity Table', 'Pub Type and Pub Name Table','Final df']
 
         # Sidebar for download options
         st.sidebar.write("## Download Options")
@@ -680,7 +712,8 @@ if file:
             "Publication Type and Name Table":PP_table,
             "Publication Type Table with Entity":PType_Entity,
             # "Publication type,Publication Name and Entity Table":ppe1,
-            "Entity-wise Sheets": finaldata  # Add this option to download entity-wise sheets
+            "Entity-wise Sheets": finaldata,  # Add this option to download entity-wise sheets
+            "Finaldf" : final_df11
         }
         selected_dataframe = st.sidebar.selectbox("Select DataFrame:", list(dataframes_to_download.keys()))
         
@@ -703,9 +736,9 @@ if file:
         
         if st.sidebar.button("Download All DataFrames"):
             # List of DataFrames to save
-            dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table]
+            dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table ,final_df11]
             comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table',
-                        'Pub Type and Entity Table', 'Pub Type and Pub Name Table'
+                        'Pub Type and Entity Table', 'Pub Type and Pub Name Table','Final df'
                         ]
             
             entity_info = """Entity:
