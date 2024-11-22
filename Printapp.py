@@ -37,99 +37,99 @@ def process_excel(file):
     excel_writer = pd.ExcelWriter(output, engine='xlsxwriter')
     all_dframes = []
 
-    # Iterate through each sheet in the uploaded file
-    for sheet_name in pd.ExcelFile(file).sheet_names:
-        data = pd.read_excel(file, sheet_name=sheet_name)
+#     # Iterate through each sheet in the uploaded file
+#     for sheet_name in pd.ExcelFile(file).sheet_names:
+#         data = pd.read_excel(file, sheet_name=sheet_name)
 
-        # Convert 'unnamed 2' column to numeric and sort by 'unnamed 0' and 'unnamed 2'
-        data['unnamed 2'] = pd.to_numeric(data['unnamed 2'], errors='coerce')
-        sorted_data = data.sort_values(by=['unnamed 0', 'unnamed 2'], kind='mergesort')
-        sorted_data.drop("unnamed 2", axis=1, inplace=True)
-        sorted_data['Source'] = ""
+#         # Convert 'unnamed 2' column to numeric and sort by 'unnamed 0' and 'unnamed 2'
+#         data['unnamed 2'] = pd.to_numeric(data['unnamed 2'], errors='coerce')
+#         sorted_data = data.sort_values(by=['unnamed 0', 'unnamed 2'], kind='mergesort')
+#         sorted_data.drop("unnamed 2", axis=1, inplace=True)
+#         sorted_data['Source'] = ""
 
-        # Process different subsets of data
-        df1 = sorted_data[sorted_data['unnamed 0'] == 'c'].drop(columns=["unnamed 0"] + sorted_data.columns[2:].tolist())
-        df2 = sorted_data[sorted_data['unnamed 0'] == 'd'].drop(columns=["unnamed 0"] + sorted_data.columns[2:].tolist())
-        df3 = sorted_data[sorted_data['unnamed 0'] == 'b'].drop(columns=sorted_data.columns[:2].tolist() + ['Source', 'unnamed 4'])
+#         # Process different subsets of data
+#         df1 = sorted_data[sorted_data['unnamed 0'] == 'c'].drop(columns=["unnamed 0"] + sorted_data.columns[2:].tolist())
+#         df2 = sorted_data[sorted_data['unnamed 0'] == 'd'].drop(columns=["unnamed 0"] + sorted_data.columns[2:].tolist())
+#         df3 = sorted_data[sorted_data['unnamed 0'] == 'b'].drop(columns=sorted_data.columns[:2].tolist() + ['Source', 'unnamed 4'])
 
-        # Reset indexes
-        df1.reset_index(drop=True, inplace=True)
-        df2.reset_index(drop=True, inplace=True)
-        df3.reset_index(drop=True, inplace=True)
+#         # Reset indexes
+#         df1.reset_index(drop=True, inplace=True)
+#         df2.reset_index(drop=True, inplace=True)
+#         df3.reset_index(drop=True, inplace=True)
 
-        # Combine dataframes
-        result_1 = pd.concat([df3, df2, df1], axis=1, join='outer')
-        result_1.rename({'unnamed 3': 'Headline', 'unnamed 1': 'Summary'}, axis=1, inplace=True)
+#         # Combine dataframes
+#         result_1 = pd.concat([df3, df2, df1], axis=1, join='outer')
+#         result_1.rename({'unnamed 3': 'Headline', 'unnamed 1': 'Summary'}, axis=1, inplace=True)
 
-        # Replace the column names
-        s = result_1.columns.to_series()
-        s.iloc[2] = 'Source'
-        result_1.columns = s
+#         # Replace the column names
+#         s = result_1.columns.to_series()
+#         s.iloc[2] = 'Source'
+#         result_1.columns = s
 
-        # Split 'Source' column
-        split_data = result_1['Source'].str.split(',', expand=True)
-        dframe = pd.concat([result_1, split_data], axis=1)
-        dframe.drop('Source', axis=1, inplace=True)
-        dframe.rename({0: 'Source', 1: 'Date', 2: 'Words', 3: 'Journalists'}, axis=1, inplace=True)
-        dframe['Headline'] = dframe['Headline'].str.replace("Factiva Licensed Content", "").str.strip()
+#         # Split 'Source' column
+#         split_data = result_1['Source'].str.split(',', expand=True)
+#         dframe = pd.concat([result_1, split_data], axis=1)
+#         dframe.drop('Source', axis=1, inplace=True)
+#         dframe.rename({0: 'Source', 1: 'Date', 2: 'Words', 3: 'Journalists'}, axis=1, inplace=True)
+#         dframe['Headline'] = dframe['Headline'].str.replace("Factiva Licensed Content", "").str.strip()
 
-        # Add 'Entity' column
-        dframe.insert(dframe.columns.get_loc('Headline'), 'Entity', sheet_name)
+#         # Add 'Entity' column
+#         dframe.insert(dframe.columns.get_loc('Headline'), 'Entity', sheet_name)
 
-        # Replace specific words in 'Journalists' column with 'Bureau News'
-        words_to_replace = ['Hans News Service', 'IANS', 'DH Web Desk', 'HT Entertainment Desk', 'Livemint', 
-                            'Business Reporter', 'HT Brand Studio', 'Outlook Entertainment Desk', 'Outlook Sports Desk',
-                            'DHNS', 'Express News Service', 'TIMES NEWS NETWORK', 'Staff Reporter', 'Affiliate Desk', 
-                            'Best Buy', 'FE Bureau', 'HT News Desk', 'Mint SnapView', 'Our Bureau', 'TOI Sports Desk',
-                            'express news service', '(English)', 'HT Correspondent', 'DC Correspondent', 'TOI Business Desk',
-                            'India Today Bureau', 'HT Education Desk', 'PNS', 'Our Editorial', 'Sports Reporter',
-                            'TOI News Desk', 'Legal Correspondent', 'The Quint', 'District Correspondent', 'etpanache',
-                            'ens economic bureau', 'Team Herald', 'Equitymaster']
-        dframe['Journalists'] = dframe['Journalists'].replace(words_to_replace, 'Bureau News', regex=True)
+#         # Replace specific words in 'Journalists' column with 'Bureau News'
+#         words_to_replace = ['Hans News Service', 'IANS', 'DH Web Desk', 'HT Entertainment Desk', 'Livemint', 
+#                             'Business Reporter', 'HT Brand Studio', 'Outlook Entertainment Desk', 'Outlook Sports Desk',
+#                             'DHNS', 'Express News Service', 'TIMES NEWS NETWORK', 'Staff Reporter', 'Affiliate Desk', 
+#                             'Best Buy', 'FE Bureau', 'HT News Desk', 'Mint SnapView', 'Our Bureau', 'TOI Sports Desk',
+#                             'express news service', '(English)', 'HT Correspondent', 'DC Correspondent', 'TOI Business Desk',
+#                             'India Today Bureau', 'HT Education Desk', 'PNS', 'Our Editorial', 'Sports Reporter',
+#                             'TOI News Desk', 'Legal Correspondent', 'The Quint', 'District Correspondent', 'etpanache',
+#                             'ens economic bureau', 'Team Herald', 'Equitymaster']
+#         dframe['Journalists'] = dframe['Journalists'].replace(words_to_replace, 'Bureau News', regex=True)
         
-        additional_replacements = ['@timesgroup.com', 'TNN']
-        dframe['Journalists'] = dframe['Journalists'].replace(additional_replacements, '', regex=True)
+#         additional_replacements = ['@timesgroup.com', 'TNN']
+#         dframe['Journalists'] = dframe['Journalists'].replace(additional_replacements, '', regex=True)
 
-        # Fill NaN or spaces in 'Journalists' column
-        dframe['Journalists'] = dframe['Journalists'].apply(lambda x: 'Bureau News' if pd.isna(x) or x.isspace() else x)
-        dframe['Journalists'] = dframe['Journalists'].str.lstrip()
+#         # Fill NaN or spaces in 'Journalists' column
+#         dframe['Journalists'] = dframe['Journalists'].apply(lambda x: 'Bureau News' if pd.isna(x) or x.isspace() else x)
+#         dframe['Journalists'] = dframe['Journalists'].str.lstrip()
 
-        # Read additional data for merging
-        data2 = pd.read_excel(r"FActiva Publications.xlsx")
+#         # Read additional data for merging
+#         data2 = pd.read_excel(r"FActiva Publications.xlsx")
         
-        # Merge the current dataframe with additional data
-        merged = pd.merge(dframe, data2, how='left', left_on=['Source'], right_on=['Source'])
+#         # Merge the current dataframe with additional data
+#         merged = pd.merge(dframe, data2, how='left', left_on=['Source'], right_on=['Source'])
 
-        # Save the merged data to Excel with the sheet name
-        merged.to_excel(excel_writer, sheet_name=sheet_name, index=False)
+#         # Save the merged data to Excel with the sheet name
+#         merged.to_excel(excel_writer, sheet_name=sheet_name, index=False)
         
-        # Append DataFrame to the list
-        all_dframes.append(merged)
+#         # Append DataFrame to the list
+#         all_dframes.append(merged)
     
-    # Combine all DataFrames into a single DataFrame
-    combined_data = pd.concat(all_dframes, ignore_index=True)
+#     # Combine all DataFrames into a single DataFrame
+#     combined_data = pd.concat(all_dframes, ignore_index=True)
 
-    # Add a serial number column
-    combined_data['sr no'] = combined_data.reset_index().index + 1
+#     # Add a serial number column
+#     combined_data['sr no'] = combined_data.reset_index().index + 1
 
-    # Rearrange columns to have 'sr no' before 'Entity'
-    combined_data = combined_data[['sr no', 'Entity'] + [col for col in combined_data.columns if col not in ['sr no', 'Entity']]]
+#     # Rearrange columns to have 'sr no' before 'Entity'
+#     combined_data = combined_data[['sr no', 'Entity'] + [col for col in combined_data.columns if col not in ['sr no', 'Entity']]]
 
-    # Save the combined data to a new sheet
-    combined_data.to_excel(excel_writer, sheet_name='Combined_All_Sheets', index=False)
+#     # Save the combined data to a new sheet
+#     combined_data.to_excel(excel_writer, sheet_name='Combined_All_Sheets', index=False)
     
-    # Show the processed dataframe in the web app
-    st.write(combined_data)
+#     # Show the processed dataframe in the web app
+#     st.write(combined_data)
 
 
-    # Save and return the Excel file
-    excel_writer.close()
-    output.seek(0)
-    return output
+#     # Save and return the Excel file
+#     excel_writer.close()
+#     output.seek(0)
+#     return output
     
     
-# Streamlit app setup
-st.title("Print Excel File Processor & Merger")
+# # Streamlit app setup
+# st.title("Print Excel File Processor & Merger")
 
 # Upload file
 uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
@@ -152,63 +152,63 @@ def extract_entity_name(file_path):
     entity_name = base_name.split('_or_')[0].replace("_", " ").split('-')[0].strip()
     return entity_name
 
-# Web app title
-st.title('Online Excel File Merger & Entity Extractor')
+# # Web app title
+# st.title('Online Excel File Merger & Entity Extractor')
 
-# File uploader
-uploaded_files = st.file_uploader("Upload your Excel files", accept_multiple_files=True, type=['xlsx'])
+# # File uploader
+# uploaded_files = st.file_uploader("Upload your Excel files", accept_multiple_files=True, type=['xlsx'])
 
-if uploaded_files:
-    final_df = pd.DataFrame()
+# if uploaded_files:
+#     final_df = pd.DataFrame()
     
-    # Loop through each uploaded file
-    for uploaded_file in uploaded_files:
-        df = pd.read_excel(uploaded_file)
+#     # Loop through each uploaded file
+#     for uploaded_file in uploaded_files:
+#         df = pd.read_excel(uploaded_file)
         
-        # Extract the entity name and add it as a new column
-        entity_name = extract_entity_name(uploaded_file.name)
-        df['Entity'] = entity_name
+#         # Extract the entity name and add it as a new column
+#         entity_name = extract_entity_name(uploaded_file.name)
+#         df['Entity'] = entity_name
         
-        # Concatenate all the dataframes
-        final_df = pd.concat([final_df, df], ignore_index=True)
+#         # Concatenate all the dataframes
+#         final_df = pd.concat([final_df, df], ignore_index=True)
     
-    # Process columns as required
-    existing_columns = final_df.columns.tolist()
-    influencer_index = existing_columns.index('Influencer')
-    country_index = existing_columns.index('Country')
+#     # Process columns as required
+#     existing_columns = final_df.columns.tolist()
+#     influencer_index = existing_columns.index('Influencer')
+#     country_index = existing_columns.index('Country')
     
-    new_order = (
-        existing_columns[:influencer_index + 1] +  # All columns up to and including 'Influencer'
-        ['Entity', 'Reach', 'Sentiment', 'Keywords', 'State', 'City', 'Engagement'] +  # Adding new columns
-        existing_columns[influencer_index + 1:country_index + 1]  # All columns between 'Influencer' and 'Country'
-    )
+#     new_order = (
+#         existing_columns[:influencer_index + 1] +  # All columns up to and including 'Influencer'
+#         ['Entity', 'Reach', 'Sentiment', 'Keywords', 'State', 'City', 'Engagement'] +  # Adding new columns
+#         existing_columns[influencer_index + 1:country_index + 1]  # All columns between 'Influencer' and 'Country'
+#     )
     
     
-    # Fill missing values in 'Influencer' column with 'Bureau News'
-    final_df['Influencer'] = final_df['Influencer'].fillna('Bureau News')
-    final_df['Date'] = pd.to_datetime(final_df['Date']).dt.normalize()
+#     # Fill missing values in 'Influencer' column with 'Bureau News'
+#     final_df['Influencer'] = final_df['Influencer'].fillna('Bureau News')
+#     final_df['Date'] = pd.to_datetime(final_df['Date']).dt.normalize()
     
-    # Reorder the DataFrame
-    final_df = final_df[new_order]
+#     # Reorder the DataFrame
+#     final_df = final_df[new_order]
     
-    # Show the processed dataframe in the web app
-    st.write(final_df)
+#     # Show the processed dataframe in the web app
+#     st.write(final_df)
     
-    # Prepare Excel file in memory
-    output = BytesIO()
-    with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
-        final_df.to_excel(writer, index=False)
+#     # Prepare Excel file in memory
+#     output = BytesIO()
+#     with pd.ExcelWriter(output, engine='xlsxwriter') as writer:
+#         final_df.to_excel(writer, index=False)
     
-    # Convert buffer to bytes
-    processed_data = output.getvalue()
+#     # Convert buffer to bytes
+#     processed_data = output.getvalue()
 
-    # Option to download the merged file
-    st.download_button(
-        label="Download Merged Excel",
-        data=processed_data,
-        file_name='merged_excel_with_entity.xlsx',
-        mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-    )
+#     # Option to download the merged file
+#     st.download_button(
+#         label="Download Merged Excel",
+#         data=processed_data,
+#         file_name='merged_excel_with_entity.xlsx',
+#         mime='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+#     )
 # Load data function
 def load_data(file):
     if file:
