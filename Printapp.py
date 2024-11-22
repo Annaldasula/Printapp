@@ -704,9 +704,9 @@ if file:
 
         finaldata['Topic'] = finaldata['Headline'].apply(classify_topic)
 
-        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7, PP_table]
+        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,]
         comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
-                    'Publication Type with Total Publications and Avg news count','Pub Type and Pub Name Table',]
+                    'Publication Type with Total Publications and Avg news count',]
 
         # Sidebar for download options
         st.sidebar.write("## Download Options")
@@ -755,7 +755,7 @@ if file:
             "Month-on-Month":sov_dt1,
             "Publication Table":pubs_table,
             "Journalist Table":Jour_table,
-            "Publication Type and Name Table":PP_table,
+            # "Publication Type and Name Table":PP_table,
             "Publication Type Table with Entity":PType_Entity,
             # "Publication type,Publication Name and Entity Table":ppe1,
             "Entity-wise Sheets": finaldata,  # Add this option to download entity-wise sheets
@@ -783,10 +783,9 @@ if file:
         
         if st.sidebar.button("Download All DataFrames"):
             # List of DataFrames to save
-            dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7, PP_table]
+            dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,]
             comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
-                    'Publication Type with Total Publications and Avg news count','Pub Type and Pub Name Table',
-                        ]
+                    'Publication Type with Total Publications and Avg news count',]
             
             entity_info = """Entity:
 Time Period of analysis: 19th April 2023 to 18th April 2024
@@ -1198,10 +1197,11 @@ News search: All Articles: entity mentioned at least once in the article"""
         # List of DataFrames to save
         pubs_table1 = pubs_table.head(10)
         Jour_table1 = Jour_table.head(10)
-        dfs = [Entity_SOV3, sov_dt1, pubs_table1, Jour_table1, PType_Entity]
-        table_titles = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table',
-                    'Pub Type and Entity Table', 
-                    ]
+        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,]
+        table_titles = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
+                    'Publication Type with Total Publications and Avg news count',     ]
+
+        
         textbox_text = [ "•IIT Ropar and its peers collectively received a total of 19932 news mentions online during the specified time period.\n"
     "•Among these, IIT Madras dominates the conversation with 28% of the total SOV, indicating significant media coverage and visibility.\n"
     "•IIT Delhi follows IIT Madras, capturing 25% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
@@ -1216,6 +1216,10 @@ News search: All Articles: entity mentioned at least once in the article"""
     , "•The leading publications reporting on IIT Ropar and its competitors are Times of India, contributing 561 articles, followed by Economic Times with 467 articles, and The Indian Express with 455 articles.\n"
     "•Among these, publications covering news on IIT Ropar specifically are The Indian Express with 9 articles, followed by Tribune with 9 articles, and Times of India with 7 articles.\n"
     "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.",
+
+"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles , of which 81% of articles where field by Bureaus and remaining 19% were filed by 56 Journalists.MoneyControl ranks second with 413 articles on Steel Industry. A significant 70% of these articles were filed by Bureaus, with the remaining 30% filed by 31 journalists Business Standard is the 3rd top publication covering Steel Industry, with 384 news articles , of which 79% of articles where field by Bureaus and remaining 21% were filed by 27 Journalists.Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage.ABP Live published 160 articles on Steel Industry.A dominant 99% of these articles were filed by Bureaus. Only 1% of the articles were contributed by journalists.The Hindu Business Line is the only publication having a higher percentage of journalist-driven articles (65%), indicating a strong focus on original reportingBureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
+   
+    
     "•The top journalists reporting on IIT Ropar and its competitors are Sukanya Nandy from News18 with 59 articles, followed by Hemali Chapia from TOI with 44 articles, and Suramya Sunilraj from News18 with 43 articles.\n"
     "•Among the journalists specifically covering IIT Ropar, Munieshwer A Sagar and Deepak Yadav from Times of India have authored 1 article each, and Arushi Mishra from Hindu Business Line wrote 1 article.\n"
     "•IIT Ropar has received a total of 44 articles in news coverage. Among these, 39 i.e., 88% of the articles were filed by Bureaus, while the remaining 5 i.e., 12% were written by individual journalists.\n"
@@ -1223,7 +1227,8 @@ News search: All Articles: entity mentioned at least once in the article"""
                     "•Top Publication Types writing on IIT Ropar are General and Business & Financials; they both contribute 90% of the total news coverage on IIT Ropar.\n"
     "•IIT Madras and IIT Delhi dominate across all publication types, especially in general, business, technology, and digital-first publications.\n"
     "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand its reach and visibility among broader audiences.",
-
+"•Dominance of Business & Financial News: Despite having only 10 publications, this category accounts for 52% of all news articles. It has the highest average news count per publication (279), significantly higher than other categories. General News Publications: While they have the highest number of publications (35), they account for only 45% of news articles. Their average news count (69) is much lower than Business & Financial publications. Other Categories:Advertising/PR/Media, Digital First, and Technology categories each account for only 11% & 5% of total news articles. They have fewer publications and lower average news counts.Overall AverageThe 65 publications collectively produced 5,311 news articles, with an overall average of 369 per publication. However, this average is  skewed by the high output of Business & Financial & General publications.",
+   
                     ]
         # Create a new PowerPoint presentation
         # prs = Presentation()
