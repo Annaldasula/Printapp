@@ -132,19 +132,19 @@ def process_excel(file):
 # st.title("Print Excel File Processor & Merger")
 
 # Upload file
-uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
+# uploaded_file = st.file_uploader("Upload an Excel file", type=["xlsx"])
 
-# Process the file if uploaded
-if uploaded_file is not None:
-    processed_file = process_excel(uploaded_file)
+# # Process the file if uploaded
+# if uploaded_file is not None:
+#     processed_file = process_excel(uploaded_file)
     
-    # Download button
-    st.download_button(
-        label="Download Processed Excel",
-        data=processed_file,
-        file_name="Processed_Excel.xlsx",
+#     # Download button
+#     st.download_button(
+#         label="Download Processed Excel",
+#         data=processed_file,
+#         file_name="Processed_Excel.xlsx",
 
-    )
+#     )
 
 # Function to extract entity name from file path
 def extract_entity_name(file_path):
