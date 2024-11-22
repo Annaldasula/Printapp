@@ -462,10 +462,10 @@ title_bar_style = """
 
 st.markdown(title_bar_style, unsafe_allow_html=True)
 
-st.title("Data Insights/Tables Dashboard")
+st.title("Industry Data Insights/Tables Dashboard")
 
 # Sidebar for file upload and download options
-st.sidebar.title("Upload an Online or Print file for tables")
+st.sidebar.title("Upload an Industry data file for tables")
 
 # File Upload Section
 file = st.sidebar.file_uploader("Upload Data File (Excel or CSV)", type=["xlsx", "csv"])
