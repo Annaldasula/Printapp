@@ -798,6 +798,10 @@ News search: All Articles: entity mentioned at least once in the article"""
             href_all = f'<a href="data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,{b64_all}" download="{file_name_all}">Download All DataFrames Excel</a>'
             st.sidebar.markdown(href_all, unsafe_allow_html=True)
 
+        st.write("## Preview Selected DataFrame")
+        selected_dataframe = st.selectbox("Select DataFrame to Preview:", list(dataframes_to_download.keys()))
+        st.dataframe(dataframes_to_download[selected_dataframe])
+
     # Load the image files
     # img_path = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Documents\NewLogo.PNG"
     # img_path1 = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Pictures\Picture1.png"
@@ -1273,7 +1277,3 @@ News search: All Articles: entity mentioned at least once in the article"""
 
 else:
     st.sidebar.write("No file uploaded yet.")
-
-st.write("## Preview Selected DataFrame")
-selected_dataframe = st.selectbox("Select DataFrame to Preview:", list(dataframes_to_download.keys()))
-st.dataframe(dataframes_to_download[selected_dataframe])
