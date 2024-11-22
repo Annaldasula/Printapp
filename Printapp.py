@@ -632,7 +632,23 @@ if file:
         final_df7['%'] = final_df7['%'].astype(str) + '%'
 
 
+        Set_Entity = pd.crosstab(finaldata['Sentiment'],finaldata['Entity'])
+        Senti_Entity=Set_Entity.sort_values('Industry',ascending=False).round()
+        Senti_Entity['% '] = ((Senti_Entity['Industry'] / Senti_Entity['Industry'].sum())*100).round(2)#.astype(str) + '%'
+        Senti_Entity.loc['GrandTotal']= Senti_Entity.sum(numeric_only=True,axis=0)
+        Senti_Entity = pd.DataFrame(Senti_Entity.to_records())
+        Senti_Entity['Industry'] = Senti_Entity['Industry'].astype(int)
+        Senti_Entity['% '] = Senti_Entity['% '].astype(int)
+        Senti_Entity['% '] = Senti_Entity['% '].astype(str) + '%'
 
+        Ct_Entity = pd.crosstab(finaldata['City'],finaldata['Entity'])
+        City_Entity=Ct_Entity.sort_values('Industry',ascending=False).round()
+        City_Entity['% '] = ((City_Entity['Industry'] / City_Entity['Industry'].sum())*100).round(2)#.astype(str) + '%'
+        City_Entity.loc['GrandTotal']= City_Entity.sum(numeric_only=True,axis=0)
+        City_Entity = pd.DataFrame(City_Entity.to_records())
+        City_Entity['Industry'] = City_Entity['Industry'].astype(int)
+        City_Entity['% '] = City_Entity['% '].astype(int)
+        City_Entity['% '] = City_Entity['% '].astype(str) + '%'
         
         
         # Remove square brackets and single quotes from the 'Journalist' column
@@ -704,9 +720,9 @@ if file:
 
         finaldata['Topic'] = finaldata['Headline'].apply(classify_topic)
 
-        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,]
+        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,Senti_Entity,City_Entity]
         comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
-                    'Publication Type with Total Publications and Avg news count',]
+                    'Publication Type with Total Publications and Avg news count','Sentiment Table','Citywise Table']
 
         # Sidebar for download options
         st.sidebar.write("## Download Options")
@@ -761,6 +777,8 @@ if file:
             "Entity-wise Sheets": finaldata,  # Add this option to download entity-wise sheets
             "Publication Name with Bureau and Journalist Percentages" : final_df11,
             "Publication Type with Total Publications and Avg news count" : final_df7,
+            "Sentiment table":Senti_Entity,
+           "Citywise table" : City_Entity
         }
         selected_dataframe = st.sidebar.selectbox("Select DataFrame:", list(dataframes_to_download.keys()))
         
@@ -783,9 +801,9 @@ if file:
         
         if st.sidebar.button("Download All DataFrames"):
             # List of DataFrames to save
-            dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,]
+            dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,Senti_Entity,City_Entity]
             comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
-                    'Publication Type with Total Publications and Avg news count',]
+                    'Publication Type with Total Publications and Avg news count','Sentiment Table','Citywise Table']
             
             entity_info = """Entity:
 Time Period of analysis: 19th April 2023 to 18th April 2024
@@ -1201,9 +1219,9 @@ News search: All Articles: entity mentioned at least once in the article"""
         # List of DataFrames to save
         pubs_table1 = pubs_table.head(10)
         Jour_table1 = Jour_table.head(10)
-        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,]
+        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7,Senti_Entity,City_Entity]
         table_titles = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
-                    'Publication Type with Total Publications and Avg news count',     ]
+                    'Publication Type with Total Publications and Avg news count','Sentiment Table','Citywise Table'     ]
 
         
         textbox_text = [ "•IIT Ropar and its peers collectively received a total of 19932 news mentions online during the specified time period.\n"
@@ -1232,8 +1250,10 @@ News search: All Articles: entity mentioned at least once in the article"""
     "•IIT Madras and IIT Delhi dominate across all publication types, especially in general, business, technology, and digital-first publications.\n"
     "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand its reach and visibility among broader audiences.",
 "•Dominance of Business & Financial News: Despite having only 10 publications, this category accounts for 52% of all news articles. It has the highest average news count per publication (279), significantly higher than other categories. General News Publications: While they have the highest number of publications (35), they account for only 45% of news articles. Their average news count (69) is much lower than Business & Financial publications. Other Categories:Advertising/PR/Media, Digital First, and Technology categories each account for only 11% & 5% of total news articles. They have fewer publications and lower average news counts.Overall AverageThe 65 publications collectively produced 5,311 news articles, with an overall average of 369 per publication. However, this average is  skewed by the high output of Business & Financial & General publications.",
-   
-                    ]
+   "•Mumbai leads the news coverage in the Steel Industry sector with 1,608 news articles, accounting for approximately 30% of the total news count. This significant concentration indicates that Mumbai is a major city for discussions and developments in the Steel Industry market.Chennai follows with 1085 news items, representing around 20% of the total. Noida and New Delhi also show noteworthy activity, with 621 and 345 news articles respectively, highlighting their importance in the sector.",
+    "•Neutral sentiment dominates the news coverage with 3352 news items, making up approximately 63% of the total. This suggests that the majority of the news in the Steel Industry sector is either informational or factual, lacking any strong positive or negative tone. This might include regular updates, policy changes, or reports.Positive sentiment is present in 905 news articles, accounting for about 26% of the total news count. This is a significant portion, indicating that nearly a quarter of the news in the Steel Industry sector is positive. These articles might include stories about falling interest rates, successful housing policies, increased homeownership, or the introduction of beneficial loan schemes.Negative sentiment is the least represented, with only 117 news items, making up a mere 11% of the total coverage. The low percentage of negative news suggests that the Steel Industry sector has relatively fewer controversies, issues, or negative events reported. Negative sentiment might be related to rising interest rates, fraud cases, or unfavorable changes in housing policies.",
+                        ]
+        
         # Create a new PowerPoint presentation
         # prs = Presentation()
 
