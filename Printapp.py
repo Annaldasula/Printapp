@@ -589,6 +589,51 @@ if file:
         final_df1['% of articles by Journalists'] = final_df1['% of articles by Journalists'].astype(str) + '%'
 
         final_df11 = final_df1.head(10)
+
+        # Calculate News Count for each Publication Type
+        news_count = finaldata.groupby('Publication Type').size().reset_index(name='News Count')
+
+        # Calculate the total News Count for percentage calculation
+        total_news_count = news_count['News Count'].sum()
+
+        # Calculate the percentage of total articles for each Publication Type
+        news_count['%'] = (news_count['News Count'] / total_news_count) * 100
+
+        # Count the number of unique Publications for each Publication Type
+        no_of_publications = finaldata.groupby('Publication Type')['Publication Name'].nunique().reset_index(name='No of Publications')
+
+        # Merge the counts with the news_count dataframe
+        final_df7 = news_count.merge(no_of_publications, on='Publication Type')
+
+        # Calculate the average number of articles per publication
+        final_df7['AVG News Count'] = final_df7['News Count'] / final_df7['No of Publications']
+
+        # Round percentage and AVG News Count to 2 decimal places
+        final_df7['%'] = final_df7['%'].round(2)
+        final_df7['AVG News Count'] = final_df7['AVG News Count'].round(2)
+
+        # Add a 'Grand Total' row at the bottom
+        grand_total = {
+    'Publication Type': 'Grand Total',
+    'News Count': final_df7['News Count'].sum(),
+    '%': final_df7['%'].sum(),
+    'No of Publications': final_df7['No of Publications'].sum(),
+    'AVG News Count': (final_df7['News Count'].sum() / final_df7['No of Publications'].sum()).round(2)
+}
+
+        # final_df = final_df.append(grand_total, ignore_index=True)
+
+        # Print or save the final table
+        print(final_df7)
+        # final_df.to_csv('output_table23.csv', index=False)  # Uncomment to save as CSV
+        final_df7 = final_df7.sort_values("News Count", ascending=False)
+        final_df7['AVG News Count'] = final_df7['AVG News Count'].astype(int)
+        final_df7['%'] = final_df7['%'].astype(int)
+        final_df7['%'] = final_df7['%'].astype(str) + '%'
+
+
+
+        
         
         # Remove square brackets and single quotes from the 'Journalist' column
         data['Journalist'] = data['Journalist'].str.replace(r"^\['(.+)'\]$", r"\1", regex=True)
@@ -659,8 +704,9 @@ if file:
 
         finaldata['Topic'] = finaldata['Headline'].apply(classify_topic)
 
-        dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table,final_df11]
-        comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table','PubType Entity Table', 'Pub Type and Pub Name Table','Final df']
+        dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7, PP_table]
+        comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
+                    'Publication Type with Total Publications and Avg news count','Pub Type and Pub Name Table',]
 
         # Sidebar for download options
         st.sidebar.write("## Download Options")
@@ -713,7 +759,8 @@ if file:
             "Publication Type Table with Entity":PType_Entity,
             # "Publication type,Publication Name and Entity Table":ppe1,
             "Entity-wise Sheets": finaldata,  # Add this option to download entity-wise sheets
-            "Finaldf" : final_df11
+            "Publication Name with Bureau and Journalist Percentages" : final_df11,
+            "Publication Type with Total Publications and Avg news count" : final_df7,
         }
         selected_dataframe = st.sidebar.selectbox("Select DataFrame:", list(dataframes_to_download.keys()))
         
@@ -736,9 +783,9 @@ if file:
         
         if st.sidebar.button("Download All DataFrames"):
             # List of DataFrames to save
-            dfs = [Entity_SOV3, sov_dt1, pubs_table, Jour_table, PType_Entity, PP_table ,final_df11]
-            comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Journalist Table',
-                        'Pub Type and Entity Table', 'Pub Type and Pub Name Table','Final df'
+            dfs = [Entity_SOV3, sov_dt1, pubs_table,final_df11 , Jour_table, PType_Entity, final_df7, PP_table]
+            comments = ['SOV Table', 'Month-on-Month Table', 'Publication Table', 'Publication Name with Bureau and Journalist Percentages', 'Journalist Table','PubType Entity Table',
+                    'Publication Type with Total Publications and Avg news count','Pub Type and Pub Name Table',
                         ]
             
             entity_info = """Entity:
