@@ -483,6 +483,13 @@ if file:
 
         # Data preprocessing
         data.drop(columns=data.columns[20:], axis=1, inplace=True)
+        # Process columns as required
+        existing_columns = final_df.columns.tolist()
+        influencer_index = existing_columns.index('Influencer')
+        country_index = existing_columns.index('Country')
+
+
+        
         new_order = (
          existing_columns[:influencer_index + 1] +  # All columns up to and including 'Influencer'
         ['Entity', 'Reach', 'Sentiment', 'Keywords', 'State', 'City', 'Engagement'] +  # Adding new columns
