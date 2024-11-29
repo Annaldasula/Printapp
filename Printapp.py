@@ -497,6 +497,7 @@ if file:
      # )
      #    data = data[new_order]
         data.drop(columns=data.columns[20:], axis=1, inplace=True)
+        data['Influencer'] = data['Influencer'].fillna('Bureau News')
         data = data.rename({'Influencer': 'Journalist'}, axis=1)
         # data.drop_duplicates(subset=['Date', 'Entity', 'Headline', 'Publication Name'], keep='first', inplace=True)
         # data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
