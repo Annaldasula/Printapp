@@ -484,7 +484,7 @@ if file:
         # Data preprocessing
         data.drop(columns=data.columns[20:], axis=1, inplace=True)
         # Process columns as required
-        existing_columns = final_df.columns.tolist()
+        existing_columns = data.columns.tolist()
         influencer_index = existing_columns.index('Influencer')
         country_index = existing_columns.index('Country')
 
