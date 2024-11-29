@@ -482,7 +482,7 @@ if file:
         # st.write(data)
 
         # Data preprocessing
-        data.drop(columns=data.columns[20:], axis=1, inplace=True)
+        # data.drop(columns=data.columns[20:], axis=1, inplace=True)
         # Process columns as required
         existing_columns = data.columns.tolist()
         influencer_index = existing_columns.index('Influencer')
@@ -496,6 +496,7 @@ if file:
         existing_columns[influencer_index + 1:country_index + 1]  # All columns between 'Influencer' and 'Country'
      )
         data = data[new_order]
+        data.drop(columns=data.columns[20:], axis=1, inplace=True)
         data = data.rename({'Influencer': 'Journalist'}, axis=1)
         # data.drop_duplicates(subset=['Date', 'Entity', 'Headline', 'Publication Name'], keep='first', inplace=True)
         # data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
