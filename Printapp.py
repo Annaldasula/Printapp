@@ -854,8 +854,8 @@ News search: All Articles: entity mentioned at least once in the article"""
         st.dataframe(dataframes_to_download[selected_dataframe])
 
     # Load the image files
-    # img_path = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Documents\NewLogo.PNG"
-    # img_path1 = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Pictures\Picture1.png"
+    img_path = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Documents\NewLogo.PNG"
+    img_path1 = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Pictures\Picture1.png"
 
     # Create a new PowerPoint presentation with widescreen dimensions
     prs = Presentation()               
@@ -865,7 +865,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     # Add the first slide with the image
     slide_layout = prs.slide_layouts[0]
     slide = prs.slides.add_slide(slide_layout)
-    # slide.shapes.add_picture( Inches(0), Inches(0), width=prs.slide_width, height=prs.slide_height)
+    slide.shapes.add_picture( img_path1,Inches(0), Inches(0), width=prs.slide_width, height=prs.slide_height)
 
     # Add the text box above the image
     textbox_left = Inches(0.5)  # Adjust the left position as needed
@@ -893,7 +893,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     left = Inches(0.0)  # Adjust the left position as needed
     top = prs.slide_height - Inches(1)  # Adjust the top position as needed
-    # slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust the height as needed 
+    slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust the height as needed 
 
         
     # Clear existing placeholders
@@ -956,7 +956,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     # Add the first slide with the image
     slide_layout = prs.slide_layouts[0]
     slide = prs.slides.add_slide(slide_layout)
-    # slide.shapes.add_picture( Inches(0), Inches(0), width=prs.slide_width, height=prs.slide_height)
+    slide.shapes.add_picture( Inches(0), Inches(0), width=prs.slide_width, height=prs.slide_height)
 
     # Add the text box above the image
     textbox_left = Inches(0.5)  # Adjust the left position as needed
@@ -985,7 +985,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     left = Inches(0.0)  # Adjust the left position as needed
     top = prs.slide_height - Inches(1)  # Adjust the top position as needed
-    # slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust the height as needed 
+    slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust the height as needed 
          
     # Clear existing placeholders
     for shape in slide.placeholders:
