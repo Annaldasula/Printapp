@@ -415,7 +415,7 @@ def add_table_to_slide(slide, df, title, textbox_text):
     # Add the image (footer logo) at the bottom of the slide
     left = Inches(0.0)
     top = prs.slide_height - Inches(1)
-    slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust as needed
+    slide.shapes.add_picture( img_path,left, top, height=Inches(1))  # Adjust as needed
 
 
 
