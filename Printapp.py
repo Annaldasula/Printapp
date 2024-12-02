@@ -1008,7 +1008,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     sov_text = (
     "•The Steel Industry sector has a total of 5,311 prominent mentions.\n"
-    "•This represents the overall volume of online media coverage related to Steel Industry.\n"
+    "•This represents the overall volume of online media coverage related to Steel Industry.\n",)
     # "•IIT Delhi follows IIT Madras, capturing 21% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
     # "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 20%, 17%, and 6% of the SOV respectively.\n"
     # "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e. last in the SOV.\n"
@@ -1025,7 +1025,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     p = sov_text_frame.add_paragraph()
     p.text = (
     "•The Steel Industry sector has a total of 5,311 prominent mentions.\n"
-    "•This represents the overall volume of online media coverage related to Steel Industry.\n"
+    "•This represents the overall volume of online media coverage related to Steel Industry.\n")
     # "•IIT Delhi follows IIT Madras, capturing 21% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
     # "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 20%, 17%, and 6% of the SOV respectively.\n"
     # "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e. last in the SOV.\n"
@@ -1052,7 +1052,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     source_text = (
     "•Of the 5311 articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
-"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
+"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n")
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     source_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.1), Inches(14), Inches(1))
@@ -1062,7 +1062,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     p = source_frame.add_paragraph()
     p.text = (
     "•Of the 5311 articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
-"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
+"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n")
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     p.font.size = Pt(18)
@@ -1113,7 +1113,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     # Add News Search text
     news_search_text = ("•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articles.\n"
                     "•The Economic Times is prominently featured, with two journalists in the top 10: Nikita Periwal and Twesh Mishra.\n"
-                    "•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of 5311 i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n"
+                    "•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of 5311 i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n")
                    #  "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
                    #  "•Out of which, 5 journalists have specifically written 5 articles mentioning IIT Ropar i.e of the total journalists writing on IIT Ropar and its competitors only 1% of them have mentioned IIT Ropar in their articles.\n"
                    #  "•While this constitutes a very less number, there is an large opportunity for IIT Ropar to engage with the remaining 882 journalists to enhance its news coverage and reach.\n"
@@ -1125,7 +1125,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     p = news_search_frame.add_paragraph()
     p.text = ("•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articles.\n"
                     "•The Economic Times is prominently featured, with two journalists in the top 10: Nikita Periwal and Twesh Mishra.\n"
-                    "•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of 5311 i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n"
+                    "•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of 5311 i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n")
                    #   "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
                    #  "•Out of which, 5 journalists have specifically written 5 articles mentioning IIT Ropar i.e of the total journalists writing on IIT Ropar and its competitors only 1% of them have mentioned IIT Ropar in their articles.\n"
                    #  "•While this constitutes a very less number, there is an large opportunity for IIT Ropar to engage with the remaining 882 journalists to enhance its news coverage and reach.\n"
@@ -1147,7 +1147,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     p.font.bold = True
 
     news_search_text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
-"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
+"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n")
 # "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     news_search_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.0), Inches(14), Inches(0.5))
@@ -1156,7 +1156,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     news_search_frame.clear()  # Clear any default paragraph
     p = news_search_frame.add_paragraph()
     p.text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
-"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
+"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n")
 # "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     p.font.size = Pt(18)
