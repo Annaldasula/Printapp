@@ -893,7 +893,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     left = Inches(0.0)  # Adjust the left position as needed
     top = prs.slide_height - Inches(1)  # Adjust the top position as needed
-    slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust the height as needed 
+    slide.shapes.add_picture(img_path, left, top, height=Inches(1))  # Adjust the height as needed 
 
         
     # Clear existing placeholders
