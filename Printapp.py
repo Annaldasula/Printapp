@@ -1147,7 +1147,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     p.font.bold = True
 
     news_search_text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
-"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n")
+"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
 # "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     news_search_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.0), Inches(14), Inches(0.5))
@@ -1156,7 +1156,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     news_search_frame.clear()  # Clear any default paragraph
     p = news_search_frame.add_paragraph()
     p.text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
-"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n")
+"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
 # "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     p.font.size = Pt(18)
