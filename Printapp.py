@@ -415,7 +415,7 @@ def add_table_to_slide(slide, df, title, textbox_text):
     # Add the image (footer logo) at the bottom of the slide
     left = Inches(0.0)
     top = prs.slide_height - Inches(1)
-    # slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust as needed
+    slide.shapes.add_picture( left, top, height=Inches(1))  # Adjust as needed
 
 
 
@@ -854,8 +854,8 @@ News search: All Articles: entity mentioned at least once in the article"""
         st.dataframe(dataframes_to_download[selected_dataframe])
 
     # Load the image files
-    img_path = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Documents\NewLogo.PNG"
-    img_path1 = r"D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Pictures\Picture1.png"
+    img_path = r"New logo snip.PNG"
+    img_path1 = r"New Templete main slide.png"
 
     # Create a new PowerPoint presentation with widescreen dimensions
     prs = Presentation()               
