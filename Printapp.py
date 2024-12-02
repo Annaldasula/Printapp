@@ -855,7 +855,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     # Load the image files
     img_path = r"New logo snip.PNG"
-    img_path1 = r"New Templete main slide.png"
+    img_path1 = r"New Templete main slide.PNG"
 
     # Create a new PowerPoint presentation with widescreen dimensions
     prs = Presentation()               
