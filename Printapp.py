@@ -1052,7 +1052,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     source_text = (
     "•Of the 5311 articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
-"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n")
+"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     source_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.1), Inches(14), Inches(1))
@@ -1062,7 +1062,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     p = source_frame.add_paragraph()
     p.text = (
     "•Of the 5311 articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
-"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n")
+"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     p.font.size = Pt(18)
