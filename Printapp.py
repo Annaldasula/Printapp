@@ -535,23 +535,40 @@ if file:
         
         #Publication Name
         pub_table = pd.crosstab(finaldata['Publication Name'], finaldata['Entity'])
-        pub_table['Total'] = pub_table.sum(axis=1)
-        pubs_table = pub_table.sort_values('Total', ascending=False).round()
-        pubs_table.loc['GrandTotal'] = pubs_table.sum(numeric_only=True, axis=0)
+        pubs_table=pub_table.sort_values('Industry',ascending=False).round()
+        pubs_table['% '] = ((pubs_table['Industry'] / pubs_table['Industry'].sum())*100).round(2)#.astype(str) + '%'
+        pubs_table.loc['GrandTotal']= pubs_table.sum(numeric_only=True,axis=0)
+        pubs_table['Industry'] = pubs_table['Industry'].astype(int)
+        pubs_table['% '] = pubs_table['% '].astype(int)
         pubs_table = pd.DataFrame(pubs_table.to_records())
+        pubs_table['% '] = pubs_table['% '].astype(str) + '%'
+        pubs_table1 = pubs_table.head(10)
+
+        
+        # pub_table['Total'] = pub_table.sum(axis=1)
+        # pubs_table = pub_table.sort_values('Total', ascending=False).round()
+        # pubs_table.loc['GrandTotal'] = pubs_table.sum(numeric_only=True, axis=0)
+        # pubs_table = pd.DataFrame(pubs_table.to_records())
         
 
-        PP = pd.crosstab(finaldata['Publication Name'], finaldata['Publication Type'])
-        PP['Total'] = PP.sum(axis=1)
-        PP_table = PP.sort_values('Total', ascending=False).round()
-        PP_table.loc['GrandTotal'] = PP_table.sum(numeric_only=True, axis=0)
+        # PP = pd.crosstab(finaldata['Publication Name'], finaldata['Publication Type'])
+        # PP['Total'] = PP.sum(axis=1)
+        # PP_table = PP.sort_values('Total', ascending=False).round()
+        # PP_table.loc['GrandTotal'] = PP_table.sum(numeric_only=True, axis=0)
         
         #Publication Name & Entity Table
         PT_Entity = pd.crosstab(finaldata['Publication Type'], finaldata['Entity'])
-        PT_Entity['Total'] = PT_Entity.sum(axis=1)
-        PType_Entity = PT_Entity.sort_values('Total', ascending=False).round()
-        PType_Entity.loc['GrandTotal'] = PType_Entity.sum(numeric_only=True, axis=0)
+        PType_Entity=PT_Entity.sort_values('Industry',ascending=False).round()
+        PType_Entity['% '] = ((PType_Entity['Industry'] / PType_Entity['Industry'].sum())*100).round()#.astype(str) + '%'
+        PType_Entity.loc['GrandTotal']= PType_Entity.sum(numeric_only=True,axis=0)
         PType_Entity = pd.DataFrame(PType_Entity.to_records())
+        PType_Entity['Industry'] = PType_Entity['Industry'].astype(int)
+        PType_Entity['% '] = PType_Entity['% '].astype(int)
+        PType_Entity['% '] = PType_Entity['% '].astype(str) + '%'
+        # PT_Entity['Total'] = PT_Entity.sum(axis=1)
+        # PType_Entity = PT_Entity.sort_values('Total', ascending=False).round()
+        # PType_Entity.loc['GrandTotal'] = PType_Entity.sum(numeric_only=True, axis=0)
+        # PType_Entity = pd.DataFrame(PType_Entity.to_records())
 
         # Journalist Table
         finaldata['Journalist'] = finaldata['Journalist'].str.split(',')
