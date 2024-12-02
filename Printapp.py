@@ -1007,15 +1007,15 @@ News search: All Articles: entity mentioned at least once in the article"""
     p.font.bold = True
 
     sov_text = (
-    "•IIT Ropar and its peers collectively received a total of 5017 prominent news mentions online during the specified time period.\n"
-    "•Among these, IIT Madras dominates the conversation with 35% of the total SOV, indicating significant media coverage and visibility.\n"
-    "•IIT Delhi follows IIT Madras, capturing 21% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
-    "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 20%, 17%, and 6% of the SOV respectively.\n"
-    "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e. last in the SOV.\n"
-    "•Despite ranking lower in terms of SOV, IIT Ropar's presence indicates some level of visibility and recognition within the online media landscape.\n"
-    "•Given the relatively lower SOV compared to peers like IIT Delhi, IIT Madras, and others, there are opportunities for IIT Ropar to enhance its online presence and visibility through strategic communications efforts.\n"
-    "•IIT Ropar has received 239 all mentions and 44 prominent articles in online media and stands last in both the SOVs.\n"
-        )
+    "•The Steel Industry sector has a total of 5,311 prominent mentions.\n"
+    "•This represents the overall volume of online media coverage related to Steel Industry.\n"
+    # "•IIT Delhi follows IIT Madras, capturing 21% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
+    # "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 20%, 17%, and 6% of the SOV respectively.\n"
+    # "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e. last in the SOV.\n"
+    # "•Despite ranking lower in terms of SOV, IIT Ropar's presence indicates some level of visibility and recognition within the online media landscape.\n"
+    # "•Given the relatively lower SOV compared to peers like IIT Delhi, IIT Madras, and others, there are opportunities for IIT Ropar to enhance its online presence and visibility through strategic communications efforts.\n"
+    # "•IIT Ropar has received 239 all mentions and 44 prominent articles in online media and stands last in both the SOVs.\n"
+    #     )
     sov_text_shape = slide.shapes.add_textbox(Inches(0.3), Inches(1.0), Inches(14), Inches(0.5))
     sov_text_frame = sov_text_shape.text_frame
     sov_text_frame.word_wrap = True
@@ -1024,15 +1024,15 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     p = sov_text_frame.add_paragraph()
     p.text = (
-    "•IIT Ropar and its peers collectively received a total of 5017 prominent news mentions online during the specified time period.\n"
-    "•Among these, IIT Madras dominates the conversation with 35% of the total SOV, indicating significant media coverage and visibility.\n"
-    "•IIT Delhi follows IIT Madras, capturing 21% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
-    "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 20%, 17%, and 6% of the SOV respectively.\n"
-    "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e. last in the SOV.\n"
-    "•Despite ranking lower in terms of SOV, IIT Ropar's presence indicates some level of visibility and recognition within the online media landscape.\n"
-    "•Given the relatively lower SOV compared to peers like IIT Delhi, IIT Madras, and others, there are opportunities for IIT Ropar to enhance its online presence and visibility through strategic communications efforts.\n"
-    "•IIT Ropar has received 239 all mentions and 44 prominent articles in online media and stands last in both the SOVs.\n"
-    )
+    "•The Steel Industry sector has a total of 5,311 prominent mentions.\n"
+    "•This represents the overall volume of online media coverage related to Steel Industry.\n"
+    # "•IIT Delhi follows IIT Madras, capturing 21% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
+    # "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 20%, 17%, and 6% of the SOV respectively.\n"
+    # "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e. last in the SOV.\n"
+    # "•Despite ranking lower in terms of SOV, IIT Ropar's presence indicates some level of visibility and recognition within the online media landscape.\n"
+    # "•Given the relatively lower SOV compared to peers like IIT Delhi, IIT Madras, and others, there are opportunities for IIT Ropar to enhance its online presence and visibility through strategic communications efforts.\n"
+    # "•IIT Ropar has received 239 all mentions and 44 prominent articles in online media and stands last in both the SOVs.\n"
+    # )
     p.font.size = Pt(18)
     p.font.name = 'Gill Sans'
 
@@ -1051,9 +1051,9 @@ News search: All Articles: entity mentioned at least once in the article"""
 
 
     source_text = (
-    "•The leading publications reporting on IIT Ropar and its competitors are Times of India, contributing 561 articles, followed by Economic Times with 467 articles, and The Indian Express with 455 articles.\n"
-"•Among these ,publications covering news on IIT Ropar specifically are The Indian Express takes the lead with 9 articles, followed by Tribune with 9 articles, and Times of India with 7 articles.\n"
-"•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
+    "•Of the 5311 articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
+"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
+# "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     source_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.1), Inches(14), Inches(1))
     source_frame = source_shape.text_frame
@@ -1061,9 +1061,9 @@ News search: All Articles: entity mentioned at least once in the article"""
     source_frame.clear()  # Clear any default paragraph
     p = source_frame.add_paragraph()
     p.text = (
-    "•The leading publications reporting on IIT Ropar and its competitors are Times of India, contributing 561 articles, followed by Economic Times with 467 articles, and The Indian Express with 455 articles.\n"
-"•Among these ,publications covering news on IIT Ropar specifically are The Indian Express takes the lead with 9 articles, followed by Tribune with 9 articles, and Times of India with 7 articles.\n"
-"•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
+    "•Of the 5311 articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
+"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
+# "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     p.font.size = Pt(18)
     p.font.name = 'Gill Sans'
@@ -1111,25 +1111,25 @@ News search: All Articles: entity mentioned at least once in the article"""
     p.font.bold = True
 
     # Add News Search text
-    news_search_text = ("•The top journalists reporting on IIT Ropar and its competitors are Sukanya Nandy from News18 with 59 articles, followed by Hemali Chapia from TOI with 44 articles, and Suramya Sunilraj from News18 with 43 articles.\n"
-                    "•Among the journalists specifically covering IIT Ropar are Munieshwer A Sagar and Deepak Yadav from Times of Indian  has authored 1 articles each  and Arushi Mishra from Hindu Business Line written 1 article.\n"
-                    "•IIT Ropar has received a total of 44 articles in news coverage. Among these, 39 i.e 88% of the articles were filed by Bureaus, while the remaining 5 i.e 12% were written by individual journalists.\n"
-                    "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
-                    "•Out of which, 5 journalists have specifically written 5 articles mentioning IIT Ropar i.e of the total journalists writing on IIT Ropar and its competitors only 1% of them have mentioned IIT Ropar in their articles.\n"
-                    "•While this constitutes a very less number, there is an large opportunity for IIT Ropar to engage with the remaining 882 journalists to enhance its news coverage and reach.\n"
-                   )
+    news_search_text = ("•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articles.\n"
+                    "•The Economic Times is prominently featured, with two journalists in the top 10: Nikita Periwal and Twesh Mishra.\n"
+                    "•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of 5311 i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n"
+                   #  "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
+                   #  "•Out of which, 5 journalists have specifically written 5 articles mentioning IIT Ropar i.e of the total journalists writing on IIT Ropar and its competitors only 1% of them have mentioned IIT Ropar in their articles.\n"
+                   #  "•While this constitutes a very less number, there is an large opportunity for IIT Ropar to engage with the remaining 882 journalists to enhance its news coverage and reach.\n"
+                   # )
     news_search_shape = slide.shapes.add_textbox(Inches(0.3), Inches(1.0), Inches(14), Inches(0.5))
     news_search_frame = news_search_shape.text_frame
     news_search_frame.word_wrap = True
     news_search_frame.clear()  # Clear any default paragraph
     p = news_search_frame.add_paragraph()
-    p.text = ("•The top journalists reporting on IIT Ropar and its competitors are Sukanya Nandy from News18 with 59 articles, followed by Hemali Chapia from TOI with 44 articles, and Suramya Sunilraj from News18 with 43 articles.\n"
-                    "•Among the journalists specifically covering IIT Ropar are Munieshwer A Sagar and Deepak Yadav from Times of Indian  has authored 1 articles each  and Arushi Mishra from Hindu Business Line written 1 article.\n"
-                    "•IIT Ropar has received a total of 44 articles in news coverage. Among these, 39 i.e 88% of the articles were filed by Bureaus, while the remaining 5 i.e 12% were written by individual journalists.\n"
-                    "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
-                    "•Out of which, 5 journalists have specifically written 5 articles mentioning IIT Ropar i.e of the total journalists writing on IIT Ropar and its competitors only 1% of them have mentioned IIT Ropar in their articles.\n"
-                    "•While this constitutes a very less number, there is an large opportunity for IIT Ropar to engage with the remaining 882 journalists to enhance its news coverage and reach.\n"
-                   )
+    p.text = ("•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articles.\n"
+                    "•The Economic Times is prominently featured, with two journalists in the top 10: Nikita Periwal and Twesh Mishra.\n"
+                    "•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of 5311 i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n"
+                   #   "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
+                   #  "•Out of which, 5 journalists have specifically written 5 articles mentioning IIT Ropar i.e of the total journalists writing on IIT Ropar and its competitors only 1% of them have mentioned IIT Ropar in their articles.\n"
+                   #  "•While this constitutes a very less number, there is an large opportunity for IIT Ropar to engage with the remaining 882 journalists to enhance its news coverage and reach.\n"
+                   # )
     p.font.size = Pt(18)
     p.font.name = 'Gill Sans'
 
@@ -1146,18 +1146,18 @@ News search: All Articles: entity mentioned at least once in the article"""
     p.font.underline = True
     p.font.bold = True
 
-    news_search_text = ("•Top Publication Types writing on IIT Ropar are General and  Business & Financials they both contribute 90% of the total news coverage on IIT Ropar.\n"
-"•IIT Madras and IIT Delhi dominates across all publication types, especially in general, business ,technology, and digital-first publications.\n"
-"•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
+    news_search_text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
+"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
+# "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     news_search_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.0), Inches(14), Inches(0.5))
     news_search_frame = news_search_shape.text_frame
     news_search_frame.word_wrap = True
     news_search_frame.clear()  # Clear any default paragraph
     p = news_search_frame.add_paragraph()
-    p.text = ("•Top Publication Types writing on IIT Ropar are General and  Business & Financials they both contribute 90% of the total news coverage on IIT Ropar.\n"
-"•IIT Madras and IIT Delhi dominates across all publication types, especially in general, business ,technology, and digital-first publications.\n"
-"•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
+    p.text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
+"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
+# "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     p.font.size = Pt(18)
     p.font.name = 'Gill Sans'
@@ -1239,31 +1239,38 @@ News search: All Articles: entity mentioned at least once in the article"""
                     'Publication Type with Total Publications and Avg news count','Sentiment Table','Citywise Table'     ]
 
         
-        textbox_text = [ "•IIT Ropar and its peers collectively received a total of 19932 news mentions online during the specified time period.\n"
-    "•Among these, IIT Madras dominates the conversation with 28% of the total SOV, indicating significant media coverage and visibility.\n"
-    "•IIT Delhi follows IIT Madras, capturing 25% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
-    "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 21%, 17%, and 7% of the SOV respectively.\n"
-    "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e., last in the SOV.\n"
-    "•Despite ranking lower in terms of SOV, IIT Ropar's presence indicates some level of visibility and recognition within the online media landscape.",
-        "•IIT Ropar witnessed its highest news coverage in Sept -2023, with 7 articles. The news during this period mainly revolved around topics such as:\n"
-    "1.IIT Ropar Placements: Average salary, placed students increase despite Covid slowdown\n"
-    "2.Purohit allows IIT-Ropar to set up campus in Edu City\n"
-    "3.UPES Runway Incubator Signs MoU With IIT Ropar’s Ihub – Awadh\n"
-    "4.SKUAST-K, IIT Ropar hold 2-day event"
-    , "•The leading publications reporting on IIT Ropar and its competitors are Times of India, contributing 561 articles, followed by Economic Times with 467 articles, and The Indian Express with 455 articles.\n"
-    "•Among these, publications covering news on IIT Ropar specifically are The Indian Express with 9 articles, followed by Tribune with 9 articles, and Times of India with 7 articles.\n"
-    "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.",
+        textbox_text = [ "•"The total number of news articles over the period is 5311. There is noticeable fluctuation in coverage from month to month, with periods of both increase and decline.Sept 2023 saw the highest number of articles, with 524 mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.Dec 2023 has the lowest coverage so far, with only 337 mentions.There was  peak in Sept-23 due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume",
+   \n",
+#     "•Among these, IIT Madras dominates the conversation with 28% of the total SOV, indicating significant media coverage and visibility.\n"
+#     "•IIT Delhi follows IIT Madras, capturing 25% of the SOV. While its coverage is notably lower than IIT Madras, it still indicates a considerable presence in the online space.\n"
+#     "•IIT Bombay, IIT Kanpur, and IIT Roorkee also receive notable coverage, with 21%, 17%, and 7% of the SOV respectively.\n"
+#     "•IIT Ropar holds a smaller share of the online conversation compared to its peers, with just 1% of the SOV and ranks 6th i.e., last in the SOV.\n"
+#     "•Despite ranking lower in terms of SOV, IIT Ropar's presence indicates some level of visibility and recognition within the online media landscape.",
+#         "•IIT Ropar witnessed its highest news coverage in Sept -2023, with 7 articles. The news during this period mainly revolved around topics such as:\n"
+#     "1.IIT Ropar Placements: Average salary, placed students increase despite Covid slowdown\n"
+#     "2.Purohit allows IIT-Ropar to set up campus in Edu City\n"
+#     "3.UPES Runway Incubator Signs MoU With IIT Ropar’s Ihub – Awadh\n"
+#     "4.SKUAST-K, IIT Ropar hold 2-day event"
+#     , "•The leading publications reporting on IIT Ropar and its competitors are Times of India, contributing 561 articles, followed by Economic Times with 467 articles, and The Indian Express with 455 articles.\n"
+#     "•Among these, publications covering news on IIT Ropar specifically are The Indian Express with 9 articles, followed by Tribune with 9 articles, and Times of India with 7 articles.\n"
+#     "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.",
 
-"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles , of which 81% of articles where field by Bureaus and remaining 19% were filed by 56 Journalists.MoneyControl ranks second with 413 articles on Steel Industry. A significant 70% of these articles were filed by Bureaus, with the remaining 30% filed by 31 journalists Business Standard is the 3rd top publication covering Steel Industry, with 384 news articles , of which 79% of articles where field by Bureaus and remaining 21% were filed by 27 Journalists.Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage.ABP Live published 160 articles on Steel Industry.A dominant 99% of these articles were filed by Bureaus. Only 1% of the articles were contributed by journalists.The Hindu Business Line is the only publication having a higher percentage of journalist-driven articles (65%), indicating a strong focus on original reportingBureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
+# "•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles , of which 81% of articles where field by Bureaus and remaining 19% were filed by 56 Journalists.MoneyControl ranks second with 413 articles on Steel Industry. A significant 70% of these articles were filed by Bureaus, with the remaining 30% filed by 31 journalists Business Standard is the 3rd top publication covering Steel Industry, with 384 news articles , of which 79% of articles where field by Bureaus and remaining 21% were filed by 27 Journalists.Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage.ABP Live published 160 articles on Steel Industry.A dominant 99% of these articles were filed by Bureaus. Only 1% of the articles were contributed by journalists.The Hindu Business Line is the only publication having a higher percentage of journalist-driven articles (65%), indicating a strong focus on original reportingBureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
    
     
-    "•The top journalists reporting on IIT Ropar and its competitors are Sukanya Nandy from News18 with 59 articles, followed by Hemali Chapia from TOI with 44 articles, and Suramya Sunilraj from News18 with 43 articles.\n"
-    "•Among the journalists specifically covering IIT Ropar, Munieshwer A Sagar and Deepak Yadav from Times of India have authored 1 article each, and Arushi Mishra from Hindu Business Line wrote 1 article.\n"
-    "•IIT Ropar has received a total of 44 articles in news coverage. Among these, 39 i.e., 88% of the articles were filed by Bureaus, while the remaining 5 i.e., 12% were written by individual journalists.\n"
-    ,
-                    "•Top Publication Types writing on IIT Ropar are General and Business & Financials; they both contribute 90% of the total news coverage on IIT Ropar.\n"
-    "•IIT Madras and IIT Delhi dominate across all publication types, especially in general, business, technology, and digital-first publications.\n"
-    "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand its reach and visibility among broader audiences.",
+    "•The total number of news articles over the period is 5311. There is noticeable fluctuation in coverage from month to month, with periods of both increase and decline.\n"
+"•Sept 2023 saw the highest number of articles, with 524 mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.\n"
+"•Dec 2023 has the lowest coverage so far, with only 337 mentions.\n"
+"•There was  peak in Sept-23 due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n",
+ ,
+                     "•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively Of the 5311 articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions)",
+    .\n",
+     "•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles , of which 81% of articles where field by Bureaus and remaining 19% were filed by 56 Journalists.MoneyControl ranks second with 413 articles on Steel Industry. A significant 70% of these articles were filed by Bureaus, with the remaining 30% filed by 31 journalists Business Standard is the 3rd top publication covering Steel Industry, with 384 news articles , of which 79% of articles where field by Bureaus and remaining 21% were filed by 27 Journalists.Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage.ABP Live published 160 articles on Steel Industry.A dominant 99% of these articles were filed by Bureaus. Only 1% of the articles were contributed by journalists.The Hindu Business Line is the only publication having a higher percentage of journalist-driven articles (65%), indicating a strong focus on original reportingBureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
+    \n",
+     "•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articlesThe top 10 journalists have written 423 prominent articles on Steel Industry out of 5311 i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.",
+    \n",
+"•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total. This dominance indicates that the Steel Industry sector is primarily of interest to financial and business-oriented audiences, reflecting the sector's strong ties to economic trends, market conditions, and financial health.General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).Advertising/PR/Media publications account for 33 articles, reflecting some interest in how the Steel Industry sector is marketed or publicizedDigital First publications contribute 42 articles, indicating limited but notable coverage in online platforms.Technology publications have the least coverage, with only 37 articles. This minimal coverage suggests that while there might be technological innovations in the Steel Industry sector, they have not yet become a major focus for tech media.",
+    /n",
 "•Dominance of Business & Financial News: Despite having only 10 publications, this category accounts for 52% of all news articles. It has the highest average news count per publication (279), significantly higher than other categories. General News Publications: While they have the highest number of publications (35), they account for only 45% of news articles. Their average news count (69) is much lower than Business & Financial publications. Other Categories:Advertising/PR/Media, Digital First, and Technology categories each account for only 11% & 5% of total news articles. They have fewer publications and lower average news counts.Overall AverageThe 65 publications collectively produced 5,311 news articles, with an overall average of 369 per publication. However, this average is  skewed by the high output of Business & Financial & General publications.",
     "•Neutral sentiment dominates the news coverage with 3352 news items, making up approximately 63% of the total. This suggests that the majority of the news in the Steel Industry sector is either informational or factual, lacking any strong positive or negative tone. This might include regular updates, policy changes, or reports.Positive sentiment is present in 905 news articles, accounting for about 26% of the total news count. This is a significant portion, indicating that nearly a quarter of the news in the Steel Industry sector is positive. These articles might include stories about falling interest rates, successful housing policies, increased homeownership, or the introduction of beneficial loan schemes.Negative sentiment is the least represented, with only 117 news items, making up a mere 11% of the total coverage. The low percentage of negative news suggests that the Steel Industry sector has relatively fewer controversies, issues, or negative events reported. Negative sentiment might be related to rising interest rates, fraud cases, or unfavorable changes in housing policies.",
      "•Mumbai leads the news coverage in the Steel Industry sector with 1,608 news articles, accounting for approximately 30% of the total news count. This significant concentration indicates that Mumbai is a major city for discussions and developments in the Steel Industry market.Chennai follows with 1085 news items, representing around 20% of the total. Noida and New Delhi also show noteworthy activity, with 621 and 345 news articles respectively, highlighting their importance in the sector.",
