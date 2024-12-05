@@ -873,9 +873,9 @@ News search: All Articles: entity mentioned at least once in the article"""
     textbox_width = Inches(15)  # Adjust the width as needed
     textbox_height = Inches(1)  # Adjust the height as needed
 
-    text_box = slide.shapes.add_textbox(textbox_left, textbox_top, textbox_width, textbox_height)
+    text_box = slide.shapes.add_textbox(Inches(1.9), Inches(1.0), textbox_width, textbox_height)
     text_frame = text_box.text_frame
-    text_frame.text = "Client Name"
+    text_frame.text = "Industry"
         
     # Set font size to 30 and make the text bold and white
     for paragraph in text_frame.paragraphs:
@@ -885,7 +885,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 #           run.font.bold = True
             run.font.name = 'Helvetica'
             run.font.color.rgb = RGBColor(255, 255, 255)  # White color
-            paragraph.alignment = PP_ALIGN.CENTER
+            paragraph.alignment = PP_ALIGN.LEFT
             paragraph.vertical_anchor = MSO_VERTICAL_ANCHOR.MIDDLE
     # Add title slide after the first slide
     slide_layout = prs.slide_layouts[6]
@@ -964,7 +964,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     textbox_width = Inches(15)  # Adjust the width as needed
     textbox_height = Inches(1)  # Adjust the height as needed
 
-    text_box = slide.shapes.add_textbox(textbox_left, textbox_top, textbox_width, textbox_height)
+    text_box = slide.shapes.add_textbox(Inches(1.9), Inches(1.0), textbox_width, textbox_height)
     text_frame = text_box.text_frame
     text_frame.text = "Online Media"
 
@@ -976,7 +976,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 #           run.font.bold = True
             run.font.name = 'Helvetica'
             run.font.color.rgb = RGBColor(255, 255, 255)  # White color
-            paragraph.alignment = PP_ALIGN.CENTER
+            paragraph.alignment = PP_ALIGN.LEFT
             paragraph.vertical_anchor = MSO_VERTICAL_ANCHOR.MIDDLE
 
     # Add title slide after the first slide
