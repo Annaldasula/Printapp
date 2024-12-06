@@ -550,7 +550,7 @@ if file:
         top_1 = pubs_table1.iloc[0:1]  # First publication
         top_2 = pubs_table1.iloc[1:2]  # Second publication
         top_3 = pubs_table1.iloc[2:3]  # Third publication
-        top_4 = pubs_table1.iloc[8:9]  # fourth publication
+        top_4 = pubs_table1.iloc[9:10]  # fourth publication
 
         # Save them in separate DataFrames
         df_top1 = top_1.reset_index(drop=True)
