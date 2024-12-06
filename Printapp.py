@@ -557,13 +557,13 @@ if file:
 
         # Extract publication name and count for the top 3
         top_1_name = df_top1.iloc[0]["Publication Name"]
-        top_1_count = df_top1.iloc[0]["Total"]
+        top_1_count = df_top1.iloc[0]["Industry"]
 
         top_2_name = df_top2.iloc[0]["Publication Name"]
-        top_2_count = df_top2.iloc[0]["Total"]
+        top_2_count = df_top2.iloc[0]["Industry"]
 
         top_3_name = df_top3.iloc[0]["Publication Name"]
-        top_3_count = df_top3.iloc[0]["Total"]
+        top_3_count = df_top3.iloc[0]["Industry"]
 
         
         # pub_table['Total'] = pub_table.sum(axis=1)
