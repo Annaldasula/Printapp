@@ -543,11 +543,12 @@ if file:
         pubs_table['% '] = pubs_table['% '].astype(int)
         pubs_table = pd.DataFrame(pubs_table.to_records())
         pubs_table['% '] = pubs_table['% '].astype(str) + '%'
+        
         pubs_table1 = pubs_table.head(10)
         pubs_table1.loc['Total'] = pubs_table1.sum(numeric_only=True, axis=0)
         pubs_table1['% '] = pubs_table1['% '].astype(int)
         pubs_table1 = pd.DataFrame(pubs_table1.to_records())
-        pubs_table1['% '] = pubs_table1['% '].astype(str) + '%'
+        # pubs_table1['% '] = pubs_table1['% '].astype(str) + '%'
 
         # Extract the top 3 publications and their counts
         top_1 = pubs_table1.iloc[0:1]  # First publication
