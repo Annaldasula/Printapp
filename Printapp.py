@@ -785,8 +785,8 @@ if file:
         topct_3_name = df_topct3.iloc[0]["City"]
         topct_3_count = df_topct3.iloc[0]["Industry"]
 
-        top_4_name = df_top4.iloc[0]["City"]
-        top_4_count = df_top4.iloc[0]["Industry"]
+        topct_4_name = df_topct4.iloc[0]["City"]
+        topct_4_count = df_topct4.iloc[0]["Industry"]
 
         
         
