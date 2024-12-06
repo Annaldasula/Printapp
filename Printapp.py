@@ -546,7 +546,7 @@ if file:
         
         pubs_table1 = pubs_table.head(10)
         pubs_table1.loc['Total'] = pubs_table1.sum(numeric_only=True, axis=0)
-        pubs_table1['% '] = pubs_table1['% '].astype(int)
+        # pubs_table1['% '] = pubs_table1['% '].astype(int)
         pubs_table1 = pd.DataFrame(pubs_table1.to_records())
         # pubs_table1['% '] = pubs_table1['% '].astype(str) + '%'
 
