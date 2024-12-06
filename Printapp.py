@@ -622,6 +622,50 @@ if file:
         Jour_table.insert(1, 'Publication Name', Jour_table.pop('Publication Name'))
         Jour_table1 = Jour_table.head(10)
 
+        Jour_table1.loc['Total'] = Jour_table1.sum(numeric_only=True, axis=0)
+        # pubs_table1['% '] = pubs_table1['% '].astype(int)
+        Jour_table1 = pd.DataFrame(Jour_table1.to_records())
+
+        # Extract the top 3 publications and their counts
+        topj_1 = Jour_table1.iloc[0:1]  # First publication
+        topj_2 = Jour_table1.iloc[1:2]  # Second publication
+        topj_3 = Jour_table1.iloc[2:3]  # Third publication
+
+        # Save them in separate DataFrames
+        df_topj1 = topj_1.reset_index(drop=True)
+        df_topj2 = topj_2.reset_index(drop=True)
+        df_topj3 = topj_3.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        topj_1_name = df_topj1.iloc[0]["Journalist"]
+        topj_1_count = df_topj1.iloc[0]["Total"]
+
+        topj_2_name = df_topj2.iloc[0]["Journalist"]
+        topj_2_count = df_topj2.iloc[0]["Total"]
+
+        topj_3_name = df_topj3.iloc[0]["Journalist"]
+        topj_3_count = df_topj3.iloc[0]["Total"]
+
+        # Extract the top 3 publications and their counts
+        topjt_1 = Jour_table1.iloc[0:1]  # First publication
+        topjt_2 = Jour_table1.iloc[1:2]  # Second publication
+        topjt_3 = Jour_table1.iloc[2:3]  # Third publication
+
+        # Save them in separate DataFrames
+        df_topjt1 = topjt_1.reset_index(drop=True)
+        df_topjt2 = topjt_2.reset_index(drop=True)
+        df_topjt3 = topjt_3.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        topjt_1_name = df_topjt1.iloc[0]["Publication Name"]
+        # top_1_count = df_topjt1.iloc[0]["Total"]
+
+        topjt_2_name = df_topjt2.iloc[0]["Publication Name"]
+        # top_2_count = df_topjt2.iloc[0]["Total"]
+
+        topjt_3_name = df_topjt3.iloc[0]["Publication Name"]
+        # top_3_count = df_topjt3.iloc[0]["Total"]
+
         # Group by Publication Name and calculate the News Count
         news_count = finaldata['Publication Name'].value_counts().reset_index()
         news_count.columns = ['Publication Name', 'News Count']
@@ -1160,7 +1204,7 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
     p.font.bold = True
 
     # Add News Search text
-    news_search_text = ("•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articles.\n"
+    news_search_text = (f"•{topj_1_name} from {topjt_1_name} leads with {topj_1_count} articles, indicating a strong focus on Steel Industry topics. {topj_2_name} , from {topjt_2_name}, follows closely with {topj_2_count} articles and {topj_3_name} from {topjt_3_name} with {topj_3_count} articles.\n"
                     "•The Economic Times is prominently featured, with two journalists in the top 10: Nikita Periwal and Twesh Mishra.\n"
                     f"•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of {total_news_count} i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n")
                    #  "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
@@ -1172,7 +1216,7 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
     news_search_frame.word_wrap = True
     news_search_frame.clear()  # Clear any default paragraph
     p = news_search_frame.add_paragraph()
-    p.text = ("•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articles.\n"
+    p.text = (f"•{topj_1_name} from {topjt_1_name} leads with {topj_1_count} articles, indicating a strong focus on Steel Industry topics. {topj_2_name} , from {topjt_2_name}, follows closely with {topj_2_count} articles and {topj_3_name} from {topjt_3_name} with {topj_3_count} articles.\n"
                     "•The Economic Times is prominently featured, with two journalists in the top 10: Nikita Periwal and Twesh Mishra.\n"
                     f"•This reinforces The Economic Times as a major publication in the Steel Industry sector.The top 10 journalists have written 423 prominent articles on Steel Industry out of {total_news_count} i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n")
                    #   "•A total of 387 journalists have written 1155 articles covering IIT Ropar and its competitors.\n"
@@ -1316,7 +1360,8 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
     
      "•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles , of which 81% of articles where field by Bureaus and remaining 19% were filed by 56 Journalists.MoneyControl ranks second with 413 articles on Steel Industry. A significant 70% of these articles were filed by Bureaus, with the remaining 30% filed by 31 journalists Business Standard is the 3rd top publication covering Steel Industry, with 384 news articles , of which 79% of articles where field by Bureaus and remaining 21% were filed by 27 Journalists.Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage.ABP Live published 160 articles on Steel Industry.A dominant 99% of these articles were filed by Bureaus. Only 1% of the articles were contributed by journalists.The Hindu Business Line is the only publication having a higher percentage of journalist-driven articles (65%), indicating a strong focus on original reportingBureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
     
-     "•Abhishek Law from The Hindu Business Line leads with 88 articles, indicating a strong focus on Steel Industry topics. R Sharma , from The Pioneer, follows closely with 63 articles and Nikita Periwal from Economic Times with 48 articlesThe top 10 journalists have written 423 prominent articles on Steel Industry out of {total_news_count} i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.",
+     f"•{topj_1_name} from {topjt_1_name} leads with {topj_1_count} articles, indicating a strong focus on Steel Industry topics. {topj_2_name} , from {topjt_2_name}, follows closely with {topj_2_count} articles and {topj_3_name} from {topjt_3_name} with {topj_3_count} articles.\n"
+     f"The top 10 journalists have written 423 prominent articles on Steel Industry out of {total_news_count} i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n",
     
 "•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total. This dominance indicates that the Steel Industry sector is primarily of interest to financial and business-oriented audiences, reflecting the sector's strong ties to economic trends, market conditions, and financial health.General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).Advertising/PR/Media publications account for 33 articles, reflecting some interest in how the Steel Industry sector is marketed or publicizedDigital First publications contribute 42 articles, indicating limited but notable coverage in online platforms.Technology publications have the least coverage, with only 37 articles. This minimal coverage suggests that while there might be technological innovations in the Steel Industry sector, they have not yet become a major focus for tech media.",
     
