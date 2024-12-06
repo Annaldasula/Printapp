@@ -569,7 +569,7 @@ if file:
         top_3_count = df_top3.iloc[0]["Industry"]
 
         top_4_name = df_top4.iloc[0]["Industry"]
-        top_4_count = df_top4.iloc[0][%]
+        top_4_count = df_top4.iloc[0]["% "]
 
         
         # pub_table['Total'] = pub_table.sum(axis=1)
