@@ -544,16 +544,19 @@ if file:
         pubs_table = pd.DataFrame(pubs_table.to_records())
         pubs_table['% '] = pubs_table['% '].astype(str) + '%'
         pubs_table1 = pubs_table.head(10)
+        pubs_table1.loc['Total'] = pubs_table1.sum(numeric_only=True, axis=0)
 
         # Extract the top 3 publications and their counts
         top_1 = pubs_table1.iloc[0:1]  # First publication
         top_2 = pubs_table1.iloc[1:2]  # Second publication
         top_3 = pubs_table1.iloc[2:3]  # Third publication
+        top_4 = pubs_table1.iloc[8:9]  # fourth publication
 
         # Save them in separate DataFrames
         df_top1 = top_1.reset_index(drop=True)
         df_top2 = top_2.reset_index(drop=True)
         df_top3 = top_3.reset_index(drop=True)
+        df_top4 = top_4.reset_index(drop=True)
 
         # Extract publication name and count for the top 3
         top_1_name = df_top1.iloc[0]["Publication Name"]
@@ -564,6 +567,9 @@ if file:
 
         top_3_name = df_top3.iloc[0]["Publication Name"]
         top_3_count = df_top3.iloc[0]["Industry"]
+
+        top_4_name = df_top4.iloc[0]["Industry"]
+        top_4_count = df_top4.iloc[0]["%"]
 
         
         # pub_table['Total'] = pub_table.sum(axis=1)
@@ -1090,7 +1096,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
 
     source_text = (
-    f"•Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
+    f"•Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed {top_4_name} articles ({top_4_count} of all mentions).\n"
 f"•{top_1_name} is the most prominent publication covering Steel Industry, with {top_1_count} news articles. {top_2_name} and {top_3_name} follow, with {top_2_count} and {top_3_count} news articles, respectively.\n"
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
@@ -1100,7 +1106,7 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
     source_frame.clear()  # Clear any default paragraph
     p = source_frame.add_paragraph()
     p.text = (
-    f"•Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
+    f"•Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed {top_4_name}  articles ({top_4_count}  of all mentions).\n"
 f"•{top_1_name} is the most prominent publication covering Steel Industry, with {top_1_count} news articles. {top_2_name} and {top_3_name} follow, with {top_2_count} and {top_3_count} news articles, respectively.\n"
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
