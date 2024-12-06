@@ -545,6 +545,26 @@ if file:
         pubs_table['% '] = pubs_table['% '].astype(str) + '%'
         pubs_table1 = pubs_table.head(10)
 
+        # Extract the top 3 publications and their counts
+        top_1 = pubs_table1.iloc[0:1]  # First publication
+        top_2 = pubs_table1.iloc[1:2]  # Second publication
+        top_3 = pubs_table1.iloc[2:3]  # Third publication
+
+        # Save them in separate DataFrames
+        df_top1 = top_1.reset_index(drop=True)
+        df_top2 = top_2.reset_index(drop=True)
+        df_top3 = top_3.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        top_1_name = df_top1.iloc[0]["Publication Name"]
+        top_1_count = df_top1.iloc[0]["Total"]
+
+        top_2_name = df_top2.iloc[0]["Publication Name"]
+        top_2_count = df_top2.iloc[0]["Total"]
+
+        top_3_name = df_top3.iloc[0]["Publication Name"]
+        top_3_count = df_top3.iloc[0]["Total"]
+
         
         # pub_table['Total'] = pub_table.sum(axis=1)
         # pubs_table = pub_table.sort_values('Total', ascending=False).round()
@@ -1071,7 +1091,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     source_text = (
     f"•Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
-"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
+f"•{top_1_name} is the most prominent publication covering Steel Industry, with {top_1_count} news articles. {top_2_name} and {top_3_name} follow, with {top_2_count} and {top_3_count} news articles, respectively.\n"
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     source_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.1), Inches(14), Inches(1))
@@ -1081,7 +1101,7 @@ News search: All Articles: entity mentioned at least once in the article"""
     p = source_frame.add_paragraph()
     p.text = (
     f"•Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions).\n"
-"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively.\n"
+f"•{top_1_name} is the most prominent publication covering Steel Industry, with {top_1_count} news articles. {top_2_name} and {top_3_name} follow, with {top_2_count} and {top_3_count} news articles, respectively.\n"
 # "•The top 10 publications writing articles on IIT Ropar contribute 86% of the total 44 articles.\n" 
 )
     p.font.size = Pt(18)
@@ -1282,7 +1302,7 @@ News search: All Articles: entity mentioned at least once in the article"""
 "•Dec 2023 has the lowest coverage so far, with only 337 mentions.\n"
 "•There was  peak in Sept-23 due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n",
  
-                     f"•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles. MoneyControl and Business Standard follow, with 413 and 384 news articles, respectively Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions)",
+                     f"•{top_1_name} is the most prominent publication covering Steel Industry, with {top_1_count} news articles. {top_2_name} and {top_3_name} follow, with {top_2_count}  and {top_3_count}  news articles, respectively Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed 3661 articles (68% of all mentions)",
     
      "•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles , of which 81% of articles where field by Bureaus and remaining 19% were filed by 56 Journalists.MoneyControl ranks second with 413 articles on Steel Industry. A significant 70% of these articles were filed by Bureaus, with the remaining 30% filed by 31 journalists Business Standard is the 3rd top publication covering Steel Industry, with 384 news articles , of which 79% of articles where field by Bureaus and remaining 21% were filed by 27 Journalists.Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage.ABP Live published 160 articles on Steel Industry.A dominant 99% of these articles were filed by Bureaus. Only 1% of the articles were contributed by journalists.The Hindu Business Line is the only publication having a higher percentage of journalist-driven articles (65%), indicating a strong focus on original reportingBureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
     
