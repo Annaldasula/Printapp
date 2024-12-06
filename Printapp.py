@@ -762,6 +762,32 @@ if file:
         City_Entity['Industry'] = City_Entity['Industry'].astype(int)
         City_Entity['% '] = City_Entity['% '].astype(int)
         City_Entity['% '] = City_Entity['% '].astype(str) + '%'
+
+        # Extract the top 3 publications and their counts
+        topct_1 = City_Entity.iloc[0:1]  # First publication
+        topct_2 = City_Entity.iloc[1:2]  # Second publication
+        topct_3 = City_Entity.iloc[2:3]  # Third publication
+        topct_4 = City_Entity.iloc[3:4]  # fourth publication
+
+        # Save them in separate DataFrames
+        df_topct1 = topct_1.reset_index(drop=True)
+        df_topct2 = topct_2.reset_index(drop=True)
+        df_topct3 = topct_3.reset_index(drop=True)
+        df_topct4 = topct_4.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        topct_1_name = df_topct1.iloc[0]["City"]
+        topct_1_count = df_topct1.iloc[0]["Industry"]
+
+        topct_2_name = df_topct2.iloc[0]["City"]
+        topct_2_count = df_topct2.iloc[0]["Industry"]
+
+        topct_3_name = df_topct3.iloc[0]["City"]
+        topct_3_count = df_topct3.iloc[0]["Industry"]
+
+        top_4_name = df_top4.iloc[0]["City"]
+        top_4_count = df_top4.iloc[0]["Industry"]
+
         
         
         # Remove square brackets and single quotes from the 'Journalist' column
@@ -1372,7 +1398,7 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
     
 "•Dominance of Business & Financial News: Despite having only 10 publications, this category accounts for 52% of all news articles. It has the highest average news count per publication (279), significantly higher than other categories. General News Publications: While they have the highest number of publications (35), they account for only 45% of news articles. Their average news count (69) is much lower than Business & Financial publications. Other Categories:Advertising/PR/Media, Digital First, and Technology categories each account for only 11% & 5% of total news articles. They have fewer publications and lower average news counts.Overall AverageThe 65 publications collectively produced 5,311 news articles, with an overall average of 369 per publication. However, this average is  skewed by the high output of Business & Financial & General publications.",
     "•Neutral sentiment dominates the news coverage with 3352 news items, making up approximately 63% of the total. This suggests that the majority of the news in the Steel Industry sector is either informational or factual, lacking any strong positive or negative tone. This might include regular updates, policy changes, or reports.Positive sentiment is present in 905 news articles, accounting for about 26% of the total news count. This is a significant portion, indicating that nearly a quarter of the news in the Steel Industry sector is positive. These articles might include stories about falling interest rates, successful housing policies, increased homeownership, or the introduction of beneficial loan schemes.Negative sentiment is the least represented, with only 117 news items, making up a mere 11% of the total coverage. The low percentage of negative news suggests that the Steel Industry sector has relatively fewer controversies, issues, or negative events reported. Negative sentiment might be related to rising interest rates, fraud cases, or unfavorable changes in housing policies.",
-     "•Mumbai leads the news coverage in the Steel Industry sector with 1,608 news articles, accounting for approximately 30% of the total news count. This significant concentration indicates that Mumbai is a major city for discussions and developments in the Steel Industry market.Chennai follows with 1085 news items, representing around 20% of the total. Noida and New Delhi also show noteworthy activity, with 621 and 345 news articles respectively, highlighting their importance in the sector.",
+     f"•{topct_1_name} leads the news coverage in the Steel Industry sector with {topct_1_count} news articles, accounting for approximately 30% of the total news count. This significant concentration indicates that {topct_1_name} is a major city for discussions and developments in the Steel Industry market. {topct_2_name} follows with {topct_2_count} news items, representing around 20% of the total. {topct_3_name} and {topct_4_name} also show noteworthy activity, with {topct_3_count} and {topct_4_count} news articles respectively, highlighting their importance in the sector.",
                       ]
         
         # Create a new PowerPoint presentation
