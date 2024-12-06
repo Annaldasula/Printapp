@@ -622,7 +622,7 @@ if file:
         Jour_table.insert(1, 'Publication Name', Jour_table.pop('Publication Name'))
         Jour_table1 = Jour_table.head(10)
 
-        Jour_table1.loc['Total1'] = Jour_table1.sum(numeric_only=True, axis=0)
+        Jour_table1.loc['Total'] = Jour_table1.sum(numeric_only=True, axis=0)
         # pubs_table1['% '] = pubs_table1['% '].astype(int)
         Jour_table1 = pd.DataFrame(Jour_table1.to_records())
 
@@ -649,7 +649,7 @@ if file:
         topj_3_count = df_topj3.iloc[0]["Total"]
 
         topj_4_name = df_topj4.iloc[0]["Journalist"]
-        topj_4_count = df_topj4.iloc[0]["Total1"]
+        topj_4_count = df_topj4.iloc[0]["Total"]
 
         # Extract the top 3 publications and their counts
         topjt_1 = Jour_table1.iloc[0:1]  # First publication
