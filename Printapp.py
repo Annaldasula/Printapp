@@ -601,6 +601,28 @@ if file:
         # PType_Entity.loc['GrandTotal'] = PType_Entity.sum(numeric_only=True, axis=0)
         # PType_Entity = pd.DataFrame(PType_Entity.to_records())
 
+        # Extract the top 3 publications and their counts
+        topt_1 = PType_Entity.iloc[0:1]  # First publication
+        topt_2 = PType_Entity.iloc[1:2]  # Second publication
+        # topt_3 = PType_Entity.iloc[2:3]  # Third publication
+
+        # Save them in separate DataFrames
+        df_topt1 = topt_1.reset_index(drop=True)
+        df_topt2 = topt_2.reset_index(drop=True)
+        # df_topt3 = topt_3.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        topt_1_name = df_topt1.iloc[0]["Publication Type"]
+        topt_1_count = df_topt1.iloc[0]["Industry"]
+        topt_1_per = df_topt1.iloc[0]["% "]
+
+        topt_2_name = df_topt2.iloc[0]["Publication Type"]
+        topt_2_count = df_topt2.iloc[0]["Industry"]
+        topt_2_per = df_topt2.iloc[0]["% "]
+
+        # topt_3_name = df_topt3.iloc[0]["Publication Type"]
+        # topt_3_count = df_topt3.iloc[0]["Total"]
+
         # Journalist Table
         finaldata['Journalist'] = finaldata['Journalist'].str.split(',')
         finaldata = finaldata.explode('Journalist')
@@ -1300,8 +1322,8 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
     p.font.underline = True
     p.font.bold = True
 
-    news_search_text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
-"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
+    news_search_text = (f"•{topt_1_name} publications account for the majority of news coverage with {topt_1_count} articles, which is approximately {topt_1_per} of the total.\n"
+f"•{topt_2_name}  publications contribute {topt_2_count} articles, making up about {topt_2_per} of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
 # "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     news_search_shape = slide.shapes.add_textbox(Inches(0.3), Inches(6.0), Inches(14), Inches(0.5))
@@ -1309,8 +1331,8 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
     news_search_frame.word_wrap = True
     news_search_frame.clear()  # Clear any default paragraph
     p = news_search_frame.add_paragraph()
-    p.text = ("•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total.\n"
-"•General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
+    p.text = (f"•{topt_1_name} publications account for the majority of news coverage with {topt_1_count} articles, which is approximately {topt_1_per} of the total.\n"
+f"•{topt_2_name}  publications contribute {topt_2_count} articles, making up about {topt_2_per} of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).\n"
 # "•IIT Ropar may find value in engaging more with General and Business along with technology, and digital-first publications to expand her reach and visibility among broader audiences.\n"
                    )
     p.font.size = Pt(18)
@@ -1424,7 +1446,7 @@ f"•{top_1_name} is the most prominent publication covering Steel Industry, wit
      f"•{topj_1_name} from {topjt_1_name} leads with {topj_1_count} articles, indicating a strong focus on Steel Industry topics. {topj_2_name} , from {topjt_2_name}, follows closely with {topj_2_count} articles and {topj_3_name} from {topjt_3_name} with {topj_3_count} articles.\n"
      f"The top 10 journalists have written {topj_4_count} prominent articles on Steel Industry out of {total_news_count} i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n",
     
-"•Business & Financials publications account for the majority of news coverage with 2,786 articles, which is approximately 52% of the total. This dominance indicates that the Steel Industry sector is primarily of interest to financial and business-oriented audiences, reflecting the sector's strong ties to economic trends, market conditions, and financial health.General publications contribute 2,412 articles, making up about 45% of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).Advertising/PR/Media publications account for 33 articles, reflecting some interest in how the Steel Industry sector is marketed or publicizedDigital First publications contribute 42 articles, indicating limited but notable coverage in online platforms.Technology publications have the least coverage, with only 37 articles. This minimal coverage suggests that while there might be technological innovations in the Steel Industry sector, they have not yet become a major focus for tech media.",
+f"•{topt_1_name} publications account for the majority of news coverage with {topt_1_count} articles, which is approximately {topt_1_per} of the total. This dominance indicates that the Steel Industry sector is primarily of interest to financial and business-oriented audiences, reflecting the sector's strong ties to economic trends, market conditions, and financial health.{topt_2_name} contribute {topt_2_per} articles, making up about {topt_3_per} of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).Advertising/PR/Media publications account for 33 articles, reflecting some interest in how the Steel Industry sector is marketed or publicized .Digital First publications contribute 42 articles, indicating limited but notable coverage in online platforms.Technology publications have the least coverage, with only 37 articles. This minimal coverage suggests that while there might be technological innovations in the Steel Industry sector, they have not yet become a major focus for tech media.",
     
 "•Dominance of Business & Financial News: Despite having only 10 publications, this category accounts for 52% of all news articles. It has the highest average news count per publication (279), significantly higher than other categories. General News Publications: While they have the highest number of publications (35), they account for only 45% of news articles. Their average news count (69) is much lower than Business & Financial publications. Other Categories:Advertising/PR/Media, Digital First, and Technology categories each account for only 11% & 5% of total news articles. They have fewer publications and lower average news counts.Overall AverageThe 65 publications collectively produced 5,311 news articles, with an overall average of 369 per publication. However, this average is  skewed by the high output of Business & Financial & General publications.",
     f"•{tops_1_name} sentiment dominates the news coverage with {tops_1_count} news items, making up approximately {tops_1_per} of the total. This suggests that the majority of the news in the Steel Industry sector is either informational or factual, lacking any strong positive or negative tone. This might include regular updates, policy changes, or reports.{tops_2_name} sentiment is present in {tops_2_count} news articles, accounting for about {tops_2_per} of the total news count. This is a significant portion, indicating that nearly a quarter of the news in the Steel Industry sector is positive. These articles might include stories about falling interest rates, successful housing policies, increased homeownership, or the introduction of beneficial loan schemes.{tops_3_name} sentiment is the least represented, with only {tops_3_name} news items, making up a mere {tops_3_per} of the total coverage. The low percentage of negative news suggests that the Steel Industry sector has relatively fewer controversies, issues, or negative events reported. Negative sentiment might be related to rising interest rates, fraud cases, or unfavorable changes in housing policies.",
