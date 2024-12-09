@@ -532,6 +532,23 @@ if file:
         finaldata['Date'] = pd.to_datetime(finaldata['Date']).dt.normalize()
         sov_dt = pd.crosstab((finaldata['Date'].dt.to_period('M')), finaldata['Entity'], margins=True, margins_name='Total')
         sov_dt1 = pd.DataFrame(sov_dt.to_records())
+
+        # Extract the top 3 publications and their counts
+        topdt_1 = sov_dt1.iloc[0:1]  # First publication
+        topc_2 = sov_dt1.iloc[1:2]  # Second publication
+        # topc_3 = sov_dt1.iloc[2:3]  # Third publication
+
+        # Save them in separate DataFrames
+        df_topdt1 = topdt_1.reset_index(drop=True)
+        df_topc2 = topc_2.reset_index(drop=True)
+        # df_topc3 = topc_3.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        topdt_1_name = df_topdt1.iloc[0]["Date"]
+        topdt_1_count = df_topdt1.iloc[0]["Industry"]
+
+        topc_2_name = df_topc2.iloc[0]["Date"]
+        topc_2_count = df_topc2.iloc[0]["Industry"]
         
         
         #Publication Name
@@ -1382,9 +1399,9 @@ f"•{topt_2_name}  publications contribute {topt_2_count} articles, making up a
 
 
     time_period_text = (f"•The total number of news articles over the period is {total_news_count}. There is noticeable fluctuation in coverage from month to month, with periods of both increase and decline.\n"
-"•Sept 2023 saw the highest number of articles, with 524 mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.\n"
-"•Dec 2023 has the lowest coverage so far, with only 337 mentions.\n"
-"•There was  peak in Sept-23 due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n"
+f"•{topdt_1_name} saw the highest number of articles, with {topdt_1_count} mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.\n"
+f"•{topdt_2_name} has the 2nd highest peak coverage, with {topdt_2_count} mentions.\n"
+f"•There was  peak in {topdt_1_name} due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n"
                    )
     time_period_shape = slide.shapes.add_textbox(Inches(0.3), Inches(1.4), Inches(14), Inches(0.5))
     time_period_frame = time_period_shape.text_frame
@@ -1394,9 +1411,9 @@ f"•{topt_2_name}  publications contribute {topt_2_count} articles, making up a
 
     p = time_period_frame.add_paragraph()
     p.text = (f"•The total number of news articles over the period is {total_news_count}. There is noticeable fluctuation in coverage from month to month, with periods of both increase and decline.\n"
-"•Sept 2023 saw the highest number of articles, with 524 mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.\n"
-"•Dec 2023 has the lowest coverage so far, with only 337 mentions.\n"
-"•There was  peak in Sept-23 due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n"
+f"•{topdt_1_name} saw the highest number of articles, with {topdt_1_count} mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.\n"
+f"•{topdt_2_name} has the 2nd highest peak coverage, with {topdt_2_count} mentions.\n"
+f"•There was  peak in {topdt_1_name} due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n"
                    )
     p.font.size = Pt(18)
     p.font.name = 'Gill Sans'
@@ -1435,9 +1452,9 @@ f"•{topt_2_name}  publications contribute {topt_2_count} articles, making up a
    
     
     f"•The total number of news articles over the period is {total_news_count}. There is noticeable fluctuation in coverage from month to month, with periods of both increase and decline.\n"
-"•Sept 2023 saw the highest number of articles, with 524 mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.\n"
-"•Dec 2023 has the lowest coverage so far, with only 337 mentions.\n"
-"•There was  peak in Sept-23 due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n",
+f"•{topdt_1_name} saw the highest number of articles, with {topdt_1_count} mentions. This spike suggests a significant event or increased media focus on Steel Industry during that month.\n"
+f"•{topdt_2_name} has the 2nd highest peak coverage, with {topdt_2_count} mentions.\n"
+f"•There was  peak in {topdt_1_name} due to following news:The increase in volume is due to Prime Minister Narendra Modi's visit to Chhattisgarh and the launch of multiple development projects, including the dedication of the NMDC Steel Plant in Bastar. The projects are expected to provide employment opportunities and contribute to the reduction of debt burden. The political controversy surrounding the Nagarnar Steel Plant and the statements made by Chief Minister Bhupesh Baghel have also contributed to the spike in volume\n",
  
                      f"•{top_1_name} is the most prominent publication covering Steel Industry, with {top_1_count} news articles. {top_2_name} and {top_3_name} follow, with {top_2_count}  and {top_3_count}  news articles, respectively. Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed {top_4_name} articles ({top_4_per} of all mentions)",
     
