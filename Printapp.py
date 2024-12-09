@@ -534,7 +534,7 @@ if file:
         sov_dt1 = pd.DataFrame(sov_dt.to_records())
         selected_columndt = sov_dt1
 
-        selected_columndt = selected_columndt.sort_values(by=sov_dt1, ascending=False)
+        selected_columndt = selected_columndt.sort_values(by="Industry", ascending=False)
 
         # Extract the top 3 publications and their counts
         topdt_1 = selected_columndt.iloc[0:1]  # First publication
