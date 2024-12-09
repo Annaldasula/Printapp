@@ -817,6 +817,38 @@ if file:
         final_df7['%'] = final_df7['%'].astype(int)
         final_df7['%'] = final_df7['%'].astype(str) + '%'
 
+        # Extract the top 3 publications and their counts
+        topav_1 = final_df7.iloc[0:1]  # First publication
+        topav_2 = final_df7.iloc[1:2]  # Second publication
+        topav_3 = final_df7.iloc[2:3]  # Third publication
+        # top_4 = final_df7.iloc[10:11]  # fourth publication
+
+        # Save them in separate DataFrames
+        df_topav1 = topav_1.reset_index(drop=True)
+        df_topav2 = topav_2.reset_index(drop=True)
+        df_topav3 = topav_3.reset_index(drop=True)
+        # df_topav4 = topav_4.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        topav_1_name = df_topav1.iloc[0]["Publication Type"]
+        topav_1_count = df_topav1.iloc[0]["News Count"]
+        topav_1_br = df_topav1.iloc[0]["%"]
+        topav_1_jr = df_topav1.iloc[0]["No of Publications"]
+        topav_1_av = df_topav1.iloc[0]["AVG News Count"]
+
+        topav_2_name = df_topav2.iloc[0]["Publication Type"]
+        topav_2_count = df_topav2.iloc[0]["News Count"]
+        topav_2_br = df_topav2.iloc[0]["%"]
+        topav_2_jr = df_topav2.iloc[0]["No of Publications"]
+        topav_2_av = df_topav2.iloc[0]["AVG News Count"]
+
+        topav_3_name = df_topav3.iloc[0]["Publication Type"]
+        topav_3_count = df_topav3.iloc[0]["News Count"]
+        topav_3_br = df_topav3.iloc[0]["%"]
+        topav_3_jr = df_topav3.iloc[0]["No of Publications"]
+        topav_3_av = df_topav3.iloc[0]["AVG News Count"]
+
+
 
         Set_Entity = pd.crosstab(finaldata['Sentiment'],finaldata['Entity'])
         Senti_Entity=Set_Entity.sort_values('Industry',ascending=False).round()
@@ -1499,7 +1531,7 @@ f"•There was  peak in {topdt_1_name} due to following news:The increase in vol
     
 f"•{topt_1_name} publications account for the majority of news coverage with {topt_1_count} articles, which is approximately {topt_1_per} of the total. This dominance indicates that the Steel Industry sector is primarily of interest to financial and business-oriented audiences, reflecting the sector's strong ties to economic trends, market conditions, and financial health.{topt_2_name} contribute {topt_2_count} articles, making up about {topt_2_per} of the total coverage.Advertising/PR/Media, Digital First, and Technology publications collectively contribute only 112 articles (approximately 2% of the total).Advertising/PR/Media publications account for 33 articles, reflecting some interest in how the Steel Industry sector is marketed or publicized .Digital First publications contribute 42 articles, indicating limited but notable coverage in online platforms.Technology publications have the least coverage, with only 37 articles. This minimal coverage suggests that while there might be technological innovations in the Steel Industry sector, they have not yet become a major focus for tech media.",
     
-"•Dominance of Business & Financial News: Despite having only 10 publications, this category accounts for 52% of all news articles. It has the highest average news count per publication (279), significantly higher than other categories. General News Publications: While they have the highest number of publications (35), they account for only 45% of news articles. Their average news count (69) is much lower than Business & Financial publications. Other Categories:Advertising/PR/Media, Digital First, and Technology categories each account for only 11% & 5% of total news articles. They have fewer publications and lower average news counts.Overall AverageThe 65 publications collectively produced 5,311 news articles, with an overall average of 369 per publication. However, this average is  skewed by the high output of Business & Financial & General publications.",
+f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publications, this category accounts for {topav_1_jr} of all news articles. It has the highest average news count per publication ({topav_1_av}), significantly higher than other categories. {topav_2_name} News Publications: While they have the highest number of publications ({topav_2_jr}), they account for only {topav_2_br} of news articles. Their average news count ({topav_2_av}) is much lower than {topav_1_name} publications. Other Categories:Advertising/PR/Media, Digital First, and Technology categories each account for only 11% & 5% of total news articles. They have fewer publications and lower average news counts. Overall AverageThe 65 publications collectively produced 5,311 news articles, with an overall average of 369 per publication. However, this average is  skewed by the high output of Business & Financial & General publications.",
     f"•{tops_1_name} sentiment dominates the news coverage with {tops_1_count} news items, making up approximately {tops_1_per} of the total. This suggests that the majority of the news in the Steel Industry sector is either informational or factual, lacking any strong positive or negative tone. This might include regular updates, policy changes, or reports.{tops_2_name} sentiment is present in {tops_2_count} news articles, accounting for about {tops_2_per} of the total news count. This is a significant portion, indicating that nearly a quarter of the news in the Steel Industry sector is positive. These articles might include stories about falling interest rates, successful housing policies, increased homeownership, or the introduction of beneficial loan schemes.{tops_3_name} sentiment is the least represented, with only {tops_3_name} news items, making up a mere {tops_3_per} of the total coverage. The low percentage of negative news suggests that the Steel Industry sector has relatively fewer controversies, issues, or negative events reported. Negative sentiment might be related to rising interest rates, fraud cases, or unfavorable changes in housing policies.",
      f"•{topct_1_name} leads the news coverage in the Steel Industry sector with {topct_1_count} news articles, accounting for approximately {topct_1_per} of the total news count. This significant concentration indicates that {topct_1_name} is a major city for discussions and developments in the Steel Industry market. {topct_2_name} follows with {topct_2_count} news items, representing around {topct_2_per} of the total. {topct_3_name} and {topct_4_name} also show noteworthy activity, with {topct_3_count} and {topct_4_count} news articles respectively, highlighting their importance in the sector.",
                       ]
