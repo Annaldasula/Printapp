@@ -533,9 +533,11 @@ if file:
         sov_dt = pd.crosstab((finaldata['Date'].dt.to_period('M')), finaldata['Entity'], margins=True, margins_name='Total')
         sov_dt1 = pd.DataFrame(sov_dt.to_records())
 
+        selected_columndt = selected_columndt.sort_values(by=sov_dt1, ascending=False)
+
         # Extract the top 3 publications and their counts
-        topdt_1 = sov_dt1.iloc[0:1]  # First publication
-        topc_2 = sov_dt1.iloc[1:2]  # Second publication
+        topdt_1 = selected_columndt.iloc[0:1]  # First publication
+        topc_2 = selected_columndt.iloc[1:2]  # Second publication
         # topc_3 = sov_dt1.iloc[2:3]  # Third publication
 
         # Save them in separate DataFrames
