@@ -537,8 +537,8 @@ if file:
         selected_columndt = selected_columndt.sort_values(by="Industry", ascending=False)
 
         # Extract the top 3 publications and their counts
-        topdt_1 = selected_columndt.iloc[0:1]  # First publication
-        topc_2 = selected_columndt.iloc[1:2]  # Second publication
+        topdt_1 = selected_columndt.iloc[1:2]  # First publication
+        topc_2 = selected_columndt.iloc[2:3]  # Second publication
         # topc_3 = sov_dt1.iloc[2:3]  # Third publication
 
         # Save them in separate DataFrames
