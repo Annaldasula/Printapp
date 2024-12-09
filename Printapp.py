@@ -547,8 +547,8 @@ if file:
         topdt_1_name = df_topdt1.iloc[0]["Date"]
         topdt_1_count = df_topdt1.iloc[0]["Industry"]
 
-        topc_2_name = df_topc2.iloc[0]["Date"]
-        topc_2_count = df_topc2.iloc[0]["Industry"]
+        topdt_2_name = df_topc2.iloc[0]["Date"]
+        topdt_2_count = df_topc2.iloc[0]["Industry"]
         
         
         #Publication Name
