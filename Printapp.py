@@ -765,13 +765,13 @@ if file:
 
         topb_2_name = df_topb2.iloc[0]["Publication Name"]
         topb_2_count = df_topb2.iloc[0]["News Count"]
-        topb_2_count = df_topb2.iloc[0]["% of articles by Bureaus"]
-        topb_2_count = df_topb2.iloc[0]["% of articles by Journalists"]
+        topb_2_br = df_topb2.iloc[0]["% of articles by Bureaus"]
+        topb_2_jr = df_topb2.iloc[0]["% of articles by Journalists"]
 
         topb_3_name = df_topb3.iloc[0]["Publication Name"]
         topb_3_count = df_topb3.iloc[0]["News Count"]
-        topb_3_count = df_topb3.iloc[0]["% of articles by Bureaus"]
-        topb_3_count = df_topb3.iloc[0]["% of articles by Journalists"]
+        topb_3_br = df_topb3.iloc[0]["% of articles by Bureaus"]
+        topb_3_jr = df_topb3.iloc[0]["% of articles by Journalists"]
 
         # top_4_name = df_top4.iloc[0]["Industry"]
         # top_4_per = df_top4.iloc[0]["% "]
