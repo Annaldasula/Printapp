@@ -1207,7 +1207,9 @@ News search: All Articles: entity mentioned at least once in the article"""
 
     text_box = slide.shapes.add_textbox(Inches(1.9), Inches(1.0), textbox_width, textbox_height)
     text_frame = text_box.text_frame
-    text_frame.text = "Online Media"
+    text_frame.text = ("Online Media\n"
+                      "News Analysis\n"
+                    "By Media Research & Analytics Team")
 
     # Set font size to 30 and make the text bold and white
     for paragraph in text_frame.paragraphs:
