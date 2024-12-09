@@ -532,6 +532,7 @@ if file:
         finaldata['Date'] = pd.to_datetime(finaldata['Date']).dt.normalize()
         sov_dt = pd.crosstab((finaldata['Date'].dt.to_period('M')), finaldata['Entity'], margins=True, margins_name='Total')
         sov_dt1 = pd.DataFrame(sov_dt.to_records())
+        selected_columndt = sov_dt1
 
         selected_columndt = selected_columndt.sort_values(by=sov_dt1, ascending=False)
 
