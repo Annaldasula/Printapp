@@ -745,6 +745,37 @@ if file:
 
         final_df11 = final_df1.head(10)
 
+        # Extract the top 3 publications and their counts
+        topb_1 = final_df11.iloc[0:1]  # First publication
+        topb_2 = final_df11.iloc[1:2]  # Second publication
+        topb_3 = final_df11.iloc[2:3]  # Third publication
+        # top_4 = final_df11.iloc[10:11]  # fourth publication
+
+        # Save them in separate DataFrames
+        df_topb1 = topb_1.reset_index(drop=True)
+        df_topb2 = topb_2.reset_index(drop=True)
+        df_topb3 = topb_3.reset_index(drop=True)
+        # df_top4 = top_4.reset_index(drop=True)
+
+        # Extract publication name and count for the top 3
+        topb_1_name = df_topb1.iloc[0]["Publication Name"]
+        topb_1_count = df_topb1.iloc[0]["News Count"]
+        topb_1_br = df_topb1.iloc[0]["% of articles by Bureaus"]
+        topb_1_jr = df_topb1.iloc[0]["% of articles by Journalists"]
+
+        topb_2_name = df_topb2.iloc[0]["Publication Name"]
+        topb_2_count = df_topb2.iloc[0]["News Count"]
+        topb_2_count = df_topb2.iloc[0]["% of articles by Bureaus"]
+        topb_2_count = df_topb2.iloc[0]["% of articles by Journalists"]
+
+        topb_3_name = df_topb3.iloc[0]["Publication Name"]
+        topb_3_count = df_topb3.iloc[0]["News Count"]
+        topb_3_count = df_topb3.iloc[0]["% of articles by Bureaus"]
+        topb_3_count = df_topb3.iloc[0]["% of articles by Journalists"]
+
+        # top_4_name = df_top4.iloc[0]["Industry"]
+        # top_4_per = df_top4.iloc[0]["% "]
+
         # Calculate News Count for each Publication Type
         news_count = finaldata.groupby('Publication Type').size().reset_index(name='News Count')
 
@@ -1461,7 +1492,7 @@ f"•There was  peak in {topdt_1_name} due to following news:The increase in vol
  
                      f"•{top_1_name} is the most prominent publication covering Steel Industry, with {top_1_count} news articles. {top_2_name} and {top_3_name} follow, with {top_2_count}  and {top_3_count}  news articles, respectively. Of the {total_news_count} articles having prominent mentions of Steel Industry, top 10 publications, among the 100 publications, contributed {top_4_name} articles ({top_4_per} of all mentions)",
     
-     "•The Economic Times is the most prominent publication covering Steel Industry, with 1088 news articles , of which 81% of articles where field by Bureaus and remaining 19% were filed by 56 Journalists.MoneyControl ranks second with 413 articles on Steel Industry. A significant 70% of these articles were filed by Bureaus, with the remaining 30% filed by 31 journalists Business Standard is the 3rd top publication covering Steel Industry, with 384 news articles , of which 79% of articles where field by Bureaus and remaining 21% were filed by 27 Journalists.Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage.ABP Live published 160 articles on Steel Industry.A dominant 99% of these articles were filed by Bureaus. Only 1% of the articles were contributed by journalists.The Hindu Business Line is the only publication having a higher percentage of journalist-driven articles (65%), indicating a strong focus on original reportingBureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
+     f"•{topb_1_name} is the most prominent publication covering Steel Industry, with {topb_1_count} news articles , of which {topb_1_br} of articles where field by Bureaus and remaining {topb_1_jr} were filed by Journalists. {topb_2_name} ranks second with {topb_2_count} articles on Steel Industry. A significant {topb_2_br} of these articles were filed by Bureaus, with the remaining {topb_2_jr} filed by  journalists. {topb_3_name} is the 3rd top publication covering Steel Industry, with {topb_3_count} news articles , of which {topb_3_br} of articles where field by Bureaus and remaining {topb_4_jr} were filed by Journalists. Almost , across all  publications, there is a clear trend of bureau dominance in Steel Industry news coverage. Bureau-written articles often includes announcements, press releases, and reports from news agencies, while journalist-written articles often includes detailed analyses, specialized content and exclusive stories.Publications with more journalist-driven content typically deliver more detailed and specialized analysis",
     
      f"•{topj_1_name} from {topjt_1_name} leads with {topj_1_count} articles, indicating a strong focus on Steel Industry topics. {topj_2_name} , from {topjt_2_name}, follows closely with {topj_2_count} articles and {topj_3_name} from {topjt_3_name} with {topj_3_count} articles.\n"
      f"The top 10 journalists have written {topj_4_count} prominent articles on Steel Industry out of {total_news_count} i.e only 8% . Majority of the articles i.e 73% of them were filed by Bureaus.\n",
