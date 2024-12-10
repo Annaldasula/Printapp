@@ -432,11 +432,11 @@ def add_table_to_slide(slide, df, title, textbox_text):
 #     writer.close()
 
 # Function to add image to slide
-def add_image_to_slide(slide, img_path):
+def add_image_to_slide(slide, img_path3):
     left = Inches(1)
     top = Inches(1)
     width = Inches(8)
-    slide.shapes.add_picture(img_path, left, top, width=width)
+    slide.shapes.add_picture(img_path3, left, top, width=width)
 
 # Generate an image from the bar chart
 def generate_bar_chart(df):
@@ -456,10 +456,10 @@ def generate_bar_chart(df):
     ax.grid(axis="y", linestyle="--", alpha=0.7)
     
     # Save plot as image
-    img_path = "bar_chart.png"
-    fig.savefig(img_path, dpi=300)
+    img_path3 = "bar_chart.png"
+    fig.savefig(img_path3, dpi=300)
     plt.close(fig)
-    return img_path
+    return img_path3
 
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
@@ -1577,8 +1577,8 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
             add_table_to_slide(slide, df, title, textbox_text[i])
             # Add image only to the first slide
             if i == 0:  
-                img_path = generate_bar_chart(dfs[0])  # Generate chart from first DataFrame
-                add_image_to_slide(slide, img_path)
+                img_path4 = generate_bar_chart(dfs[0])  # Generate chart from first DataFrame
+                add_image_to_slide(slide, img_path4)
 
 
         # Save presentation to BytesIO for download
