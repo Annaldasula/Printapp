@@ -379,6 +379,16 @@ def add_table_to_slide(slide, df, title, textbox_text):
         cell.fill.solid()
         cell.fill.fore_color.rgb = RGBColor(255, 165, 0)
         cell.vertical_anchor = MSO_VERTICAL_ANCHOR.MIDDLE
+        # Add borders to header cell
+        for border in ["top", "bottom", "left", "right"]:
+            cell.border.__getattribute__(border).color.rgb = RGBColor(0, 0, 0)
+            cell.border.__getattribute__(border).width = Pt(1)
+            # Add borders to data cell
+            for border in ["top", "bottom", "left", "right"]:
+                cell.border.__getattribute__(border).color.rgb = RGBColor(0, 0, 0)
+                cell.border.__getattribute__(border).width = Pt(0.75)
+
+    
 
     for i in range(rows):
         for j in range(cols):
