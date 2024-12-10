@@ -430,7 +430,37 @@ def add_table_to_slide(slide, df, title, textbox_text):
 #         dataframe.to_excel(writer, sheet_name=sheets, startrow=row + 1, startcol=0)
 #         row = row + len(dataframe.index) + spaces + 2
 #     writer.close()
+
+# Function to add image to slide
+def add_image_to_slide(slide, img_path):
+    left = Inches(1)
+    top = Inches(1)
+    width = Inches(8)
+    slide.shapes.add_picture(img_path, left, top, width=width)
+
+# Generate an image from the bar chart
+def generate_bar_chart(df):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bars = ax.bar(
+        df["Entity"], 
+        df["News Count"], 
+        color="skyblue", 
+        edgecolor="black"
+    )
+    for bar in bars:
+        height = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width() / 2, height, f"{height}", ha="center", va="bottom", fontsize=10)
+    ax.set_title("Share of Voice (SOV)", fontsize=14)
+    ax.set_xlabel("Entity", fontsize=12)
+    ax.set_ylabel("News Count", fontsize=12)
+    ax.grid(axis="y", linestyle="--", alpha=0.7)
     
+    # Save plot as image
+    img_path = "bar_chart.png"
+    fig.savefig(img_path, dpi=300)
+    plt.close(fig)
+    return img_path
+
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
     row = 2
@@ -1545,6 +1575,11 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
         for i, (df, title) in enumerate(zip(dfs, table_titles)):
             slide = prs.slides.add_slide(prs.slide_layouts[6])
             add_table_to_slide(slide, df, title, textbox_text[i])
+            # Add image only to the first slide
+            if i == 0:  
+                img_path = generate_bar_chart(dfs[0])  # Generate chart from first DataFrame
+                add_image_to_slide(slide, img_path)
+
 
         # Save presentation to BytesIO for download
         pptx_output = io.BytesIO()
