@@ -481,7 +481,7 @@ def generate_line_graph(df):
     for entity in filtered_df.columns[1:]:  # Exclude the first column (Date)
         ax.plot(filtered_df['Date'].astype(str), filtered_df[entity], marker='o', label=entity)
         for x, y in zip(df['Date'].astype(str), df[entity]):
-            ax.text(x, y, str(y), fontsize=10, ha='center', va='bottom')
+            ax.text(x, y, str(y), fontsize=10, ha='center', va='top')
 
     
     ax.set_title("Month-on-Month Trends", fontsize=14)
