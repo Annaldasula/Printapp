@@ -472,7 +472,7 @@ def generate_bar_chart(df):
     return img_path3
 
 def generate_line_graph(df):
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(15, 7))
     
     # Exclude the 'Total' column and row for the graph
     filtered_df = df.loc[df['Date'] != 'Total'].copy()
