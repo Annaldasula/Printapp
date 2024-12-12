@@ -472,7 +472,7 @@ def generate_bar_chart(df):
     return img_path3
 
 def generate_line_graph(df):
-    fig, ax = plt.subplots(figsize=(15, 7))
+    fig, ax = plt.subplots(figsize=(10, 6))
     
     # Exclude the 'Total' column and row for the graph
     filtered_df = df.loc[df['Date'] != 'Total'].copy()
@@ -500,9 +500,9 @@ def generate_line_graph(df):
 
 # Function to add image to slide
 def add_image_to_slide(slide, img_path3):
-    left = Inches(1)
-    top = Inches(1)
-    width = Inches(8)
+    left = Inches(0.5)
+    top = Inches(4)
+    width = Inches(12)
     slide.shapes.add_picture(img_path3, left, top, width=width)
 
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
