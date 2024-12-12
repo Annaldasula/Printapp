@@ -493,7 +493,7 @@ def generate_line_graph(df):
 
     # Save plot as image
     img_path = "line_graph.png"
-    fig.savefig(img_path, dpi=300)
+    fig.savefig(img_path, dpi=300, bbox_inches='tight', pad_inches=1)
     plt.close(fig)
     return img_path
 
@@ -502,8 +502,9 @@ def generate_line_graph(df):
 def add_image_to_slide(slide, img_path3):
     left = Inches(0.5)
     top = Inches(1.5)
-    width = Inches(12)
-    slide.shapes.add_picture(img_path3, left, top, width=width)
+    width = Inches(15)  # Specify exact width
+    height = Inches(5.6)  # Specify exact height
+    slide.shapes.add_picture(img_path, left, top, width=width, height=height)
 
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
