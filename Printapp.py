@@ -492,19 +492,19 @@ def generate_line_graph(df):
     plt.xticks(rotation=45)
 
     # Save plot as image
-    img_path = "line_graph.png"
-    fig.savefig(img_path, dpi=300, bbox_inches='tight', pad_inches=1)
+    img_path6 = "line_graph.png"
+    fig.savefig(img_path6, dpi=300, bbox_inches='tight', pad_inches=1)
     plt.close(fig)
-    return img_path
+    return img_path6
 
 
 # Function to add image to slide
-def add_image_to_slide(slide, img_path3):
+def add_image_to_slide(slide, img_path6):
     left = Inches(0.5)
     top = Inches(1.5)
     width = Inches(15)  # Specify exact width
     height = Inches(5.6)  # Specify exact height
-    slide.shapes.add_picture(img_path, left, top, width=width, height=height)
+    slide.shapes.add_picture(img_path6, left, top, width=width, height=height)
 
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
