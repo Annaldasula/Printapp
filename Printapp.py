@@ -471,11 +471,15 @@ def generate_bar_chart(df):
     plt.close(fig)
     return img_path3
 
-# Function to generate a line graph
 def generate_line_graph(df):
     fig, ax = plt.subplots(figsize=(10, 6))
-    for entity in df.columns[1:-1]:  # Exclude the first and last columns (Period and Total)
-        ax.plot(df['Date'].astype(str), df[entity], marker='o', label=entity)
+    
+    # Exclude the 'Total' column and row for the graph
+    filtered_df = df.loc[df['Date'] != 'Total'].copy()
+    filtered_df = filtered_df.drop(columns=['Total'], errors='ignore')
+
+    for entity in filtered_df.columns[1:]:  # Exclude the first column (Date)
+        ax.plot(filtered_df['Date'].astype(str), filtered_df[entity], marker='o', label=entity)
     
     ax.set_title("Month-on-Month Trends", fontsize=14)
     ax.set_xlabel("Month", fontsize=12)
@@ -485,10 +489,11 @@ def generate_line_graph(df):
     plt.xticks(rotation=45)
 
     # Save plot as image
-    img_path3 = "line_graph.png"
-    fig.savefig(img_path3, dpi=300)
+    img_path = "line_graph.png"
+    fig.savefig(img_path, dpi=300)
     plt.close(fig)
-    return img_path3
+    return img_path
+
 
 # Function to add image to slide
 def add_image_to_slide(slide, img_path3):
