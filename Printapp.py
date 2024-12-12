@@ -484,7 +484,7 @@ def generate_line_graph(df):
             ax.text(x, y, str(y), fontsize=10, ha='right', va='bottom')
 
     
-    ax.set_title("Month-on-Month Trends", fontsize=14)
+    # ax.set_title("Month-on-Month Trends", fontsize=14)
     ax.set_xlabel("Month", fontsize=12)
     ax.set_ylabel("News Count", fontsize=12)
     ax.legend(title="Entities", fontsize=10)
