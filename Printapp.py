@@ -493,7 +493,7 @@ def generate_line_graph(df):
 
     # Save plot as image
     img_path6 = "line_graph.png"
-    fig.savefig(img_path6, dpi=300, bbox_inches='tight', pad_inches=1)
+    fig.savefig(img_path6, dpi=300)
     plt.close(fig)
     return img_path6
 
