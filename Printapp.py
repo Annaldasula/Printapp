@@ -502,7 +502,7 @@ def generate_line_graph(df):
 def add_image_to_slide(slide, img_path3):
     left = Inches(0.5)
     top = Inches(1.5)
-    width = Inches(10)
+    width = Inches(16)
     slide.shapes.add_picture(img_path3, left, top, width=width)
 
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
