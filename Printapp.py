@@ -471,6 +471,32 @@ def generate_bar_chart(df):
     plt.close(fig)
     return img_path3
 
+# Function to generate a line graph
+def generate_line_graph(df):
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for entity in df.columns[1:-1]:  # Exclude the first and last columns (Period and Total)
+        ax.plot(df['Date'].astype(str), df[entity], marker='o', label=entity)
+    
+    ax.set_title("Month-on-Month Trends", fontsize=14)
+    ax.set_xlabel("Month", fontsize=12)
+    ax.set_ylabel("News Count", fontsize=12)
+    ax.legend(title="Entities", fontsize=10)
+    ax.grid(axis='y', linestyle='--', alpha=0.7)
+    plt.xticks(rotation=45)
+
+    # Save plot as image
+    img_path3 = "line_graph.png"
+    fig.savefig(img_path3, dpi=300)
+    plt.close(fig)
+    return img_path3
+
+# Function to add image to slide
+def add_image_to_slide(slide, img_path3):
+    left = Inches(1)
+    top = Inches(1)
+    width = Inches(8)
+    slide.shapes.add_picture(img_path3, left, top, width=width)
+
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
     row = 2
@@ -1589,6 +1615,9 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
             if i == 0:  
                 img_path4 = generate_bar_chart(dfs[0])  # Generate chart from first DataFrame
                 add_image_to_slide(slide, img_path4)
+            if i == 1:  
+                img_path5 = line_graph_path = generate_line_graph(sov_dt1)  # Generate chart from first DataFrame
+                add_image_to_slide(slide, img_path5)
 
 
         # Save presentation to BytesIO for download
