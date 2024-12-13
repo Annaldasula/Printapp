@@ -507,10 +507,11 @@ def add_image_to_slide(slide, img_path6):
     slide.shapes.add_picture(img_path6, left, top, width=width, height=height)
 
 def generate_horizontal_bar_chart(df):
+    df_sorted = df.sort_values(by="News Count", ascending=False)
     fig, ax = plt.subplots(figsize=(10, 6))
     bars = ax.barh(
-        df["Publication Name"], 
-        df["Industry"], 
+        df_sorted["Publication Name"], 
+        df_sorted["Industry"], 
         color="skyblue", 
         edgecolor="black"
     )
@@ -526,9 +527,9 @@ def generate_horizontal_bar_chart(df):
             fontsize=10
         )
     
-    ax.set_title("Share of Voice (SOV)", fontsize=14)
+    # ax.set_title("Publication Name", fontsize=14)
     ax.set_xlabel("News Count", fontsize=12)
-    ax.set_ylabel("Entity", fontsize=12)
+    ax.set_ylabel("Publication Name", fontsize=12)
     ax.grid(axis="x", linestyle="--", alpha=0.7)
     
     # Save plot as image
@@ -538,7 +539,7 @@ def generate_horizontal_bar_chart(df):
     return img_path7
 
 # Function to add image to slide
-def add_image_to_slide(slide, img_path7):
+def add_image_to_slide1(slide, img_path7):
     left = Inches(0.5)
     top = Inches(1.5)
     width = Inches(10)  # Specify exact width
@@ -1670,7 +1671,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
 
             if i == 2:  
                 hor_graph_path = generate_horizontal_bar_chart(dfs[2])  # Generate chart from first DataFrame
-                add_image_to_slide(slide, hor_graph_path)
+                add_image_to_slide1(slide, hor_graph_path)
 
 
         # Save presentation to BytesIO for download
