@@ -493,7 +493,7 @@ def generate_line_graph(df):
 
     # Save plot as image
     img_path6 = "line_graph.png"
-    fig.savefig(img_path6, dpi=300)
+    fig.savefig(img_path6, dpi=300 ,bbox_inches='tight')
     plt.close(fig)
     return img_path6
 
@@ -602,6 +602,47 @@ def add_image_to_slide2(slide, img_path8):
     width = Inches(10)  # Specify exact width
     height = Inches(8)  # Specify exact height
     slide.shapes.add_picture(img_path8, left, top, width=width, height=height)
+
+def generate_horizontal_bar_chartj(df):
+    df_sorted = df.sort_values(by="Industry", ascending=False)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bars = ax.barh(
+        df_sorted["Journalist"], 
+        df_sorted["Industry"], 
+        color="skyblue", 
+        edgecolor="black"
+    )
+    
+    for bar in bars:
+        width = bar.get_width()
+        ax.text(
+            width, 
+            bar.get_y() + bar.get_height() / 2, 
+            f"{width}", 
+            ha="left", 
+            va="center", 
+            fontsize=10
+        )
+    
+    # ax.set_title("Publication Name", fontsize=14)
+    ax.set_xlabel("News Count", fontsize=12)
+    ax.set_ylabel("Journalist", fontsize=12)
+    ax.grid(axis="x", linestyle="--", alpha=0.7)
+    
+    # Save plot as image
+    img_path9 = "horizontal_bar_chart.png"
+    fig.savefig(img_path9, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    return img_path9
+
+# Function to add image to slide
+def add_image_to_slide3(slide, img_path9):
+    left = Inches(0.5)
+    top = Inches(1.5)
+    width = Inches(12)  # Specify exact width
+    height = Inches(6)  # Specify exact height
+    slide.shapes.add_picture(img_path9, left, top, width=width, height=height)
+
 
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
@@ -1732,6 +1773,10 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
             if i == 3:  
                 phor_graph_path = generate_grouped_bar_chart(dfs[3])  # Generate chart from first DataFrame
                 add_image_to_slide2(slide, phor_graph_path)
+
+            if i == 4:  
+                jhor_graph_path = generate_grouped_bar_chartj(dfs[4])  # Generate chart from first DataFrame
+                add_image_to_slide3(slide, jhor_graph_path)
 
         
 
