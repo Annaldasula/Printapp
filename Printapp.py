@@ -553,7 +553,7 @@ def generate_horizontal_grouped_bar_chart(df):
 
     # Data Preparation
     y = np.arange(len(df_sorted["Publication Name"]))  # Y-axis positions for publications
-    height = 0.35  # Height of the bars
+    height = 1  # Height of the bars
 
     # Create the plot
     fig, ax = plt.subplots(figsize=(12, 8))
@@ -579,7 +579,7 @@ def generate_horizontal_grouped_bar_chart(df):
     # Add labels and titles
     # ax.set_title("Percentage of Articles by Bureaus and Journalists (Sorted)", fontsize=14)
     ax.set_xlabel("Percentage", fontsize=12)
-    ax.set_ylabel("Publication Name", fontsize=12)
+    ax.set_ylabel("Publication Name", fontsize=14)
     ax.set_xlim(0, 100)  # Set x-axis limits from 0% to 100%
     ax.set_xticks(np.arange(0, 101, 10))  # Set ticks at intervals of 10%
     ax.set_yticks(y)
@@ -589,9 +589,9 @@ def generate_horizontal_grouped_bar_chart(df):
 
     # Add value annotations
     for i in range(len(y)):
-        ax.text(df_sorted["% of articles by Bureaus"][i], y[i] - height / 2, f"{df_sorted['% of articles by Bureaus'][i]}%", 
+        ax.text(df_sorted["% of articles by Bureaus"][i], y[i] - height / 2, f"{df_sorted['% of articles by Bureaus'][i]}", 
                 ha="left", va="center", fontsize=8)
-        ax.text(df_sorted["% of articles by Journalists"][i], y[i] + height / 2, f"{df_sorted['% of articles by Journalists'][i]}%", 
+        ax.text(df_sorted["% of articles by Journalists"][i], y[i] + height / 2, f"{df_sorted['% of articles by Journalists'][i]}", 
                 ha="left", va="center", fontsize=8)
 
     # Save plot as image
