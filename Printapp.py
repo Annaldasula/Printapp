@@ -655,6 +655,49 @@ def add_image_to_slide3(slide, img_path9):
     slide.shapes.add_picture(img_path9, left, top, width=width, height=height)
 
 
+def generate_horizontal_bar_chartpt(df):
+    df["Industry"] = pd.to_numeric(df["Industry"], errors="coerce")
+    df_sorted = df.sort_values(by="Industry", ascending=False)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bars = ax.barh(
+        df_sorted["Publication Type"], 
+        df_sorted["Industry"], 
+        color="skyblue", 
+        edgecolor="black"
+    )
+    
+    for bar in bars:
+        width = bar.get_width()
+        ax.text(
+            width, 
+            bar.get_y() + bar.get_height() / 2, 
+            f"{width}", 
+            ha="left", 
+            va="center", 
+            fontsize=10
+        )
+    
+    # ax.set_title("Publication Name", fontsize=14)
+    ax.set_xlabel("News Count", fontsize=12)
+    ax.set_ylabel("Journalist", fontsize=12)
+    ax.grid(axis="x", linestyle="--", alpha=0.7)
+    
+    # Save plot as image
+    img_path10 = "horizontal_bar_chart.png"
+    fig.savefig(img_path10, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    return img_path10
+
+# Function to add image to slide
+def add_image_to_slide4(slide, img_path10):
+    left = Inches(0.5)
+    top = Inches(1.5)
+    width = Inches(14.5)  # Specify exact width
+    height = Inches(5.5)  # Specify exact height
+    slide.shapes.add_picture(img_path10, left, top, width=width, height=height)
+
+
+
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
     row = 2
@@ -1789,6 +1832,9 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 jhor_graph_path = generate_horizontal_bar_chartj(dfs[4])  # Generate chart from first DataFrame
                 add_image_to_slide3(slide, jhor_graph_path)
 
+            if i == 5:  
+                pthor_graph_path = generate_horizontal_bar_chartpt(dfs[5])  # Generate chart from first DataFrame
+                add_image_to_slide3(slide, pthor_graph_path)
         
 
 
