@@ -547,6 +547,62 @@ def add_image_to_slide1(slide, img_path7):
     slide.shapes.add_picture(img_path7, left, top, width=width, height=height)
 
 
+def generate_grouped_bar_chart(df):
+    # Data Preparation
+    x = np.arange(len(df["Publication Name"]))  # X-axis positions for publications
+    width = 0.35  # Width of the bars
+
+    # Create the plot
+    fig, ax = plt.subplots(figsize=(12, 6))
+    
+    # Plot Bureau percentages
+    ax.bar(
+        x - width / 2, 
+        df["% of articles by Bureaus"], 
+        width, 
+        label="% by Bureaus", 
+        color="skyblue"
+    )
+    
+    # Plot Journalist percentages
+    ax.bar(
+        x + width / 2, 
+        df["% of articles by Journalists"], 
+        width, 
+        label="% by Journalists", 
+        color="orange"
+    )
+
+    # Add labels and titles
+    # ax.set_title("Percentage of Articles by Bureaus and Journalists", fontsize=14)
+    ax.set_xlabel("Publication Name", fontsize=12)
+    ax.set_ylabel("Percentage", fontsize=12)
+    ax.set_xticks(x)
+    ax.set_xticklabels(df["Publication Name"], rotation=45, ha="right", fontsize=10)
+    ax.legend(title="Category", fontsize=10)
+    ax.grid(axis="y", linestyle="--", alpha=0.7)
+    
+    # Add value annotations
+    for i in range(len(x)):
+        ax.text(x[i] - width / 2, df["% of articles by Bureaus"][i], f"{df['% of articles by Bureaus'][i]}%", 
+                ha="center", va="bottom", fontsize=8)
+        ax.text(x[i] + width / 2, df["% of articles by Journalists"][i], f"{df['% of articles by Journalists'][i]}%", 
+                ha="center", va="bottom", fontsize=8)
+
+    # Save plot as image
+    img_path8 = "grouped_bar_chart.png"
+    fig.savefig(img_path8, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    return img_path8
+
+# Function to add image to slide
+def add_image_to_slide2(slide, img_path8):
+    left = Inches(0.5)
+    top = Inches(1.5)
+    width = Inches(10)  # Specify exact width
+    height = Inches(8)  # Specify exact height
+    slide.shapes.add_picture(img_path8, left, top, width=width, height=height)
+
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
     row = 2
@@ -1672,6 +1728,12 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
             if i == 2:  
                 hor_graph_path = generate_horizontal_bar_chart(dfs[2])  # Generate chart from first DataFrame
                 add_image_to_slide1(slide, hor_graph_path)
+
+            if i == 3:  
+                phor_graph_path = generate_grouped_bar_chart(dfs[3])  # Generate chart from first DataFrame
+                add_image_to_slide2(slide, phor_graph_path)
+
+        
 
 
         # Save presentation to BytesIO for download
