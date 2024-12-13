@@ -547,9 +547,6 @@ def add_image_to_slide1(slide, img_path7):
     slide.shapes.add_picture(img_path7, left, top, width=width, height=height)
 
 
-import numpy as np
-import matplotlib.pyplot as plt
-
 def generate_vertical_grouped_bar_chart(df):
     # Sort DataFrame by '% of articles by Bureaus' in descending order
     df_sorted = df.sort_values(by="% of articles by Bureaus", ascending=False).reset_index(drop=True)
@@ -587,16 +584,20 @@ def generate_vertical_grouped_bar_chart(df):
     ax.set_xlabel("Publication Name", fontsize=12)
     ax.set_xticks(x)
     ax.set_xticklabels(df_sorted["Publication Name"], fontsize=10, rotation=45, ha='right')
+
+    # Set y-axis limits and intervals
+    ax.set_ylim(0, 100)  # Y-axis from 0 to 100%
+    ax.set_yticks(np.arange(0, 101, 5))  # Y-axis ticks from 0 to 100% with 5% intervals
+
     ax.legend(title="Category", fontsize=10)
     ax.grid(axis="y", linestyle="--", alpha=0.7)
 
     # Add value annotations
     for i in range(len(x)):
-        ax.text(x[i] - width / 2, df_sorted["% of articles by Bureaus"][i], f"{df_sorted['% of articles by Bureaus'][i]}%", 
+        ax.text(x[i] - width / 2, df_sorted["% of articles by Bureaus"][i], f"{df_sorted['% of articles by Bureaus'][i]}", 
                 ha="center", va="bottom", fontsize=10)
-        ax.text(x[i] + width / 2, df_sorted["% of articles by Journalists"][i], f"{df_sorted['% of articles by Journalists'][i]}%", 
+        ax.text(x[i] + width / 2, df_sorted["% of articles by Journalists"][i], f"{df_sorted['% of articles by Journalists'][i]}", 
                 ha="center", va="bottom", fontsize=10)
-
 
     # Save plot as image
     img_path8 = "generate_vertical_grouped_bar_chart.png"
