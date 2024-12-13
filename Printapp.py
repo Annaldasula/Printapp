@@ -559,7 +559,7 @@ def generate_horizontal_grouped_bar_chart(df):
     fig, ax = plt.subplots(figsize=(12, 8))
 
     # Plot Bureau percentages
-    ax.barh(
+    ax.bar(
         y - height / 2, 
         df_sorted["% of articles by Bureaus"], 
         height, 
@@ -568,7 +568,7 @@ def generate_horizontal_grouped_bar_chart(df):
     )
 
     # Plot Journalist percentages
-    ax.barh(
+    ax.bar(
         y + height / 2, 
         df_sorted["% of articles by Journalists"], 
         height, 
