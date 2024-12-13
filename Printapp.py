@@ -507,7 +507,7 @@ def add_image_to_slide(slide, img_path6):
     slide.shapes.add_picture(img_path6, left, top, width=width, height=height)
 
 def generate_horizontal_bar_chart(df):
-    df_sorted = df.sort_values(by="News Count", ascending=False)
+    df_sorted = df.sort_values(by="Industry", ascending=False)
     fig, ax = plt.subplots(figsize=(10, 6))
     bars = ax.barh(
         df_sorted["Publication Name"], 
