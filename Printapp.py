@@ -547,57 +547,59 @@ def add_image_to_slide1(slide, img_path7):
     slide.shapes.add_picture(img_path7, left, top, width=width, height=height)
 
 
-def generate_horizontal_grouped_bar_chart(df):
+import numpy as np
+import matplotlib.pyplot as plt
+
+def generate_vertical_grouped_bar_chart(df):
     # Sort DataFrame by '% of articles by Bureaus' in descending order
     df_sorted = df.sort_values(by="% of articles by Bureaus", ascending=False).reset_index(drop=True)
 
     # Data Preparation
-    y = np.arange(len(df_sorted["Publication Name"]))  # Y-axis positions for publications
-    height = 0.5  # Height of the bars
+    x = np.arange(len(df_sorted["Publication Name"]))  # X-axis positions for publications
+    width = 0.35  # Width of the bars
 
     # Create the plot
     fig, ax = plt.subplots(figsize=(12, 8))
 
     # Plot Bureau percentages
-    ax.barh(
-        y - height / 2, 
+    ax.bar(
+        x - width / 2, 
         df_sorted["% of articles by Bureaus"], 
-        height, 
+        width, 
         label="% by Bureaus", 
         color="skyblue",
-        edgecolor="black"
+        edgecolor="black"  # Added black border
     )
 
     # Plot Journalist percentages
-    ax.barh(
-        y + height / 2, 
+    ax.bar(
+        x + width / 2, 
         df_sorted["% of articles by Journalists"], 
-        height, 
+        width, 
         label="% by Journalists", 
         color="orange",
-        edgecolor="black"
+        edgecolor="black"  # Added black border
     )
 
     # Add labels and titles
-    # ax.set_title("Percentage of Articles by Bureaus and Journalists (Sorted)", fontsize=14)
-    ax.set_xlabel("Percentage", fontsize=12)
-    ax.set_ylabel("Publication Name", fontsize=14)
-    ax.set_xlim(0, 100)  # Set x-axis limits from 0% to 100%
-    ax.set_xticks(np.arange(0, 101, 10))  # Set ticks at intervals of 10%
-    ax.set_yticks(y)
-    ax.set_yticklabels(df_sorted["Publication Name"], fontsize=10)
+    ax.set_title("Percentage of Articles by Bureaus and Journalists (Sorted)", fontsize=14)
+    ax.set_ylabel("Percentage", fontsize=12)
+    ax.set_xlabel("Publication Name", fontsize=12)
+    ax.set_xticks(x)
+    ax.set_xticklabels(df_sorted["Publication Name"], fontsize=10, rotation=45, ha='right')
     ax.legend(title="Category", fontsize=10)
-    ax.grid(axis="x", linestyle="--", alpha=0.7)
+    ax.grid(axis="y", linestyle="--", alpha=0.7)
 
     # Add value annotations
-    for i in range(len(y)):
-        ax.text(df_sorted["% of articles by Bureaus"][i], y[i] - height / 2, f"{df_sorted['% of articles by Bureaus'][i]}", 
-                ha="left", va="center", fontsize=10)
-        ax.text(df_sorted["% of articles by Journalists"][i], y[i] + height / 2, f"{df_sorted['% of articles by Journalists'][i]}", 
-                ha="left", va="center", fontsize=10)
+    for i in range(len(x)):
+        ax.text(x[i] - width / 2, df_sorted["% of articles by Bureaus"][i], f"{df_sorted['% of articles by Bureaus'][i]}%", 
+                ha="center", va="bottom", fontsize=10)
+        ax.text(x[i] + width / 2, df_sorted["% of articles by Journalists"][i], f"{df_sorted['% of articles by Journalists'][i]}%", 
+                ha="center", va="bottom", fontsize=10)
+
 
     # Save plot as image
-    img_path8 = "grouped_bar_chart.png"
+    img_path8 = "generate_vertical_grouped_bar_chart.png"
     fig.savefig(img_path8, dpi=300, bbox_inches='tight')
     plt.close(fig)
     return img_path8
@@ -1779,7 +1781,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 add_image_to_slide1(slide, hor_graph_path)
 
             if i == 3:  
-                phor_graph_path = generate_horizontal_grouped_bar_chart(dfs[3])  # Generate chart from first DataFrame
+                phor_graph_path = generate_vertical_grouped_bar_chart(dfs[3])  # Generate chart from first DataFrame
                 add_image_to_slide2(slide, phor_graph_path)
 
             if i == 4:  
