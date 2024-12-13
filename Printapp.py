@@ -660,8 +660,8 @@ def generate_horizontal_bar_chartpt(df):
     
     # Sort the data
     df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
-    df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
-    df_sorted = df.sort_values(by="Industry", ascending=False)
+    # df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
+    # df_sorted = df.sort_values(by="Industry", ascending=False)
     fig, ax = plt.subplots(figsize=(10, 6))
     bars = ax.barh(
         df_sorted["Publication Type"], 
