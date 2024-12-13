@@ -493,7 +493,7 @@ def generate_line_graph(df):
 
     # Save plot as image
     img_path6 = "line_graph.png"
-    fig.savefig(img_path6, dpi=300 ,bbox_inches='tight')
+    fig.savefig(img_path6, dpi=300)
     plt.close(fig)
     return img_path6
 
@@ -542,8 +542,8 @@ def generate_horizontal_bar_chart(df):
 def add_image_to_slide1(slide, img_path7):
     left = Inches(0.5)
     top = Inches(1.5)
-    width = Inches(10)  # Specify exact width
-    height = Inches(8)  # Specify exact height
+    width = Inches(14.5)  # Specify exact width
+    height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path7, left, top, width=width, height=height)
 
 
@@ -599,11 +599,12 @@ def generate_grouped_bar_chart(df):
 def add_image_to_slide2(slide, img_path8):
     left = Inches(0.5)
     top = Inches(1.5)
-    width = Inches(10)  # Specify exact width
-    height = Inches(8)  # Specify exact height
+    width = Inches(14.5)  # Specify exact width
+    height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path8, left, top, width=width, height=height)
 
 def generate_horizontal_bar_chartj(df):
+    df["Industry"] = pd.to_numeric(df["Industry"], errors="coerce")
     df_sorted = df.sort_values(by="Industry", ascending=False)
     fig, ax = plt.subplots(figsize=(10, 6))
     bars = ax.barh(
@@ -639,8 +640,8 @@ def generate_horizontal_bar_chartj(df):
 def add_image_to_slide3(slide, img_path9):
     left = Inches(0.5)
     top = Inches(1.5)
-    width = Inches(12)  # Specify exact width
-    height = Inches(6)  # Specify exact height
+    width = Inches(14.5)  # Specify exact width
+    height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path9, left, top, width=width, height=height)
 
 
