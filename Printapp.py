@@ -1775,7 +1775,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 add_image_to_slide2(slide, phor_graph_path)
 
             if i == 4:  
-                jhor_graph_path = generate_grouped_bar_chartj(dfs[4])  # Generate chart from first DataFrame
+                jhor_graph_path = generate_horizontal_bar_chartj(dfs[4])  # Generate chart from first DataFrame
                 add_image_to_slide3(slide, jhor_graph_path)
 
         
