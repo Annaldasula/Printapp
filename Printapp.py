@@ -656,7 +656,7 @@ def add_image_to_slide3(slide, img_path9):
 
 
 def generate_horizontal_bar_chartpt(df):
-    df_filtered = df[df["Publication Type"] != "Grand Total"]
+    df_filtered = df[df["Publication Type"] != "GrandTotal"]
     
     # Sort the data
     df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
