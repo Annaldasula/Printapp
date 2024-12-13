@@ -656,7 +656,11 @@ def add_image_to_slide3(slide, img_path9):
 
 
 def generate_horizontal_bar_chartpt(df):
-    df["Industry"] = pd.to_numeric(df["Industry"], errors="coerce")
+    df_filtered = df[df["Publication Type"] != "Grand Total"]
+    
+    # Sort the data
+    df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
+    df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
     df_sorted = df.sort_values(by="Industry", ascending=False)
     fig, ax = plt.subplots(figsize=(10, 6))
     bars = ax.barh(
@@ -679,7 +683,7 @@ def generate_horizontal_bar_chartpt(df):
     
     # ax.set_title("Publication Name", fontsize=14)
     ax.set_xlabel("News Count", fontsize=12)
-    ax.set_ylabel("Journalist", fontsize=12)
+    ax.set_ylabel("Publication Type", fontsize=12)
     ax.grid(axis="x", linestyle="--", alpha=0.7)
     
     # Save plot as image
