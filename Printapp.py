@@ -1666,11 +1666,11 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 add_image_to_slide(slide, img_path4)
             if i == 1:  
                 line_graph_path = generate_line_graph(sov_dt1)  # Generate chart from first DataFrame
-                add_image_to_slide(slide, img_path5)
+                add_image_to_slide(slide, line_graph_path)
 
             if i == 2:  
                 hor_graph_path = generate_horizontal_bar_chart(dfs[2])  # Generate chart from first DataFrame
-                add_image_to_slide(slide, img_path6)
+                add_image_to_slide(slide, hor_graph_path)
 
 
         # Save presentation to BytesIO for download
