@@ -564,7 +564,7 @@ def generate_horizontal_grouped_bar_chart(df):
         df_sorted["% of articles by Bureaus"], 
         height, 
         label="% by Bureaus", 
-        color="skyblue"
+        color="skyblue",
         edgecolor="black"
     )
 
@@ -574,7 +574,7 @@ def generate_horizontal_grouped_bar_chart(df):
         df_sorted["% of articles by Journalists"], 
         height, 
         label="% by Journalists", 
-        color="orange"
+        color="orange",
         edgecolor="black"
     )
 
@@ -592,9 +592,9 @@ def generate_horizontal_grouped_bar_chart(df):
     # Add value annotations
     for i in range(len(y)):
         ax.text(df_sorted["% of articles by Bureaus"][i], y[i] - height / 2, f"{df_sorted['% of articles by Bureaus'][i]}", 
-                ha="left", va="center", fontsize=8)
+                ha="left", va="center", fontsize=10)
         ax.text(df_sorted["% of articles by Journalists"][i], y[i] + height / 2, f"{df_sorted['% of articles by Journalists'][i]}", 
-                ha="left", va="center", fontsize=8)
+                ha="left", va="center", fontsize=10)
 
     # Save plot as image
     img_path8 = "grouped_bar_chart.png"
