@@ -683,7 +683,22 @@ def generate_horizontal_bar_chartpt(df):
             va="center", 
             fontsize=10
         )
-    
+    # Sort the bars by width (Industry values)
+    sorted_bars = sorted(bars, key=lambda bar: bar.get_width(), reverse=True)
+
+    # Remove original bars
+    for bar in bars:
+        bar.remove()
+
+    # Re-add the bars in sorted order
+    for bar in sorted_bars:
+        ax.barh(
+            bar.get_y(),
+            bar.get_width(),
+            color="skyblue", 
+            edgecolor="black"
+        )
+
     # ax.set_title("Publication Name", fontsize=14)
     ax.set_xlabel("News Count", fontsize=12)
     ax.set_ylabel("Publication Type", fontsize=12)
