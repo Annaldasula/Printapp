@@ -821,8 +821,8 @@ def generate_horizontal_bar_chartst(df):
         autotext.set_fontsize(10)  # Set font size for percentages
         autotext.set_color('black')  # Set text color for percentages
     
-    Add a title
-    ax.set_title("Sentiment Distribution")
+    # Add a title
+    # ax.set_title("Sentiment Distribution")
     
     # Save plot as image
     img_path11 = "horizontal_bar_chart.png"
