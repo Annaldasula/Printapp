@@ -724,36 +724,65 @@ def add_image_to_slide4(slide, img_path17):
     slide.shapes.add_picture(img_path17, left, top, width=width, height=height)
 
 
+# def generate_horizontal_bar_chartst(df):
+#     df_filtered = df[df["Sentiment"] != "GrandTotal"]
+    
+#     # Sort the data
+#     df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
+#     # df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
+#     # df_sorted = df.sort_values(by="Industry", ascending=False)
+#     fig, ax = plt.subplots(figsize=(10, 6))
+#     bars = ax.barh(
+#         df_sorted["Sentiment"], 
+#         df_sorted["Industry"], 
+#         color="skyblue", 
+#         edgecolor="black"
+#     )
+    
+#     for bar in bars:
+#         width = bar.get_width()
+#         ax.text(
+#             width, 
+#             bar.get_y() + bar.get_height() / 2, 
+#             f"{width}", 
+#             ha="left", 
+#             va="center", 
+#             fontsize=10
+#         )
+    
+#     # ax.set_title("Publication Name", fontsize=14)
+#     ax.set_xlabel("News Count", fontsize=12)
+#     ax.set_ylabel("Sentiment", fontsize=12)
+#     ax.grid(axis="x", linestyle="--", alpha=0.7)
+
 def generate_horizontal_bar_chartst(df):
-    df_filtered = df[df["Sentiment"] != "GrandTotal"]
-    
-    # Sort the data
-    df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
-    # df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
-    # df_sorted = df.sort_values(by="Industry", ascending=False)
-    fig, ax = plt.subplots(figsize=(10, 6))
-    bars = ax.barh(
-        df_sorted["Sentiment"], 
-        df_sorted["Industry"], 
-        color="skyblue", 
-        edgecolor="black"
+    # Ensure the sentiment column contains expected categories
+    sentiment_counts = df['Sentiment'].value_counts()
+
+    # Define colors for each sentiment category
+    sentiment_colors = {
+        "Negative": "red",
+        "Neutral": "blue",
+        "Positive": "green"
+    }
+
+    # Plot the pie chart
+    fig, ax = plt.subplots(figsize=(8, 8))
+    wedges, texts, autotexts = ax.pie(
+        sentiment_counts,
+        labels=sentiment_counts.index,
+        autopct='%1.1f%%',
+        startangle=90,
+        colors=[sentiment_colors.get(sentiment, 'grey') for sentiment in sentiment_counts.index],
+        wedgeprops={'edgecolor': 'black'}
     )
-    
-    for bar in bars:
-        width = bar.get_width()
-        ax.text(
-            width, 
-            bar.get_y() + bar.get_height() / 2, 
-            f"{width}", 
-            ha="left", 
-            va="center", 
-            fontsize=10
-        )
-    
-    # ax.set_title("Publication Name", fontsize=14)
-    ax.set_xlabel("News Count", fontsize=12)
-    ax.set_ylabel("Sentiment", fontsize=12)
-    ax.grid(axis="x", linestyle="--", alpha=0.7)
+
+    # Add title
+    ax.set_title("Sentiment Distribution", fontsize=14)
+
+    # Add data labels in the center of the wedges
+    for autotext in autotexts:
+        autotext.set_fontsize(12)
     
     # Save plot as image
     img_path11 = "horizontal_bar_chart.png"
