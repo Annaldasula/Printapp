@@ -552,54 +552,13 @@ def generate_vertical_grouped_bar_chart(df):
     # Sort DataFrame by '% of articles by Bureaus' in descending order
     df_sorted = df.sort_values(by="% of articles by Bureaus", ascending=False).reset_index(drop=True)
 
-    # # Data Preparation
-    # x = np.arange(len(df_sorted["Publication Name"]))  # X-axis positions for publications
-    # width = 0.35  # Width of the bars
-
-    # # Create the plot
-    # fig, ax = plt.subplots(figsize=(12, 8))
-
-    # # Plot Bureau percentages
-    # ax.bar(
-    #     x - width / 2, 
-    #     df_sorted["% of articles by Bureaus"], 
-    #     width, 
-    #     label="% by Bureaus", 
-    #     color="skyblue",
-    #     edgecolor="black"  # Added black border
-    # )
-
-    # # Plot Journalist percentages
-    # ax.bar(
-    #     x + width / 2, 
-    #     df_sorted["% of articles by Journalists"], 
-    #     width, 
-    #     label="% by Journalists", 
-    #     color="orange",
-    #     edgecolor="black"  # Added black border
-    # )
-
-    # # Add labels and titles
-    # ax.set_title("Percentage of Articles by Bureaus and Journalists (Sorted)", fontsize=14)
-    # ax.set_ylabel("Percentage", fontsize=12)
-    # ax.set_xlabel("Publication Name", fontsize=12)
-    # ax.set_xticks(x)
-    # ax.set_xticklabels(df_sorted["Publication Name"], fontsize=10, rotation=45, ha='right')
-
-    # # Set y-axis limits and intervals
-    # ax.set_ylim(0, 100)  # Y-axis from 0 to 100%
-    # ax.set_yticks(np.arange(0, 101, 5))  # Y-axis ticks from 0 to 100% with 5% intervals
-
-    # ax.legend(title="Category", fontsize=10)
-    # ax.grid(axis="y", linestyle="--", alpha=0.7)
-
     # Convert data into a numpy array for easier manipulation
-    publication_names = df_sorted["Publication Name"]
+    # publication_names = df_sorted["Publication Name"]
     bureaus = df_sorted["% of articles by Bureaus"]
     journalists = df_sorted["% of articles by Journalists"]
 
     # Define x-axis positions
-    x = np.arange(len(publication_names))
+    x = np.arange(len(df_sorted["Publication Name"]))
 
     # Set bar width
     bar_width = 0.4
@@ -610,6 +569,17 @@ def generate_vertical_grouped_bar_chart(df):
     # Plot each bar group
     bars1 = ax.bar(x - bar_width/2, bureaus, bar_width, label="Bureaus", color="skyblue", edgecolor="black")
     bars2 = ax.bar(x + bar_width/2, journalists, bar_width, label="Journalists", color="orange", edgecolor="black")
+
+    # Fix y-axis range to 0-100%
+    ax.set_ylim(0, 100)
+
+    # Add labels, title, and legend
+    ax.set_xlabel("Publication Name")
+    ax.set_ylabel("Percentage")
+    # ax.set_title("Percentage of Articles by Bureaus vs. Journalists")
+    ax.set_xticks(x)
+    ax.set_xticklabels(df_sorted["Publication Name"], rotation=45, ha="right")
+    ax.legend()
 
     # Add data labels
     for bars in (bars1, bars2):
@@ -624,22 +594,14 @@ def generate_vertical_grouped_bar_chart(df):
             fontsize=10
         )
     # Format y-axis to display percentages only
-    ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))
+    # ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))
 
-    # Add labels, title, and legend
-    ax.set_xlabel("Publication Name")
-    ax.set_ylabel("Percentage")
-    # ax.set_title("Percentage of Articles by Bureaus vs. Journalists")
-    ax.set_xticks(x)
-    ax.set_xticklabels(publication_names, rotation=45, ha="right")
-
-
-    # # Add value annotations
-    # for i in range(len(x)):
-    #     ax.text(x[i] - width / 2, df_sorted["% of articles by Bureaus"][i], f"{df_sorted['% of articles by Bureaus'][i]}", 
-    #             ha="center", va="bottom", fontsize=10)
-    #     ax.text(x[i] + width / 2, df_sorted["% of articles by Journalists"][i], f"{df_sorted['% of articles by Journalists'][i]}", 
-    #             ha="center", va="bottom", fontsize=10)
+    # # Add labels, title, and legend
+    # ax.set_xlabel("Publication Name")
+    # ax.set_ylabel("Percentage")
+    # # ax.set_title("Percentage of Articles by Bureaus vs. Journalists")
+    # ax.set_xticks(x)
+    # ax.set_xticklabels(publication_names, rotation=45, ha="right")
 
     # Save plot as image
     img_path8 = "generate_vertical_grouped_bar_chart.png"
