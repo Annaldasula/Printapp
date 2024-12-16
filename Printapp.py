@@ -763,7 +763,7 @@ def generate_horizontal_bar_chartst(df):
     sentiment_labels = df_filtered['Sentiment'].values  # Extract sentiment labels
     
     # Define colors for the sentiments: Negative = Red, Neutral = Blue, Positive = Green
-    colors = ['red', 'green', 'blue']
+    colors = ['salmon','skyblue', 'lightgreen']
 
      
     fig, ax = plt.subplots(figsize=(5, 5))
