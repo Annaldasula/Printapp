@@ -765,47 +765,7 @@ def generate_horizontal_bar_chartst(df):
     # Define colors for the sentiments: Negative = Red, Neutral = Blue, Positive = Green
     colors = ['red', 'green', 'blue']
 
-    # # Calculate the angles for each wedge to position text
-    # wedges, texts = plt.pie(
-    #     sentiment_counts, 
-    #     colors=colors, 
-    #     startangle=90, 
-    #     wedgeprops={'linewidth': 1, 'edgecolor': 'black'}
-    # )
-    
-    # fig, ax = plt.subplots(figsize=(5, 5))
-    # wedges, texts, autotexts = ax.pie(
-    #     sentiment_counts, 
-    #     colors=colors, 
-    #     startangle=90, 
-    #     wedgeprops={'linewidth': 1, 'edgecolor': 'black'},
-    # )
-    
-    # # Add custom labels and percentages below them
-    # for i, wedge in enumerate(wedges):
-    #     # Calculate angle for the label position
-    #     angle = (wedge.theta1 + wedge.theta2) / 2
-    #     x = np.cos(np.radians(angle))
-    #     y = np.sin(np.radians(angle))
-        
-    #     # Add sentiment label
-    #     ax.text(
-    #         x * 1.2, y * 1.2,  # Position slightly outside the pie
-    #         sentiment_labels[i], 
-    #         ha='center', va='center', 
-    #         fontsize=12, color='black', weight='bold'
-    #     )
-        
-    #     # Add percentage below the sentiment label
-    #     ax.text(
-    #         x * 1.2, y * 1.1,  # Position slightly closer to the pie
-    #         f"{sentiment_counts[i]} ({sentiment_counts[i] / sum(sentiment_counts) * 100:.1f}%)",
-    #         ha='center', va='center', 
-    #         fontsize=10, color='black'
-    #     )
-    
-    # Create the pie chart
-    
+     
     fig, ax = plt.subplots(figsize=(5, 5))
     wedges, texts, autotexts = ax.pie(
         sentiment_counts,
@@ -814,7 +774,7 @@ def generate_horizontal_bar_chartst(df):
         colors=colors,
         startangle=90,
         textprops={'fontsize': 12},  # Change font size of labels
-        pctdistance=1.5,  # Position percentage labels outside the pie
+        pctdistance=1.3,  # Position percentage labels outside the pie
     )
     # Customize the percentage text appearance
     for autotext in autotexts:
