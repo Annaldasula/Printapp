@@ -596,7 +596,7 @@ def generate_grouped_bar_chartbt(df, img_name="grouped_bar_chart.png"):
     # Chart aesthetics
     ax.set_xlabel("Publication Name", fontsize=12)
     ax.set_ylabel("Percentage", fontsize=12)
-    ax.set_title("Percentage of Articles by Bureaus and Journalists", fontsize=14)
+    # ax.set_title("Percentage of Articles by Bureaus and Journalists", fontsize=14)
     ax.set_xticks(x)
     ax.set_xticklabels(publication_names, rotation=45, ha="right")
     ax.legend(title="Source", fontsize=10)
