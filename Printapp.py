@@ -605,8 +605,8 @@ def generate_grouped_bar_chart(df):
     ax.set_ylim(0, 100)  # Since percentages are 0-100%
     
     # Save plot as image
-    img_path8 = "generate_vertical_grouped_bar_chart.png"
-    fig.savefig(img_path8, dpi=300, bbox_inches='tight')
+    img_path8 = "generate_grouped_bar_chart.png"
+    fig.savefig(img_path8, dpi=300)
     plt.close(fig)
     return img_path8
 
