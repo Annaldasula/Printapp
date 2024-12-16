@@ -763,11 +763,24 @@ def generate_horizontal_bar_chartst(df):
     sentiment_labels = df_filtered['Sentiment'].values  # Extract sentiment labels
     
     # Define colors for the sentiments: Negative = Red, Neutral = Blue, Positive = Green
-    colors = ['red', 'blue', 'green']
+    colors = ['red', 'green', 'blue']
     
     # Create the pie chart
+    
     fig, ax = plt.subplots(figsize=(5, 5))
-    ax.pie(sentiment_counts, labels=sentiment_labels, autopct='%1.1f%%', colors=colors, startangle=90)
+    wedges, texts, autotexts = ax.pie(
+        sentiment_counts,
+        labels=sentiment_labels,
+        autopct='%1.1f%%',
+        colors=colors,
+        startangle=90,
+        textprops={'fontsize': 12},  # Change font size of labels
+        pctdistance=1.2,  # Position percentage labels outside the pie
+    )
+    # Customize the percentage text appearance
+    for autotext in autotexts:
+        autotext.set_fontsize(10)  # Set font size for percentages
+        autotext.set_color('black')  # Set text color for percentages
     
     # Add a title
     # ax.set_title("Sentiment Distribution")
