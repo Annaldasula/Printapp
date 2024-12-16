@@ -548,69 +548,63 @@ def add_image_to_slide1(slide, img_path7):
     slide.shapes.add_picture(img_path7, left, top, width=width, height=height)
 
 
-def generate_grouped_bar_chart(df):
+def generate_grouped_bar_chartbt(df):
     """
-    Generates a grouped bar chart for article percentages by Bureaus and Journalists.
+    Generates a grouped bar chart for Publication Type, showing No of Publications and AVG News Count.
 
     Parameters:
-        data (pd.DataFrame): A DataFrame containing the following columns:
-                            - "Publication Name"
-                            - "% of articles by Bureaus"
-                            - "% of articles by Journalists"
-        title (str): Title of the chart. Default is "Percentage of Articles by Bureaus vs. Journalists".
+        df (pd.DataFrame): A DataFrame containing:
+                          - 'Publication Type': Categories for the x-axis.
+                          - 'No of Publications': Number of publications.
+                          - 'AVG News Count': Average news count.
+        img_name (str): Name of the image file to save. Default is 'publication_bar_chart.png'.
 
     Returns:
-        None: Displays the chart.
+        str: Path to the saved grouped bar chart image.
     """
-    # Convert data into arrays for plotting
-    publication_names = df["Publication Name"]
-    bureaus = df["% of articles by Bureaus"]
-    journalists = df["% of articles by Journalists"]
-
-    # Define x-axis positions
-    x = np.arange(len(publication_names))
-
-    # Set bar width
-    bar_width = 0.4
-
+    # Extract data
+    publication_types = df["Publication Name"]
+    num_publications = df["% of articles by Bureaus"]
+    avg_news_count = df["% of articles by Journalists"]
+    
+    # Define positions on the x-axis
+    x = np.arange(len(publication_types))  # Numeric positions for each category
+    bar_width = 0.4  # Width of each bar
+    
     # Create the plot
-    fig, ax = plt.subplots(figsize=(12, 6))
-
-    # Plot each bar group
-    bars1 = ax.bar(x - bar_width / 2, bureaus, bar_width, label="Bureaus", color="skyblue", edgecolor="black")
-    bars2 = ax.bar(x + bar_width / 2, journalists, bar_width, label="Journalists", color="orange", edgecolor="black")
-
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bars1 = ax.bar(x - bar_width/2, num_publications, bar_width, label="% of articles by Bureaus", color="skyblue", edgecolor="black")
+    bars2 = ax.bar(x + bar_width/2, avg_news_count, bar_width, label="% of articles by Journalists", color="orange", edgecolor="black")
+    
     # Add data labels
     for bars in (bars1, bars2):
         for bar in bars:
             height = bar.get_height()
             ax.text(
-                bar.get_x() + bar.get_width() / 2,
-                height + 1,  # Add some padding above the bar
-                f"{height}%",  # Display percentage value
-                ha="center",
-                va="bottom",
+                bar.get_x() + bar.get_width() / 2, 
+                height + 0.5,  # Add a slight offset above the bar
+                f"{int(height)}", 
+                ha="center", 
+                va="bottom", 
                 fontsize=10
             )
 
-    # Add labels, title, and legend
+    # Chart aesthetics
     ax.set_xlabel("Publication Name", fontsize=12)
-    ax.set_ylabel("Percentage", fontsize=12)
-    ax.set_title(title, fontsize=14)
+    ax.set_ylabel("Count", fontsize=12)
+    # ax.set_title("Publication Type with Total Publications and AVG News Count", fontsize=14)
     ax.set_xticks(x)
-    ax.set_xticklabels(publication_names, rotation=45, ha="right")
-    ax.legend(title="Article Source", fontsize=10)
+    ax.set_xticklabels(publication_types, rotation=45, ha="right")
+    ax.legend(title="Metrics", fontsize=10)
+    ax.grid(axis="y", linestyle="--", alpha=0.7)
 
-    # Adjust y-axis limits for clarity
-    ax.set_ylim(0, 100)  # Since percentages are 0-100%
-    
     # Save plot as image
-    img_path8 = "generate_grouped_bar_chart.png"
-    fig.savefig(img_path8, dpi=300)
+    img_path8 = "horizontal_bar_chart.png"
+    fig.savefig(img_path8, dpi=300, bbox_inches='tight')
     plt.close(fig)
     return img_path8
 
-# Function to add image to slide
+    # Function to add image to slide
 def add_image_to_slide2(slide, img_path8):
     left = Inches(0.5)
     top = Inches(1.5)
@@ -841,7 +835,7 @@ def generate_grouped_bar_chartpt(df):
     # Chart aesthetics
     ax.set_xlabel("Publication Type", fontsize=12)
     ax.set_ylabel("Count", fontsize=12)
-    ax.set_title("Publication Type with Total Publications and AVG News Count", fontsize=14)
+    # ax.set_title("Publication Type with Total Publications and AVG News Count", fontsize=14)
     ax.set_xticks(x)
     ax.set_xticklabels(publication_types, rotation=45, ha="right")
     ax.legend(title="Metrics", fontsize=10)
@@ -1989,7 +1983,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 add_image_to_slide1(slide, hor_graph_path)
 
             if i == 3:  
-                phor_graph_path = generate_grouped_bar_chart(dfs[3])  # Generate chart from first DataFrame
+                phor_graph_path = generate_grouped_bar_chartbt(dfs[3])  # Generate chart from first DataFrame
                 add_image_to_slide2(slide, phor_graph_path)
 
             if i == 4:  
