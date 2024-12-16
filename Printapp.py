@@ -1922,65 +1922,6 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
      f"•{topct_1_name} leads the news coverage in the Steel Industry sector with {topct_1_count} news articles, accounting for approximately {topct_1_per} of the total news count. This significant concentration indicates that {topct_1_name} is a major city for discussions and developments in the Steel Industry market. {topct_2_name} follows with {topct_2_count} news items, representing around {topct_2_per} of the total. {topct_3_name} and {topct_4_name} also show noteworthy activity, with {topct_3_count} and {topct_4_count} news articles respectively, highlighting their importance in the sector.",
                       ]
 
-def generate_horizontal_bar_chartpt(df):
-    df["Industry"] = pd.to_numeric(df["Industry"], errors="coerce")
-    df_filtered = df[df["Publication Type"] != "GrandTotal"]
-    
-    # Sort the data
-    df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
-    
-    fig, ax = plt.subplots(figsize=(10, 6))
-    bars = ax.barh(
-        df_sorted["Publication Type"], 
-        df_sorted["Industry"], 
-        color="skyblue", 
-        edgecolor="black"
-    )
-    
-    for bar in bars:
-        width = bar.get_width()
-        ax.text(
-            width, 
-            bar.get_y() + bar.get_height() / 2, 
-            f"{width}", 
-            ha="left", 
-            va="center", 
-            fontsize=10
-        )
-    # Sort the bars by width (Industry values)
-    sorted_bars = sorted(bars, key=lambda bar: bar.get_width(), reverse=True)
-
-    # Remove original bars
-    for bar in bars:
-        bar.remove()
-
-    # Re-add the bars in sorted order
-    for bar in sorted_bars:
-        ax.barh(
-            bar.get_y(),
-            bar.get_width(),
-            color="skyblue", 
-            edgecolor="black"
-        )
-
-    # ax.set_title("Publication Name", fontsize=14)
-    ax.set_xlabel("News Count", fontsize=12)
-    ax.set_ylabel("Publication Type", fontsize=12)
-    ax.grid(axis="x", linestyle="--", alpha=0.7)
-    
-    # Save plot as image
-    img_path10 = "horizontal_bar_chart.png"
-    fig.savefig(img_path10, dpi=300, bbox_inches='tight')
-    plt.close(fig)
-    return img_path10
-
-# Function to add image to slide
-def add_image_to_slide4(slide, img_path10):
-    left = Inches(0.5)
-    top = Inches(1.5)
-    width = Inches(14.5)  # Specify exact width
-    height = Inches(5.5)  # Specify exact height
-    slide.shapes.add_picture(img_path10, left, top, width=width, height=height)
 
         # Create a new PowerPoint presentation
         # prs = Presentation()
