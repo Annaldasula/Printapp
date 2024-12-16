@@ -657,6 +657,71 @@ def add_image_to_slide3(slide, img_path9):
     height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path9, left, top, width=width, height=height)
 
+def generate_horizontal_bar_chartpt(df):
+    """
+    Generates a horizontal bar chart and sorts the bars after plotting by their height (values).
+    """
+    # Ensure 'Industry' column is numeric (coerce errors to NaN)
+    df["Industry"] = pd.to_numeric(df["Industry"], errors="coerce")
+
+    # Remove rows where 'Industry' is NaN or 'GrandTotal'
+    df_filtered = df[df["Publication Type"] != "GrandTotal"]
+
+    # Create a horizontal bar chart
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bars = ax.barh(
+        df_filtered["Publication Type"], 
+        df_filtered["Industry"], 
+        color="skyblue", 
+        edgecolor="black"
+    )
+
+    # Add data labels on the bars
+    for bar in bars:
+        width = bar.get_width()
+        ax.text(
+            width, 
+            bar.get_y() + bar.get_height() / 2, 
+            f"{width}", 
+            ha="left", 
+            va="center", 
+            fontsize=10
+        )
+
+    # Sort the bars by width (Industry values)
+    sorted_bars = sorted(bars, key=lambda bar: bar.get_width(), reverse=True)
+
+    # Remove original bars
+    for bar in bars:
+        bar.remove()
+
+    # Re-add the bars in sorted order
+    for bar in sorted_bars:
+        ax.barh(
+            bar.get_y(),
+            bar.get_width(),
+            color="skyblue", 
+            edgecolor="black"
+        )
+
+    # Adjust axis labels and grid
+    ax.set_xlabel("News Count", fontsize=12)
+    ax.set_ylabel("Publication Type", fontsize=12)
+    ax.grid(axis="x", linestyle="--", alpha=0.7)
+    
+    # Save plot as image
+    img_path17 = "horizontal_bar_chart.png"
+    fig.savefig(img_path17, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    return img_path17
+
+# Function to add image to slide
+def add_image_to_slide4(slide, img_path17):
+    left = Inches(0.5)
+    top = Inches(1.5)
+    width = Inches(14.5)  # Specify exact width
+    height = Inches(5.5)  # Specify exact height
+    slide.shapes.add_picture(img_path17, left, top, width=width, height=height)
 
 
 def generate_horizontal_bar_chartst(df):
