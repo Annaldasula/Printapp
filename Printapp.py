@@ -1887,7 +1887,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 pthor_graph_path = generate_horizontal_bar_chartpt(dfs[5])  # Generate chart from first DataFrame
                 add_image_to_slide4(slide, pthor_graph_path)
 
-            if i == 6:  
+            if i == 7:  
                 sthor_graph_path = generate_horizontal_bar_chartst(dfs[7])  # Generate chart from first DataFrame
                 add_image_to_slide5(slide, sthor_graph_path)
         
