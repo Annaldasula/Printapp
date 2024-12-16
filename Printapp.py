@@ -563,18 +563,18 @@ def generate_grouped_bar_chartbt(df):
         str: Path to the saved grouped bar chart image.
     """
     # Extract data
-    publication_types = df["Publication Name"]
-    num_publications = df["% of articles by Bureaus"]
-    avg_news_count = df["% of articles by Journalists"]
+    publication_names = df["Publication Name"]
+    bureaus = df["% of articles by Bureaus"]
+    journalists = df["% of articles by Journalists"]
     
     # Define positions on the x-axis
-    x = np.arange(len(publication_types))  # Numeric positions for each category
+    x = np.arange(len(publication_names))  # Numeric positions for each category
     bar_width = 0.4  # Width of each bar
     
     # Create the plot
     fig, ax = plt.subplots(figsize=(10, 6))
-    bars1 = ax.bar(x - bar_width/2, num_publications, bar_width, label="% of articles by Bureaus", color="skyblue", edgecolor="black")
-    bars2 = ax.bar(x + bar_width/2, avg_news_count, bar_width, label="% of articles by Journalists", color="orange", edgecolor="black")
+    bars1 = ax.bar(x - bar_width/2, bureaus, bar_width, label="% of articles by Bureaus", color="skyblue", edgecolor="black")
+    bars2 = ax.bar(x + bar_width/2, journalists, bar_width, label="% of articles by Journalists", color="orange", edgecolor="black")
     
     # Add data labels
     for bars in (bars1, bars2):
@@ -591,11 +591,11 @@ def generate_grouped_bar_chartbt(df):
 
     # Chart aesthetics
     ax.set_xlabel("Publication Name", fontsize=12)
-    ax.set_ylabel("Count", fontsize=12)
+    ax.set_ylabel("Percentage", fontsize=12)
     # ax.set_title("Publication Type with Total Publications and AVG News Count", fontsize=14)
     ax.set_xticks(x)
-    ax.set_xticklabels(publication_types, rotation=45, ha="right")
-    ax.legend(title="Metrics", fontsize=10)
+    ax.set_xticklabels(publication_names, rotation=45, ha="right")
+    ax.legend(title="Source", fontsize=10)
     ax.grid(axis="y", linestyle="--", alpha=0.7)
 
     # Save plot as image
