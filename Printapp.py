@@ -782,7 +782,7 @@ def generate_horizontal_bar_chartst(df):
 def add_image_to_slide5(slide, img_path11):
     left = Inches(0.5)
     top = Inches(1.5)
-    width = Inches(10.5)  # Specify exact width
+    width = Inches(7.5)  # Specify exact width
     height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path11, left, top, width=width, height=height)
     
