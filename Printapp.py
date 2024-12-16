@@ -622,6 +622,8 @@ def generate_vertical_grouped_bar_chart(df):
             va="bottom",
             fontsize=10
         )
+    # Format y-axis to display percentages only
+    ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))
 
     # Add labels, title, and legend
     ax.set_xlabel("Publication Name")
