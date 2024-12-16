@@ -797,7 +797,71 @@ def add_image_to_slide6(slide, img_path12):
     slide.shapes.add_picture(img_path12, left, top, width=width, height=height)
 
 
+def generate_grouped_bar_chartpt(df):
+    """
+    Generates a grouped bar chart for Publication Type, showing No of Publications and AVG News Count.
 
+    Parameters:
+        df (pd.DataFrame): A DataFrame containing:
+                          - 'Publication Type': Categories for the x-axis.
+                          - 'No of Publications': Number of publications.
+                          - 'AVG News Count': Average news count.
+        img_name (str): Name of the image file to save. Default is 'publication_bar_chart.png'.
+
+    Returns:
+        str: Path to the saved grouped bar chart image.
+    """
+    # Extract data
+    publication_types = df["Publication Type"]
+    num_publications = df["No of Publications"]
+    avg_news_count = df["AVG News Count"]
+    
+    # Define positions on the x-axis
+    x = np.arange(len(publication_types))  # Numeric positions for each category
+    bar_width = 0.4  # Width of each bar
+    
+    # Create the plot
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bars1 = ax.bar(x - bar_width/2, num_publications, bar_width, label="No of Publications", color="skyblue", edgecolor="black")
+    bars2 = ax.bar(x + bar_width/2, avg_news_count, bar_width, label="AVG News Count", color="orange", edgecolor="black")
+    
+    # Add data labels
+    for bars in (bars1, bars2):
+        for bar in bars:
+            height = bar.get_height()
+            ax.text(
+                bar.get_x() + bar.get_width() / 2, 
+                height + 0.5,  # Add a slight offset above the bar
+                f"{int(height)}", 
+                ha="center", 
+                va="bottom", 
+                fontsize=10
+            )
+
+    # Chart aesthetics
+    ax.set_xlabel("Publication Type", fontsize=12)
+    ax.set_ylabel("Count", fontsize=12)
+    ax.set_title("Publication Type with Total Publications and AVG News Count", fontsize=14)
+    ax.set_xticks(x)
+    ax.set_xticklabels(publication_types, rotation=45, ha="right")
+    ax.legend(title="Metrics", fontsize=10)
+    ax.grid(axis="y", linestyle="--", alpha=0.7)
+
+    # Save plot as image
+    img_path13 = "horizontal_bar_chart.png"
+    fig.savefig(img_path13, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    return img_path13
+
+    # Function to add image to slide
+def add_image_to_slide9(slide, img_path13):
+    left = Inches(0.5)
+    top = Inches(1.5)
+    width = Inches(14.5)  # Specify exact width
+    height = Inches(5.5)  # Specify exact height
+    slide.shapes.add_picture(img_path13, left, top, width=width, height=height)
+    
+    
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
     row = 2
@@ -1935,6 +1999,10 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
             if i == 5:  
                 pthor_graph_path = generate_horizontal_bar_chartpt(dfs[5])  # Generate chart from first DataFrame
                 add_image_to_slide4(slide, pthor_graph_path)
+
+            if i == 6:  
+                pthor_graph_path = generate_grouped_bar_chartpt(dfs[6])  # Generate chart from first DataFrame
+                add_image_to_slide9(slide, pthor_graph_path)
 
             if i == 7:  
                 sthor_graph_path = generate_horizontal_bar_chartst(dfs[7])  # Generate chart from first DataFrame
