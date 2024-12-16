@@ -548,17 +548,27 @@ def add_image_to_slide1(slide, img_path7):
     slide.shapes.add_picture(img_path7, left, top, width=width, height=height)
 
 
-def generate_vertical_grouped_bar_chart(df):
-    # Sort DataFrame by '% of articles by Bureaus' in descending order
-    df_sorted = df.sort_values(by="% of articles by Bureaus", ascending=False).reset_index(drop=True)
+def generate_grouped_bar_chart(df):
+    """
+    Generates a grouped bar chart for article percentages by Bureaus and Journalists.
 
-    # Convert data into a numpy array for easier manipulation
-    # publication_names = df_sorted["Publication Name"]
-    bureaus = df_sorted["% of articles by Bureaus"]
-    journalists = df_sorted["% of articles by Journalists"]
+    Parameters:
+        data (pd.DataFrame): A DataFrame containing the following columns:
+                            - "Publication Name"
+                            - "% of articles by Bureaus"
+                            - "% of articles by Journalists"
+        title (str): Title of the chart. Default is "Percentage of Articles by Bureaus vs. Journalists".
+
+    Returns:
+        None: Displays the chart.
+    """
+    # Convert data into arrays for plotting
+    publication_names = df["Publication Name"]
+    bureaus = df["% of articles by Bureaus"]
+    journalists = df["% of articles by Journalists"]
 
     # Define x-axis positions
-    x = np.arange(len(df_sorted["Publication Name"]))
+    x = np.arange(len(publication_names))
 
     # Set bar width
     bar_width = 0.4
@@ -567,42 +577,33 @@ def generate_vertical_grouped_bar_chart(df):
     fig, ax = plt.subplots(figsize=(12, 6))
 
     # Plot each bar group
-    bars1 = ax.bar(x - bar_width/2, bureaus, bar_width, label="Bureaus", color="skyblue", edgecolor="black")
-    bars2 = ax.bar(x + bar_width/2, journalists, bar_width, label="Journalists", color="orange", edgecolor="black")
-
-    # Fix y-axis range to 0-100%
-    ax.set_ylim(0, 100)
-
-    # Add labels, title, and legend
-    ax.set_xlabel("Publication Name")
-    ax.set_ylabel("Percentage")
-    # ax.set_title("Percentage of Articles by Bureaus vs. Journalists")
-    ax.set_xticks(x)
-    ax.set_xticklabels(df_sorted["Publication Name"], rotation=45, ha="right")
-    ax.legend()
+    bars1 = ax.bar(x - bar_width / 2, bureaus, bar_width, label="Bureaus", color="skyblue", edgecolor="black")
+    bars2 = ax.bar(x + bar_width / 2, journalists, bar_width, label="Journalists", color="orange", edgecolor="black")
 
     # Add data labels
     for bars in (bars1, bars2):
         for bar in bars:
             height = bar.get_height()
             ax.text(
-            bar.get_x() + bar.get_width() / 2,
-            height + 1,
-            f"{height}%",
-            ha="center",
-            va="bottom",
-            fontsize=10
-        )
-    # Format y-axis to display percentages only
-    # ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))
+                bar.get_x() + bar.get_width() / 2,
+                height + 1,  # Add some padding above the bar
+                f"{height}%",  # Display percentage value
+                ha="center",
+                va="bottom",
+                fontsize=10
+            )
 
-    # # Add labels, title, and legend
-    # ax.set_xlabel("Publication Name")
-    # ax.set_ylabel("Percentage")
-    # # ax.set_title("Percentage of Articles by Bureaus vs. Journalists")
-    # ax.set_xticks(x)
-    # ax.set_xticklabels(publication_names, rotation=45, ha="right")
+    # Add labels, title, and legend
+    ax.set_xlabel("Publication Name", fontsize=12)
+    ax.set_ylabel("Percentage", fontsize=12)
+    ax.set_title(title, fontsize=14)
+    ax.set_xticks(x)
+    ax.set_xticklabels(publication_names, rotation=45, ha="right")
+    ax.legend(title="Article Source", fontsize=10)
 
+    # Adjust y-axis limits for clarity
+    ax.set_ylim(0, 100)  # Since percentages are 0-100%
+    
     # Save plot as image
     img_path8 = "generate_vertical_grouped_bar_chart.png"
     fig.savefig(img_path8, dpi=300, bbox_inches='tight')
