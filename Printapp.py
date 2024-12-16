@@ -1925,7 +1925,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 add_image_to_slide1(slide, hor_graph_path)
 
             if i == 3:  
-                phor_graph_path = generate_vertical_grouped_bar_chart(dfs[3])  # Generate chart from first DataFrame
+                phor_graph_path = generate_grouped_bar_chart(dfs[3])  # Generate chart from first DataFrame
                 add_image_to_slide2(slide, phor_graph_path)
 
             if i == 4:  
