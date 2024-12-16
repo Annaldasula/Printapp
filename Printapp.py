@@ -766,11 +766,11 @@ def generate_horizontal_bar_chartst(df):
     colors = ['red', 'blue', 'green']
     
     # Create the pie chart
-    fig, ax = plt.subplots(figsize=(8, 8))
+    fig, ax = plt.subplots(figsize=(5, 5))
     ax.pie(sentiment_counts, labels=sentiment_labels, autopct='%1.1f%%', colors=colors, startangle=90)
     
     # Add a title
-    ax.set_title("Sentiment Distribution")
+    # ax.set_title("Sentiment Distribution")
     
     # Save plot as image
     img_path11 = "horizontal_bar_chart.png"
@@ -782,7 +782,7 @@ def generate_horizontal_bar_chartst(df):
 def add_image_to_slide5(slide, img_path11):
     left = Inches(0.5)
     top = Inches(1.5)
-    width = Inches(14.5)  # Specify exact width
+    width = Inches(10.5)  # Specify exact width
     height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path11, left, top, width=width, height=height)
     
