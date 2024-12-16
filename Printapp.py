@@ -745,7 +745,51 @@ def add_image_to_slide5(slide, img_path11):
     width = Inches(14.5)  # Specify exact width
     height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path11, left, top, width=width, height=height)
+    
+def generate_horizontal_bar_chartct(df):
+    df_filtered = df[df["City"] != "GrandTotal"]
+    
+    # Sort the data
+    df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
+    # df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
+    # df_sorted = df.sort_values(by="Industry", ascending=False)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    bars = ax.barh(
+        df_sorted["City"], 
+        df_sorted["Industry"], 
+        color="skyblue", 
+        edgecolor="black"
+    )
+    
+    for bar in bars:
+        width = bar.get_width()
+        ax.text(
+            width, 
+            bar.get_y() + bar.get_height() / 2, 
+            f"{width}", 
+            ha="left", 
+            va="center", 
+            fontsize=10
+        )
+    
+    # ax.set_title("Publication Name", fontsize=14)
+    ax.set_xlabel("News Count", fontsize=12)
+    ax.set_ylabel("City", fontsize=12)
+    ax.grid(axis="x", linestyle="--", alpha=0.7)
+    
+    # Save plot as image
+    img_path12 = "horizontal_bar_chart.png"
+    fig.savefig(img_path12, dpi=300, bbox_inches='tight')
+    plt.close(fig)
+    return img_path12
 
+# Function to add image to slide
+def add_image_to_slide6(slide, img_path12):
+    left = Inches(0.5)
+    top = Inches(1.5)
+    width = Inches(14.5)  # Specify exact width
+    height = Inches(5.5)  # Specify exact height
+    slide.shapes.add_picture(img_path12, left, top, width=width, height=height)
 
 
 
@@ -1890,6 +1934,10 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
             if i == 7:  
                 sthor_graph_path = generate_horizontal_bar_chartst(dfs[7])  # Generate chart from first DataFrame
                 add_image_to_slide5(slide, sthor_graph_path)
+
+            if i == 8:  
+                cthor_graph_path = generate_horizontal_bar_chartct(dfs[8])  # Generate chart from first DataFrame
+                add_image_to_slide6(slide, cthor_graph_path)
         
 
 
