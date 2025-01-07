@@ -821,37 +821,84 @@ def add_image_to_slide5(slide, img_path11):
     width = Inches(7.5)  # Specify exact width
     height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path11, left, top, width=width, height=height)
-    
+
 def generate_horizontal_bar_chartct(df):
-    df_filtered = df[df["City"] != "GrandTotal"]
+    # Remove 'Client-' prefix from 'Entity' column
+    # df["Entity"] = df["Entity"].str.replace("Client-", "", regex=False)
     
-    # Sort the data
-    df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
-    # df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
-    # df_sorted = df.sort_values(by="Industry", ascending=False)
-    fig, ax = plt.subplots(figsize=(10, 6))
-    bars = ax.barh(
-        df_sorted["City"], 
-        df_sorted["Industry"], 
+    # Filter out unwanted rows
+    df = df[df["City"] != "GrandTotal"]
+    
+    # Create the bar chart
+    fig, ax = plt.subplots(figsize=(12, 6))  # Increase figure width for better label visibility
+    x = range(len(df["City"]))  # Define x positions for the bars
+    bars = ax.bar(
+        x, 
+        df["Industry"], 
         color="skyblue", 
         edgecolor="black"
     )
     
+    # Add data labels on top of the bars without decimal
     for bar in bars:
-        width = bar.get_width()
+        height = int(bar.get_height())  # Convert height to integer
         ax.text(
-            width, 
-            bar.get_y() + bar.get_height() / 2, 
-            f"{width}", 
-            ha="left", 
-            va="center", 
-            fontsize=10
+            bar.get_x() + bar.get_width() / 2, 
+            height, 
+            f"{height}", 
+            ha="center", 
+            va="bottom", 
+            fontsize=12,
+            fontweight="bold"
         )
     
-    # ax.set_title("Publication Name", fontsize=14)
-    ax.set_xlabel("News Count", fontsize=12)
-    ax.set_ylabel("City", fontsize=12)
-    ax.grid(axis="x", linestyle="--", alpha=0.7)
+    # Set chart title and axis labels
+    # ax.set_title("Share of Voice (SOV)", fontsize=14)
+    ax.set_xlabel("City", fontsize=12,fontweight="bold")
+    ax.set_ylabel("News Count", fontsize=12,fontweight="bold")
+    
+    # Customize x-axis ticks and labels for better visibility
+    ax.set_xticks(x)
+    ax.set_xticklabels(df["City"], rotation=45, ha="right", fontsize=12,fontweight="bold")
+
+    # Make y-axis tick labels bold
+    ax.tick_params(axis="y", labelsize=10, labelcolor="black", which="major", width=1, labelrotation=0)
+    for label in ax.get_yticklabels():
+        label.set_fontweight("bold")
+    
+    # Add gridlines for better readability
+    ax.grid(axis="y", linestyle="--", alpha=0.7)
+
+# def generate_horizontal_bar_chartct(df):
+#     df_filtered = df[df["City"] != "GrandTotal"]
+    
+#     # Sort the data
+#     df_sorted = df_filtered.sort_values(by="Industry", ascending=False)
+#     # df_sorted["Industry"] = pd.to_numeric(df_sorted["Industry"], errors="coerce")
+#     # df_sorted = df.sort_values(by="Industry", ascending=False)
+#     fig, ax = plt.subplots(figsize=(10, 6))
+#     bars = ax.barh(
+#         df_sorted["City"], 
+#         df_sorted["Industry"], 
+#         color="skyblue", 
+#         edgecolor="black"
+#     )
+    
+#     for bar in bars:
+#         width = bar.get_width()
+#         ax.text(
+#             width, 
+#             bar.get_y() + bar.get_height() / 2, 
+#             f"{width}", 
+#             ha="left", 
+#             va="center", 
+#             fontsize=10
+#         )
+    
+#     # ax.set_title("Publication Name", fontsize=14)
+#     ax.set_xlabel("News Count", fontsize=12)
+#     ax.set_ylabel("City", fontsize=12)
+#     ax.grid(axis="x", linestyle="--", alpha=0.7)
     
     # Save plot as image
     img_path12 = "horizontal_bar_chart.png"
