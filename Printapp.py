@@ -1135,15 +1135,15 @@ def generate_word_cloud(df):
     ax.axis('off')
     
     # Save plot as image
-    img_path = "wordcloud.png"
-    fig.savefig(img_path, dpi=300)
+    img_path11 = "wordcloud.png"
+    fig.savefig(img_path11, dpi=300)
     plt.close(fig)
     
-    return img_path
+    return img_path11
 
-# Example usage
-img_path11 = generate_word_cloud(df)
-print(f"Word cloud saved at: {img_path11}")
+    # # Example usage
+    # img_path11 = generate_word_cloud(df)
+    # print(f"Word cloud saved at: {img_path11}")
 
 # Function to add image to slide (similar to the example you shared)
 def add_image_to_slide11(slide, img_path11):
