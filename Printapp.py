@@ -1123,6 +1123,35 @@ def add_image_to_slide9(slide, img_path13):
     height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path13, left, top, width=width, height=height)
     
+# Function to generate word cloud
+def generate_word_cloud(df):
+    text = ' '.join(df['Headline'].astype(str))
+    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+    
+    # Plotting the word cloud
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.imshow(wordcloud, interpolation='bilinear')
+    ax.axis('off')
+    
+    # Save plot as image
+    img_path = "wordcloud.png"
+    fig.savefig(img_path, dpi=300)
+    plt.close(fig)
+    
+    return img_path
+
+# Example usage
+img_path11 = generate_word_cloud(df)
+print(f"Word cloud saved at: {img_path11}")
+
+# Function to add image to slide (similar to the example you shared)
+def add_image_to_slide11(slide, img_path11):
+    from pptx.util import Inches
+    left = Inches(0.5)
+    top = Inches(1.5)
+    width = Inches(10)  # Adjust width
+    height = Inches(6)  # Adjust height
+    slide.shapes.add_picture(img_path11, left, top, width=width, height=height)
     
 def top_10_dfs(df_list, file_name, comments, top_11_flags):
     writer = pd.ExcelWriter(file_name, engine='xlsxwriter')
@@ -2184,6 +2213,8 @@ f"•There was  peak in {topdt_1_name} due to following news:The increase in vol
     st.sidebar.write("## Download All DataFrames as a PowerPoint File")
     pptx_file_name = st.sidebar.text_input("Enter file name for PowerPoint", "dataframes_presentation.pptx")
 
+    df = pd.DataFrame(finaldata)
+
     if st.sidebar.button("Download PowerPoint"):
         # List of DataFrames to save
         pubs_table1 = pubs_table.head(10)
@@ -2274,7 +2305,11 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
             if i == 8:  
                 cthor_graph_path = generate_horizontal_bar_chartct(dfs[8])  # Generate chart from first DataFrame
                 add_image_to_slide6(slide, cthor_graph_path)
-        
+
+            if i == 8:
+                wordcloud_path = generate_word_cloud(df)  # Generate word cloud from DataFrame
+                add_image_to_slide11(slide, wordcloud_path)
+
 
 
         # Save presentation to BytesIO for download
