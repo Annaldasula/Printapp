@@ -2214,7 +2214,7 @@ f"•There was  peak in {topdt_1_name} due to following news:The increase in vol
     st.sidebar.write("## Download All DataFrames as a PowerPoint File")
     pptx_file_name = st.sidebar.text_input("Enter file name for PowerPoint", "dataframes_presentation.pptx")
 
-    df = pd.DataFrame(finaldata)
+    # df = pd.DataFrame(finaldata)
 
     if st.sidebar.button("Download PowerPoint"):
         # List of DataFrames to save
@@ -2308,7 +2308,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 add_image_to_slide6(slide, cthor_graph_path)
 
             if i == 8:
-                wordcloud_path = generate_word_cloud(df)  # Generate word cloud from DataFrame
+                wordcloud_path = generate_word_cloud(finaldata)  # Generate word cloud from DataFrame
                 add_image_to_slide11(slide, wordcloud_path)
 
 
