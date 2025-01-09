@@ -2667,8 +2667,7 @@ if file:
                 for word in custom_stopwords:
                     cleaned_headlines = cleaned_headlines.replace(word, '')
 
-            wordcloud_image = WordCloud(font_path="D:\Akshay.Annaldasula\OneDrive - Adfactors PR Pvt Ltd\Downloads\Helvetica.ttf",
-                                        background_color="white", width=wordcloud_size_width, height=wordcloud_size_height, max_font_size=80, max_words=wordcloud_max_words,
+            wordcloud_image = WordCloud(background_color="white", width=wordcloud_size_width, height=wordcloud_size_height, max_font_size=80, max_words=wordcloud_max_words,
                                         colormap='Set1', contour_color='black', contour_width=2, collocations=False).generate(cleaned_headlines)
             
             
