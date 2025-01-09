@@ -2311,7 +2311,7 @@ f"•Dominance of {topav_1_name} News: Despite having only {topav_1_jr} publicat
                 cthor_graph_path = generate_horizontal_bar_chartct(dfs[8])  # Generate chart from first DataFrame
                 add_image_to_slide6(slide, cthor_graph_path)
 
-            if i == 9:
+            if i == 8:
                 wordcloud_path = generate_word_cloud(finaldata)  # Generate word cloud from DataFrame
                 add_image_to_slide11(slide, wordcloud_path)
 
