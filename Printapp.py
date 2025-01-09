@@ -1129,7 +1129,7 @@ def add_image_to_slide9(slide, img_path13):
 def generate_word_cloud(df):
     text = ' '.join(df['Headline'].astype(str))
     stopwords = set(STOPWORDS)
-    wordcloud = WordCloud(,stopwords=stopwords, background_color="white" ,width=550,
+    wordcloud = WordCloud(stopwords=stopwords, background_color="white" ,width=550,
         height=450,max_font_size=80, max_words=120,colormap='Set1',collocations=False).generate(text)
     
     # Plotting the word cloud
