@@ -2369,7 +2369,7 @@ from PIL import Image
 from fuzzywuzzy import fuzz
 import matplotlib.pyplot as plt
 # import gensim
-import spacy
+# import spacy
 # import pyLDAvis.gensim_models
 # from gensim.utils import simple_preprocess
 # from gensim.models import CoherenceModel
@@ -2391,7 +2391,7 @@ logging.basicConfig(format='%(asctime)s : %(levelname)s : %(message)s', level=lo
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 # Initialize Spacy 'en' model
-nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
+# nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
 
 
 # Define a function to clean the text
@@ -2467,7 +2467,7 @@ if file:
     data.head()    
     
     st.sidebar.header("Select An Analysis you want to Work On")
-    analysis_option = st.sidebar.selectbox(" ", ["Similarity News", "Word Cloud" ,"LDA"])
+    analysis_option = st.sidebar.selectbox(" ", ["Similarity News", "Word Cloud"])
 
     # Define the 'entities' variable outside of the conditional blocks
     entities = list(data['Entity'].unique())
