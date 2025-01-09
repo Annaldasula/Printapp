@@ -1125,9 +1125,19 @@ def add_image_to_slide9(slide, img_path13):
     height = Inches(5.5)  # Specify exact height
     slide.shapes.add_picture(img_path13, left, top, width=width, height=height)
     
+# Function to clean text
+def clean_text(text):
+    text = text.lower()  # Convert to lowercase
+    text = re.sub(r"http\S+|www\S+|https\S+", '', text, flags=re.MULTILINE)  # Remove URLs
+    text = re.sub(r'\@\w+|\#', '', text)  # Remove mentions and hashtags
+    text = re.sub(r'[^a-zA-Z\s]', '', text)  # Remove non-alphabetic characters
+    text = re.sub(r'\s+', ' ', text).strip()  # Remove extra whitespace
+    return text
+    
 # Function to generate word cloud
 def generate_word_cloud(df):
     text = ' '.join(df['Headline'].astype(str))
+    text = clean_text(text)  # Clean the text
     stopwords = set(STOPWORDS)
     wordcloud = WordCloud(stopwords=stopwords, background_color="white" ,width=550,
         height=450,max_font_size=90, max_words=120,colormap='Set1',collocations=False).generate(text)
