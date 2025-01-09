@@ -1130,7 +1130,7 @@ def generate_word_cloud(df):
     text = ' '.join(df['Headline'].astype(str))
     stopwords = set(STOPWORDS)
     wordcloud = WordCloud(stopwords=stopwords, background_color="white" ,width=550,
-        height=450,max_font_size=80, max_words=120,colormap='Set1',collocations=False).generate(text)
+        height=450,max_font_size=90, max_words=120,colormap='Set1',collocations=False).generate(text)
     
     # Plotting the word cloud
     fig, ax = plt.subplots(figsize=(6, 6), facecolor = 'black', edgecolor='black')
