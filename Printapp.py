@@ -1135,7 +1135,7 @@ def generate_word_cloud(df):
     # Plotting the word cloud
     fig, ax = plt.subplots(figsize=(10, 6), facecolor = 'black', edgecolor='black')
     ax.imshow(wordcloud, interpolation='bilinear')
-    ax.tight_layout(pad = 0) 
+    # ax.tight_layout(pad = 0) 
     ax.axis('off')
     
     # Save plot as image
