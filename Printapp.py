@@ -26,7 +26,8 @@ from pptx.enum.text import MSO_VERTICAL_ANCHOR
 from pptx.util import Inches
 from io import BytesIO
 from matplotlib.ticker import PercentFormatter
-from wordcloud import WordCloud
+# from wordcloud import WordCloud
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 
 # Streamlit app with a sidebar layout
@@ -1127,11 +1128,14 @@ def add_image_to_slide9(slide, img_path13):
 # Function to generate word cloud
 def generate_word_cloud(df):
     text = ' '.join(df['Headline'].astype(str))
-    wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text)
+    stopwords = set(STOPWORDS)
+    wordcloud = WordCloud(,stopwords=stopwords, background_color="white" ,width=550,
+        height=450,max_font_size=80, max_words=120,colormap='Set1',collocations=False).generate(text)
     
     # Plotting the word cloud
-    fig, ax = plt.subplots(figsize=(10, 6))
+    fig, ax = plt.subplots(figsize=(10, 6), facecolor = 'black', edgecolor='black')
     ax.imshow(wordcloud, interpolation='bilinear')
+    ax.tight_layout(pad = 0) 
     ax.axis('off')
     
     # Save plot as image
