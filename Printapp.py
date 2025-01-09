@@ -1133,14 +1133,14 @@ def generate_word_cloud(df):
         height=450,max_font_size=80, max_words=120,colormap='Set1',collocations=False).generate(text)
     
     # Plotting the word cloud
-    fig, ax = plt.subplots(figsize=(10, 6), facecolor = 'black', edgecolor='black')
+    fig, ax = plt.subplots(figsize=(6, 6), facecolor = 'black', edgecolor='black')
     ax.imshow(wordcloud, interpolation='bilinear')
     # ax.tight_layout(pad = 0) 
     ax.axis('off')
     
     # Save plot as image
     img_path11 = "wordcloud.png"
-    fig.savefig(img_path11, dpi=300)
+    fig.savefig(img_path11, dpi=300, bbox_inches='tight')
     plt.close(fig)
     
     return img_path11
