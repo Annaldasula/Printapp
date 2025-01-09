@@ -2368,16 +2368,16 @@ from wordcloud import WordCloud
 from PIL import Image
 from fuzzywuzzy import fuzz
 import matplotlib.pyplot as plt
-import gensim
-# import spacy
-import pyLDAvis.gensim_models
-from gensim.utils import simple_preprocess
-from gensim.models import CoherenceModel
+# import gensim
+# # import spacy
+# import pyLDAvis.gensim_models
+# from gensim.utils import simple_preprocess
+# from gensim.models import CoherenceModel
 from pprint import pprint
 import logging
 import warnings
 from nltk.corpus import stopwords
-import gensim.corpora as corpora
+# import gensim.corpora as corpora
 from io import BytesIO
 import nltk
 
