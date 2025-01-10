@@ -2428,10 +2428,10 @@ if file:
     # Importing Dataset
     data = pd.read_excel(file)
     
-    data['Text'] = (data['Headline'].astype(str) + data['Opening Text'].astype(str) + data['Hit Sentence'].astype(str))
-    data.drop_duplicates(subset=['Date', 'Entity', 'Headline', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
-    data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
-    data.drop_duplicates(subset=['Date', 'Entity', 'Hit Sentence', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+    # data['Text'] = (data['Headline'].astype(str) + data['Opening Text'].astype(str) + data['Hit Sentence'].astype(str))
+    # data.drop_duplicates(subset=['Date', 'Entity', 'Headline', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+    # data.drop_duplicates(subset=['Date', 'Entity', 'Opening Text', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
+    # data.drop_duplicates(subset=['Date', 'Entity', 'Hit Sentence', 'Publication Name'], keep='first', inplace=True, ignore_index=True)
 
     # Define a function to clean the text
     def clean(text):
@@ -2528,7 +2528,7 @@ if file:
             
             # Define a dictionary of keywords for each entity
             entity_keywords = {
-                        'Nothing Tech': ['Nothing','nothing'],
+                        # 'Nothing Tech': ['Nothing','nothing'],
 #                         'Asian Paints': ['asian', 'keyword2', 'keyword3'],
             }
             
