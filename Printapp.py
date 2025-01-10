@@ -2500,7 +2500,7 @@ if file:
                 entity_data.loc[entity_data['Cleaned_Headline'] == headline, 'Similar_Headline'] = m
 
             # Drop unnecessary columns
-            entity_data.drop(entity_data.columns[36:], axis=1, inplace=True)
+            # entity_data.drop(entity_data.columns[36:], axis=1, inplace=True)
 
             # Sort the dataframe based on the 'Similar_Headline' column
             entity_data.sort_values('Similar_Headline', ascending=True, inplace=True)
