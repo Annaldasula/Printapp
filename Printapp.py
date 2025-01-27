@@ -1310,27 +1310,52 @@ if file:
         # Extract the top 3 publications and their counts
         top_1 = pubs_table1.iloc[0:1]  # First publication
         top_2 = pubs_table1.iloc[1:2]  # Second publication
-        top_3 = pubs_table1.iloc[2:3]  # Third publication
-        top_4 = pubs_table1.iloc[10:11]  # fourth publication
+        # Check if a third publication exists
+        if len(pubs_table1) > 2:
+            top_3 = pubs_table1.iloc[2:3]  # Third publication
+            df_top3 = top_3.reset_index(drop=True)
+            top_3_name = df_top3.iloc[0]["Publication Name"]
+            top_3_count = df_top3.iloc[0]["Industry"]
+        else:
+            top_3_name = ""
+            top_3_count = 0  # You can assign any default value for count
 
-        # Save them in separate DataFrames
+        # Save the first two publications in separate DataFrames
         df_top1 = top_1.reset_index(drop=True)
         df_top2 = top_2.reset_index(drop=True)
-        df_top3 = top_3.reset_index(drop=True)
-        df_top4 = top_4.reset_index(drop=True)
 
-        # Extract publication name and count for the top 3
+        # Extract publication name and count for the top 2
         top_1_name = df_top1.iloc[0]["Publication Name"]
         top_1_count = df_top1.iloc[0]["Industry"]
 
         top_2_name = df_top2.iloc[0]["Publication Name"]
         top_2_count = df_top2.iloc[0]["Industry"]
 
-        top_3_name = df_top3.iloc[0]["Publication Name"]
-        top_3_count = df_top3.iloc[0]["Industry"]
 
-        top_4_name = df_top4.iloc[0]["Industry"]
-        top_4_per = df_top4.iloc[0]["% "]
+        # # Extract the top 3 publications and their counts
+        # top_1 = pubs_table1.iloc[0:1]  # First publication
+        # top_2 = pubs_table1.iloc[1:2]  # Second publication
+        # top_3 = pubs_table1.iloc[2:3]  # Third publication
+        # top_4 = pubs_table1.iloc[10:11]  # fourth publication
+
+        # # Save them in separate DataFrames
+        # df_top1 = top_1.reset_index(drop=True)
+        # df_top2 = top_2.reset_index(drop=True)
+        # df_top3 = top_3.reset_index(drop=True)
+        # df_top4 = top_4.reset_index(drop=True)
+
+        # # Extract publication name and count for the top 3
+        # top_1_name = df_top1.iloc[0]["Publication Name"]
+        # top_1_count = df_top1.iloc[0]["Industry"]
+
+        # top_2_name = df_top2.iloc[0]["Publication Name"]
+        # top_2_count = df_top2.iloc[0]["Industry"]
+
+        # top_3_name = df_top3.iloc[0]["Publication Name"]
+        # top_3_count = df_top3.iloc[0]["Industry"]
+
+        top_4_name = "Publication Name"
+        top_4_per = "Count"
 
         
         # pub_table['Total'] = pub_table.sum(axis=1)
@@ -1408,47 +1433,96 @@ if file:
         # Extract the top 3 publications and their counts
         topj_1 = Jour_table1.iloc[0:1]  # First publication
         topj_2 = Jour_table1.iloc[1:2]  # Second publication
-        topj_3 = Jour_table1.iloc[2:3]  # Third publication
-        topj_4 = Jour_table1.iloc[10:11]  # Third publication
+        # Check if a third publication exists
+        if len(Jour_table1) > 2:
+            topj_3 = Jour_table1.iloc[2:3]  # Third publication
+            df_topj3 = topj_3.reset_index(drop=True)
+            topj_3_name = df_topj3.iloc[0]["Journalist"]
+            topj_3_count = df_topj3.iloc[0]["Total"]
+        else:
+            topj_3_name = ""
+            topj_3_count = 0  # You can assign any default value for count
 
-        # Save them in separate DataFrames
+        # Save the first two publications in separate DataFrames
         df_topj1 = topj_1.reset_index(drop=True)
         df_topj2 = topj_2.reset_index(drop=True)
-        df_topj3 = topj_3.reset_index(drop=True)
-        df_topj4 = topj_4.reset_index(drop=True)
 
-        # Extract publication name and count for the top 3
+        # Extract publication name and count for the top 2
         topj_1_name = df_topj1.iloc[0]["Journalist"]
         topj_1_count = df_topj1.iloc[0]["Total"]
 
         topj_2_name = df_topj2.iloc[0]["Journalist"]
         topj_2_count = df_topj2.iloc[0]["Total"]
 
-        topj_3_name = df_topj3.iloc[0]["Journalist"]
-        topj_3_count = df_topj3.iloc[0]["Total"]
 
-        topj_4_name = df_topj4.iloc[0]["Journalist"]
-        topj_4_count = df_topj4.iloc[0]["Total"]
+        # # Extract the top 3 publications and their counts
+        # topj_1 = Jour_table1.iloc[0:1]  # First publication
+        # topj_2 = Jour_table1.iloc[1:2]  # Second publication
+        # topj_3 = Jour_table1.iloc[2:3]  # Third publication
+        # topj_4 = Jour_table1.iloc[10:11]  # Third publication
+
+        # # Save them in separate DataFrames
+        # df_topj1 = topj_1.reset_index(drop=True)
+        # df_topj2 = topj_2.reset_index(drop=True)
+        # df_topj3 = topj_3.reset_index(drop=True)
+        # df_topj4 = topj_4.reset_index(drop=True)
+
+        # # Extract publication name and count for the top 3
+        # topj_1_name = df_topj1.iloc[0]["Journalist"]
+        # topj_1_count = df_topj1.iloc[0]["Total"]
+
+        # topj_2_name = df_topj2.iloc[0]["Journalist"]
+        # topj_2_count = df_topj2.iloc[0]["Total"]
+
+        # topj_3_name = df_topj3.iloc[0]["Journalist"]
+        # topj_3_count = df_topj3.iloc[0]["Total"]
+
+        topj_4_name = "Journalist Name"
+        topj_4_count = "Count"
 
         # Extract the top 3 publications and their counts
         topjt_1 = Jour_table1.iloc[0:1]  # First publication
         topjt_2 = Jour_table1.iloc[1:2]  # Second publication
-        topjt_3 = Jour_table1.iloc[2:3]  # Third publication
+        # Check if a third publication exists
+        if len(Jour_table1) > 2:
+            topjt_3 = Jour_table1.iloc[2:3]  # Third publication
+            df_topjt3 = topjt_3.reset_index(drop=True)
+            topjt_3_name = df_topjt3.iloc[0]["Publication Name"]
+            topjt_3_count = df_topjt3.iloc[0]["Total"]
+        else:
+            topjt_3_name = ""
+            # topjt_3_count = 0  # You can assign any default value for count
 
-        # Save them in separate DataFrames
+        # Save the first two publications in separate DataFrames
         df_topjt1 = topjt_1.reset_index(drop=True)
         df_topjt2 = topjt_2.reset_index(drop=True)
-        df_topjt3 = topjt_3.reset_index(drop=True)
 
-        # Extract publication name and count for the top 3
+        # Extract publication name and count for the top 2
         topjt_1_name = df_topjt1.iloc[0]["Publication Name"]
-        # top_1_count = df_topjt1.iloc[0]["Total"]
+        # topjt_1_count = df_topjt1.iloc[0]["Total"]
 
         topjt_2_name = df_topjt2.iloc[0]["Publication Name"]
-        # top_2_count = df_topjt2.iloc[0]["Total"]
+        # topjt_2_count = df_topjt2.iloc[0]["Total"]
 
-        topjt_3_name = df_topjt3.iloc[0]["Publication Name"]
-        # top_3_count = df_topjt3.iloc[0]["Total"]
+        # # Extract the top 3 publications and their counts
+        # topjt_1 = Jour_table1.iloc[0:1]  # First publication
+        # topjt_2 = Jour_table1.iloc[1:2]  # Second publication
+        # topjt_3 = Jour_table1.iloc[2:3]  # Third publication
+
+        # # Save them in separate DataFrames
+        # df_topjt1 = topjt_1.reset_index(drop=True)
+        # df_topjt2 = topjt_2.reset_index(drop=True)
+        # df_topjt3 = topjt_3.reset_index(drop=True)
+
+        # # Extract publication name and count for the top 3
+        # topjt_1_name = df_topjt1.iloc[0]["Publication Name"]
+        # # top_1_count = df_topjt1.iloc[0]["Total"]
+
+        # topjt_2_name = df_topjt2.iloc[0]["Publication Name"]
+        # # top_2_count = df_topjt2.iloc[0]["Total"]
+
+        # topjt_3_name = df_topjt3.iloc[0]["Publication Name"]
+        # # top_3_count = df_topjt3.iloc[0]["Total"]
 
         # Group by Publication Name and calculate the News Count
         news_count = finaldata['Publication Name'].value_counts().reset_index()
